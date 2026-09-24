@@ -1,0 +1,74 @@
+{
+  "manifest_version": 3,
+  "name": "Sentinela",
+  "version": "0.1.0",
+  "description": "Detecta rastreadores, cookies e armazenamento no cliente por página visitada.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sentinela@insper.edu.br",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "permissions": [
+    "webRequest",
+    "webNavigation",
+    "tabs",
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": [
+      "lib/tldts.umd.min.js",
+      "data/trackers.js",
+      "background/util.js",
+      "background/trackers.js",
+      "background/state.js",
+      "background/requests.js",
+      "background/cookies.js",
+      "background/storage.js",
+      "background/messages.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content/bridge.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content/main-world.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "world": "MAIN"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Sentinela",
+    "default_icon": "icons/icon.svg"
+  },
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  }
+}
