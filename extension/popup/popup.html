@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Sentinela</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="head">
+    <div class="site">
+      <strong id="site">—</strong>
+      <span id="url" class="url"></span>
+    </div>
+    <button id="export" type="button" title="Salvar o relatório desta página em JSON">Exportar JSON</button>
+  </header>
+
+  <div id="perm" class="perm" hidden>
+    <p>A extensão ainda não pode ler os sites. Sem essa permissão nada é detectado.</p>
+    <button id="grant" type="button">Permitir acesso a todos os sites</button>
+  </div>
+
+  <section class="tally" id="tally"></section>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="domains" aria-selected="true">Terceiros</button>
+    <button role="tab" data-tab="cookies" aria-selected="false">Cookies</button>
+    <button role="tab" data-tab="storage" aria-selected="false">Armazenamento</button>
+  </nav>
+
+  <main>
+    <section id="tab-domains" class="panel"></section>
+    <section id="tab-cookies" class="panel" hidden></section>
+    <section id="tab-storage" class="panel" hidden></section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
