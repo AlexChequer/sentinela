@@ -1,0 +1,15 @@
+# Dependências e artefatos
+node_modules/
+dist/
+web-ext-artifacts/
+
+# Segredos (o projeto não usa, mas por garantia)
+.env
+.env.*
+
+# Sistema / editor
+.DS_Store
+
+# Claude Code local
+.claude/settings.local.json
+CLAUDE.local.md

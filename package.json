@@ -1,0 +1,15 @@
+{
+  "name": "sentinela",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Extensão Firefox para detecção de rastreadores e violações de privacidade no cliente web",
+  "scripts": {
+    "lint": "web-ext lint --source-dir extension",
+    "start": "web-ext run --source-dir extension --devtools",
+    "build": "web-ext build --source-dir extension --overwrite-dest",
+    "trackers": "node scripts/build-tracker-db.mjs"
+  },
+  "devDependencies": {
+    "web-ext": "^8.0.0"
+  }
+}
