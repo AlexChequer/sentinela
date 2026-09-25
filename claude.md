@@ -12,7 +12,9 @@ leve a sério e verifique antes de insistir.
 
 ## Enunciado resumido (rubrica)
 
-Prazo: 1 semana a partir de 24/09/2026 (confirmar a data exata com o Alex).
+Prazo: **terça, 29/09/2026** (confirmado pelo Alex). Cronograma: sex 25 fase 2,
+sáb 26 fase 3, dom 27 fase 4, seg 28 coleta de evidências + rascunho, ter 29
+relatório final e entrega.
 
 Entregáveis obrigatórios:
 1. Repositório Git com **histórico de commits incrementais ao longo da semana**
@@ -94,8 +96,7 @@ de rastreador por host (dentro do site), Cookie Store API e Cache API.
 Não monitorado (divergências a explicar no relatório): WebSQL (inexistente no
 Firefox), window.name, history, cache HTTP, service worker e cookieStore
 dentro de service worker.
-Firefox do Alex está em inglês ("Load Temporary Add-on…"). Pendentes: data
-exata de entrega e os 3 sites sorteados.
+Firefox do Alex está em inglês ("Load Temporary Add-on…"). Pendente: os 3 sites sorteados (o Alex está procurando a lista).
 
 MV3, Firefox >= 128. Estrutura:
 
