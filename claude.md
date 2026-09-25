@@ -30,6 +30,21 @@ Entregáveis obrigatórios:
 Formato: link do repo, relatório em PDF (entregáveis 2, 3 e 4), HARs e prints
 em `evidencias/`.
 
+Detalhes do PDF do enunciado que não estão acima:
+- Título: "Plugin para Firefox para **Detecção e Bloqueio** de Rastreadores"
+  (o bloqueio é parte central, não enfeite).
+- Os 3 sites são sorteados por matrícula a partir de uma lista divulgada pelo
+  professor. O PDF não traz data: o prazo é "1 semana a partir da divulgação".
+- Ferramentas de referência citadas, úteis como validação extra no relatório:
+  Cover Your Tracks (coveryourtracks.eff.org), browserleaks.com/canvas,
+  fingerprintable.org, supercookie via favicon
+  (github.com/jonasstrehle/supercookie), uBlock Origin, Blacklight.
+  Extensões de exemplo: StoragErazor e Clear Storage Button.
+- A seção sobre hijacking menciona BeEF injetado via XSS e extensões que
+  alteram configurações do navegador.
+
+Rubrica:
+
 - **C:** instala e roda sem erro; detecta terceiros, contagem de cookies e
   storage HTML5; relatório DDG cobrindo no mínimo Tracker Reporting, Storage
   blocking e Fingerprinting/canvas; HAR dos 3 sites.
@@ -67,7 +82,20 @@ não contam.
   tamanho e hash FNV-1a). Mantenha isso.
 - UI sem `innerHTML` com dados de páginas; use o helper `el()` / `textContent`.
 
-## Estado atual (fase 1 pronta, ainda não testada no Firefox)
+## Estado atual (fase 0 concluída em 24/09/2026)
+
+Repo público: https://github.com/AlexChequer/sentinela (push via SSH).
+Fase 1 testada no Firefox 156 do Alex (perfil padrão, ETP Padrão; o perfil
+dedicado ainda não foi criado). Validado em tracker-reporting/1major-via-script
+(doubleclick.net detectado pela Disconnect e pelo Firefox) e em
+storage-blocking (27 cookies e localStorage/sessionStorage/IndexedDB/Cache API
+nos 4 frames batem com a página). Correções feitas nesse teste: classificação
+de rastreador por host (dentro do site), Cookie Store API e Cache API.
+Não monitorado (divergências a explicar no relatório): WebSQL (inexistente no
+Firefox), window.name, history, cache HTTP, service worker e cookieStore
+dentro de service worker.
+Firefox do Alex está em inglês ("Load Temporary Add-on…"). Pendentes: data
+exata de entrega e os 3 sites sorteados.
 
 MV3, Firefox >= 128. Estrutura:
 
