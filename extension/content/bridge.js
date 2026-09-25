@@ -10,6 +10,14 @@
   let buffer = [];
   let timer = null;
 
+  // Iframes about:blank/about:srcdoc criados por script herdam a origem de quem
+  // os criou (normalmente o pai), mas aqui location.origin vem como "null".
+  // O browserleaks, por exemplo, faz o fingerprint dentro de um iframe desses.
+  function frameOrigin() {
+    if (location.origin && location.origin !== 'null') return location.origin;
+    try { return window.parent.location.origin; } catch { return 'null'; }
+  }
+
   function flush() {
     timer = null;
     if (!buffer.length) return;
@@ -18,7 +26,7 @@
     browser.runtime.sendMessage({
       type: 'content-events',
       url: location.href,
-      origin: location.origin,
+      origin: frameOrigin(),
       isTop: window === window.top,
       events,
     }).catch(() => {});

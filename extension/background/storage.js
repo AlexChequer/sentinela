@@ -6,7 +6,7 @@
 PL.storageEntry = (r, origin, url, isTop) => {
   let s = r.storage[origin];
   if (!s) {
-    const site = PL.siteOf(url) || origin;
+    const site = PL.siteOf(url) || PL.siteOf(origin) || origin;
     s = r.storage[origin] = {
       origin, site, party: PL.partyOf(r, site), isTop,
       localStorage: null, sessionStorage: null, indexedDB: { databases: [] }, cacheStorage: { caches: [] },
@@ -14,6 +14,8 @@ PL.storageEntry = (r, origin, url, isTop) => {
       writeLog: [], errors: {},
     };
   }
+  // A página e um iframe about:blank dela caem na mesma origem: vale o topo.
+  if (isTop) s.isTop = true;
   return s;
 };
 
