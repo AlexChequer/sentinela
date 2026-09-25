@@ -12,9 +12,11 @@ leve a sério e verifique antes de insistir.
 
 ## Enunciado resumido (rubrica)
 
-Prazo: **terça, 29/09/2026** (confirmado pelo Alex). Cronograma: sex 25 fase 2,
-sáb 26 fase 3, dom 27 fase 4, seg 28 coleta de evidências + rascunho, ter 29
-relatório final e entrega.
+Prazo: **terça, 29/09/2026** (confirmado pelo Alex). O Alex quer adiantar o
+máximo no fim de semana para não deixar nada para a última hora. Cronograma:
+sex 25 fase 2; sáb 26 fase 3 e fase 4 (UI congelada no fim do sábado); dom 27
+prints do DDG, HARs, Blacklight e uBlock; seg 28 relatório completo; ter 29
+só revisão e entrega (folga).
 
 Entregáveis obrigatórios:
 1. Repositório Git com **histórico de commits incrementais ao longo da semana**
