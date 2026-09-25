@@ -23,6 +23,8 @@ PL.summarize = (r) => {
   }
 
   const frames = Object.values(r.storage);
+  const canvas = r.fingerprint.canvas;
+  const fpScripts = new Set(canvas.filter((c) => c.verdict === 'fingerprint').map((c) => c.script));
   const sum = (area, f) => frames.reduce((a, s) => a + (s[area] ? s[area][f] : 0), 0);
   return {
     url: r.url,
@@ -30,6 +32,12 @@ PL.summarize = (r) => {
     requests: { total: r.requests.total, thirdParty: r.requests.thirdParty },
     domains: { total: domains.length, thirdParty: third.length, trackers: third.filter((d) => d.tracker).length },
     cookies: { events: r.cookies.length, unique: unique.size, matrix: cookieMatrix, bySource },
+    fingerprint: {
+      canvasReads: canvas.length,
+      canvasFingerprints: canvas.filter((c) => c.verdict === 'fingerprint').length,
+      fingerprintScripts: fpScripts.size,
+      thirdPartyFingerprints: canvas.filter((c) => c.verdict === 'fingerprint' && c.scriptParty === 'third').length,
+    },
     storage: {
       frames: frames.length,
       localStorageKeys: sum('localStorage', 'count'),
@@ -55,6 +63,8 @@ async function handleContentEvents(msg, sender) {
     if (ev.type === 'cookie-set') {
       const c = PL.parseCookieString(ev.cookie, frameHost, ev.t);
       PL.recordCookie(r, c, { source: 'js', api: ev.api || 'document.cookie', url: frameUrl, setBy: ev.script, accepted: ev.accepted });
+    } else if (ev.type === 'canvas-read') {
+      PL.recordCanvasRead(r, frame, ev);
     } else {
       PL.recordStorageEvent(r, frame, ev);
     }

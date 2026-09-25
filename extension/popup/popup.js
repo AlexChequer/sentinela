@@ -97,6 +97,25 @@ function renderStorage(r) {
       el('td', {}, names(s, 'cacheStorage', s.cacheStorage.caches))))));
 }
 
+function renderFingerprint(r, s) {
+  const list = r.fingerprint.canvas;
+  if (!list.length) return el('p', { class: 'empty' }, 'Nenhuma leitura de canvas nesta página.');
+  const f = s.fingerprint;
+  const note = el('p', { class: 'note' },
+    `${f.canvasFingerprints} provável(is) fingerprint(s) por ${f.fingerprintScripts} script(s), `,
+    `${f.canvasReads} leitura(s) de canvas no total. Critério: Englehardt & Narayanan (2016).`);
+  const rows = list.map((c) => el('tr', {},
+    el('td', { class: 'host' }, c.script || '(script desconhecido)',
+      el('span', { class: 'sub' }, c.scriptParty ? partyTag(c.scriptParty) : null, c.textSample ? ` texto: "${c.textSample}"` : '')),
+    el('td', {}, `${c.api}`, el('span', { class: 'sub' }, `${c.width}x${c.height}`)),
+    el('td', {},
+      c.verdict === 'fingerprint' ? tag('fingerprint', 'trk') : tag('extração'),
+      el('span', { class: 'sub' }, c.reasons.join('; ')))));
+  return [note, el('table', {},
+    el('thead', {}, el('tr', {}, el('th', {}, 'Script'), el('th', {}, 'API'), el('th', {}, 'Classificação'))),
+    el('tbody', {}, rows))];
+}
+
 async function refresh() {
   const data = await browser.runtime.sendMessage({ type: 'get-report', tabId }).catch(() => null);
   if (!data) {
@@ -112,6 +131,7 @@ async function refresh() {
     domains: () => renderDomains(r),
     cookies: () => renderCookies(r, s),
     storage: () => renderStorage(r),
+    fingerprint: () => renderFingerprint(r, s),
   };
   const panel = document.getElementById(`tab-${current}`);
   const y = document.querySelector('main').scrollTop;

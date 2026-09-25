@@ -4,7 +4,7 @@
 // storage.session e o restauramos ao acordar.
 
 PL.tabs = new Map();
-PL.LIMITS = { requestLog: 1500, cookies: 2000, storageWrites: 300 };
+PL.LIMITS = { requestLog: 1500, cookies: 2000, storageWrites: 300, canvas: 200 };
 
 PL.ready = (async () => {
   try {
@@ -38,6 +38,7 @@ PL.newReport = (tabId, url, navRequestId = null) => ({
   domains: {},   // site (eTLD+1) -> agregado
   cookies: [],   // eventos de definição de cookie (HTTP e JS)
   storage: {},   // origem do frame -> uso de localStorage/sessionStorage/IndexedDB
+  fingerprint: { canvas: [] }, // leituras de canvas classificadas
 });
 
 // Garante que exista um relatório para a aba. Se a extensão foi carregada com a

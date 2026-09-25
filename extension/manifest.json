@@ -34,6 +34,7 @@
       "background/requests.js",
       "background/cookies.js",
       "background/storage.js",
+      "background/fingerprint.js",
       "background/messages.js"
     ]
   },
@@ -54,7 +55,8 @@
         "<all_urls>"
       ],
       "js": [
-        "content/main-world.js"
+        "content/main-world.js",
+        "content/fp-world.js"
       ],
       "run_at": "document_start",
       "all_frames": true,
