@@ -41,6 +41,28 @@
   const _setSize = _getDesc(Set.prototype, 'size').get;
   const STACK_RE = /(?:@|at |\()((?:https?|wss?|blob|data):[^\s)]+?):\d+:\d+\)?$/;
 
+  // toString discreto. No Firefox, Function.prototype.toString de um Proxy
+  // devolve "function () { [native code] }", sem o nome da função, e a página
+  // js-leaks do DDG compara esse texto. Cada proxy nosso é registrado com a
+  // função original, e toString responde com o texto dela. Os três scripts do
+  // mundo principal fazem isso encadeados, cada um sobre o toString anterior.
+  const _WeakMapT = W.WeakMap;
+  const _wmHasT = WeakMap.prototype.has;
+  const _wmGetT = WeakMap.prototype.get;
+  const _wmSetT = WeakMap.prototype.set;
+  const masked = new _WeakMapT();
+  const mask = (proxy, original) => { _apply(_wmSetT, masked, [proxy, original]); return proxy; };
+  const proxyOf = (target, handler) => mask(new _Proxy(target, handler), target);
+  const _prevToString = Function.prototype.toString;
+  _defineProperty(Function.prototype, 'toString', Object.assign({}, _getDesc(Function.prototype, 'toString'), {
+    value: mask(new _Proxy(_prevToString, {
+      apply(fn, thisArg, args) {
+        const target = _apply(_wmHasT, masked, [thisArg]) ? _apply(_wmGetT, masked, [thisArg]) : thisArg;
+        return _apply(fn, target, args);
+      },
+    }), _prevToString),
+  }));
+
   let ready = false;
   const queue = [];
   function dispatchRaw(ev) {
@@ -75,7 +97,7 @@
     const desc = proto && _getDesc(proto, name);
     if (!desc || typeof desc.value !== 'function') return;
     _defineProperty(proto, name, Object.assign({}, desc, {
-      value: new _Proxy(desc.value, {
+      value: proxyOf(desc.value, {
         apply(fn, thisArg, args) {
           try { onCall(thisArg, args); } catch { /* nunca quebrar a página */ }
           return _apply(fn, thisArg, args);
@@ -88,7 +110,7 @@
     const desc = proto && _getDesc(proto, name);
     if (!desc || !desc.set) return;
     _defineProperty(proto, name, Object.assign({}, desc, {
-      set: new _Proxy(desc.set, {
+      set: proxyOf(desc.set, {
         apply(fn, thisArg, args) {
           try { onSet(thisArg, args[0]); } catch { /* ignora */ }
           return _apply(fn, thisArg, args);

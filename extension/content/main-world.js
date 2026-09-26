@@ -32,12 +32,38 @@
   const _exec = RegExp.prototype.exec;
   const _Proxy = W.Proxy;
   const _now = Date.now;
+  const _charCodeAt = String.prototype.charCodeAt;
+  const _padStart = String.prototype.padStart;
+  const _toString = Number.prototype.toString;
+  const _imul = Math.imul;
   const _Date = W.Date;
   const _toUTCString = Date.prototype.toUTCString;
   const _then = Promise.prototype.then;
   const _all = Promise.all;
   const _Promise = W.Promise;
   const STACK_RE = /(?:@|at |\()((?:https?|wss?|blob|data):[^\s)]+?):\d+:\d+\)?$/;
+
+  // toString discreto. No Firefox, Function.prototype.toString de um Proxy
+  // devolve "function () { [native code] }", sem o nome da função, e a página
+  // js-leaks do DDG compara esse texto. Cada proxy nosso é registrado com a
+  // função original, e toString responde com o texto dela. Os três scripts do
+  // mundo principal fazem isso encadeados, cada um sobre o toString anterior.
+  const _WeakMapT = W.WeakMap;
+  const _wmHasT = WeakMap.prototype.has;
+  const _wmGetT = WeakMap.prototype.get;
+  const _wmSetT = WeakMap.prototype.set;
+  const masked = new _WeakMapT();
+  const mask = (proxy, original) => { _apply(_wmSetT, masked, [proxy, original]); return proxy; };
+  const proxyOf = (target, handler) => mask(new _Proxy(target, handler), target);
+  const _prevToString = Function.prototype.toString;
+  _defineProperty(Function.prototype, 'toString', Object.assign({}, _getDesc(Function.prototype, 'toString'), {
+    value: mask(new _Proxy(_prevToString, {
+      apply(fn, thisArg, args) {
+        const target = _apply(_wmHasT, masked, [thisArg]) ? _apply(_wmGetT, masked, [thisArg]) : thisArg;
+        return _apply(fn, target, args);
+      },
+    }), _prevToString),
+  }));
 
   let ready = false;
   const queue = [];
@@ -72,8 +98,19 @@
     return null;
   }
 
+  // FNV-1a 32 bits, igual a PL.hash no background. Só o hash dos valores sai
+  // da página: basta para reconhecer um identificador repassado por URL.
+  function fnv(str) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < str.length; i++) {
+      h ^= _apply(_charCodeAt, str, [i]);
+      h = _imul(h, 0x01000193);
+    }
+    return _apply(_padStart, _apply(_toString, h >>> 0, [16]), [8, '0']);
+  }
+
   function wrap(target, onCall) {
-    return new _Proxy(target, {
+    return proxyOf(target, {
       apply(fn, thisArg, args) {
         try { onCall(thisArg, args); } catch { /* nunca quebrar a página */ }
         return _apply(fn, thisArg, args);
@@ -83,9 +120,10 @@
 
   // --- document.cookie -----------------------------------------------------
   const cookieDesc = _getDesc(Document.prototype, 'cookie');
+  const cookieGet = cookieDesc && cookieDesc.get;
   if (cookieDesc && cookieDesc.set && cookieDesc.get) {
     const nativeGet = cookieDesc.get;
-    const setter = new _Proxy(cookieDesc.set, {
+    const setter = proxyOf(cookieDesc.set, {
       apply(fn, thisArg, args) {
         const str = _String(args[0]);
         const result = _apply(fn, thisArg, [str]);
@@ -122,7 +160,7 @@
     const CSP = W.CookieStore && CookieStore.prototype;
     if (!CSP || typeof CSP[name] !== 'function') return;
     _defineProperty(CSP, name, Object.assign({}, _getDesc(CSP, name), {
-      value: new _Proxy(CSP[name], {
+      value: proxyOf(CSP[name], {
         apply(fn, thisArg, args) {
           const result = _apply(fn, thisArg, args);
           try {
@@ -151,22 +189,18 @@
     return 'sessionStorage';
   }
 
-  _defineProperty(SP, 'setItem', Object.assign({}, _getDesc(SP, 'setItem'), {
-    value: wrap(SP.setItem, (self, args) => send('storage-write', {
-      area: areaOf(self), op: 'set', key: _String(args[0]),
-      valueLength: args.length > 1 ? _String(args[1]).length : 0, script: callerScript(),
-    })),
-  }));
-  _defineProperty(SP, 'removeItem', Object.assign({}, _getDesc(SP, 'removeItem'), {
-    value: wrap(SP.removeItem, (self, args) => send('storage-write', {
-      area: areaOf(self), op: 'remove', key: _String(args[0]), valueLength: 0, script: callerScript(),
-    })),
-  }));
-  _defineProperty(SP, 'clear', Object.assign({}, _getDesc(SP, 'clear'), {
-    value: wrap(SP.clear, (self) => send('storage-write', {
-      area: areaOf(self), op: 'clear', key: '', valueLength: 0, script: callerScript(),
-    })),
-  }));
+  // setItem(k, v) / removeItem(k) / clear(): mesmo evento, com a operação.
+  for (const [name, op] of [['setItem', 'set'], ['removeItem', 'remove'], ['clear', 'clear']]) {
+    _defineProperty(SP, name, Object.assign({}, _getDesc(SP, name), {
+      value: wrap(SP[name], (self, args) => {
+        const value = op === 'set' && args.length > 1 ? _String(args[1]) : '';
+        send('storage-write', {
+          area: areaOf(self), op, key: op === 'clear' ? '' : _String(args[0]),
+          valueLength: value.length, valueHash: op === 'set' ? fnv(value) : null, script: callerScript(),
+        });
+      }),
+    }));
+  }
 
   // --- IndexedDB -------------------------------------------------------------
   const IDBF = W.IDBFactory && IDBFactory.prototype;
@@ -191,14 +225,18 @@
       const s = _apply(desc.get, W, []);
       const count = s.length;
       const keys = [];
+      const hashes = [];
       let bytes = 0;
       for (let i = 0; i < count; i++) {
         const k = _apply(_key, s, [i]);
         const v = _apply(_getItem, s, [k]) || '';
         bytes += (k.length + v.length) * 2; // UTF-16
-        if (keys.length < 50) keys[keys.length] = _apply(_slice, k, [0, 100]);
+        if (keys.length < 50) {
+          keys[keys.length] = _apply(_slice, k, [0, 100]);
+          hashes[hashes.length] = fnv(v);
+        }
       }
-      return { count, bytes, keys };
+      return { count, bytes, keys, hashes };
     } catch (e) {
       return { error: (e && e.name) || 'Error' };
     }
@@ -217,8 +255,26 @@
     }
   }
 
+  // Hash dos valores dos cookies visíveis por JS (não HttpOnly), inclusive os
+  // que já existiam antes desta visita.
+  function cookieHashes() {
+    try {
+      const jar = _apply(cookieGet, document, []);
+      const out = [];
+      const parts = jar ? _apply(_split, jar, ['; ']) : [];
+      for (let i = 0; i < parts.length && out.length < 50; i++) {
+        const eq = _apply(_indexOf, parts[i], ['=']);
+        if (eq > 0) out[out.length] = { name: _apply(_slice, parts[i], [0, eq]), hash: fnv(_apply(_slice, parts[i], [eq + 1])) };
+      }
+      return out;
+    } catch { return null; }
+  }
+
   function snapshot(phase) {
-    const snap = { phase, localStorage: lsDesc && readArea(lsDesc), sessionStorage: ssDesc && readArea(ssDesc) };
+    const snap = {
+      phase, localStorage: lsDesc && readArea(lsDesc), sessionStorage: ssDesc && readArea(ssDesc),
+      cookies: cookieGet ? cookieHashes() : null,
+    };
     const idb = listNames(() => {
       const f = W.indexedDB;
       if (!f || typeof f.databases !== 'function') return null;
