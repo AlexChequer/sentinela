@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Sentinela: página de teste de hook</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; color: #1b2330; }
+    code { background: #eef1f4; padding: 1px 4px; border-radius: 3px; }
+    #log { background: #1b2330; color: #d5dbe3; padding: 10px; min-height: 120px; font: 12px/1.5 ui-monospace, monospace; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Página de teste: hook simulado</h1>
+  <p>
+    Esta página é servida por <code>localhost</code> e carrega <code>hook.js</code> de
+    <code>127.0.0.1</code>, que o navegador trata como outro site (terceiro).
+    O script imita o comportamento do hook do BeEF, sem nenhum efeito real:
+  </p>
+  <ul>
+    <li>cria a global <code>beef</code> e o cookie <code>BEEFHOOK</code>;</li>
+    <li>substitui <code>fetch</code> e <code>XMLHttpRequest.prototype.open</code>;</li>
+    <li>registra um listener de <code>keydown</code> no documento (captura de teclado);</li>
+    <li>injeta outro script de terceiro dinamicamente;</li>
+    <li>abre um WebSocket para o terceiro (a conexão falha, mas a tentativa é visível);</li>
+    <li>faz polling do terceiro a cada 2 segundos.</li>
+  </ul>
+  <p><label>Digite algo: <input type="text" placeholder="nada é enviado"></label></p>
+  <div id="log"></div>
+  <script>
+    // Tudo roda a partir do mesmo servidor; só o host muda (localhost -> 127.0.0.1).
+    const s = document.createElement('script');
+    s.src = `http://127.0.0.1:${location.port}/tests/pages/hook.js`;
+    document.head.appendChild(s);
+  </script>
+</body>
+</html>
