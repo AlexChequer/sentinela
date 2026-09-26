@@ -12,6 +12,7 @@ PL.storageEntry = (r, origin, url, isTop) => {
       localStorage: null, sessionStorage: null, indexedDB: { databases: [] }, cacheStorage: { caches: [] },
       writes: { localStorage: 0, sessionStorage: 0, indexedDB: 0, cacheStorage: 0 },
       writeLog: [], errors: {},
+      valueHashes: [], // hashes FNV-1a dos valores (para detectar cookie sync)
     };
   }
   // A página e um iframe about:blank dela caem na mesma origem: vale o topo.
@@ -21,6 +22,7 @@ PL.storageEntry = (r, origin, url, isTop) => {
 
 PL.recordStorageEvent = (r, frame, ev) => {
   const s = PL.storageEntry(r, frame.origin, frame.url, frame.isTop);
+  const addHash = (h) => { if (h && !s.valueHashes.includes(h) && s.valueHashes.length < PL.LIMITS.hashes) s.valueHashes.push(h); };
   switch (ev.type) {
     case 'storage-snapshot':
       for (const area of ['localStorage', 'sessionStorage']) {
@@ -28,6 +30,7 @@ PL.recordStorageEvent = (r, frame, ev) => {
         if (!a) continue;
         if (a.error) s.errors[area] = a.error;
         else s[area] = { count: a.count, bytes: a.bytes, keys: a.keys, at: ev.t };
+        for (const h of a.hashes || []) addHash(h);
       }
       if (ev.indexedDB) {
         if (ev.indexedDB.error) s.errors.indexedDB = ev.indexedDB.error;
@@ -40,6 +43,7 @@ PL.recordStorageEvent = (r, frame, ev) => {
       break;
     case 'storage-write':
       s.writes[ev.area] = (s.writes[ev.area] || 0) + 1;
+      if (ev.op === 'set') addHash(ev.valueHash);
       if (s.writeLog.length < PL.LIMITS.storageWrites) {
         s.writeLog.push({ t: ev.t, area: ev.area, op: ev.op, key: PL.trunc(ev.key, 120), valueLength: ev.valueLength, setBy: ev.script });
       }

@@ -31,7 +31,10 @@ browser.webRequest.onHeadersReceived.addListener(async (d) => {
     // O Firefox junta múltiplos Set-Cookie num único valor separado por \n.
     for (const line of h.value.split('\n')) {
       if (!line.trim()) continue;
-      PL.recordCookie(r, PL.parseCookieString(line, host), { source: 'http', url: d.url, type: d.type });
+      const c = PL.parseCookieString(line, host);
+      PL.recordCookie(r, c, { source: 'http', url: d.url, type: d.type });
+      // Cookie definido pela própria navegação: estado do salto (bounce).
+      if (d.type === 'main_frame') PL.feedHop(PL.hopOf(d.tabId, PL.siteOfHost(host)), null, c);
     }
   }
 }, { urls: ['<all_urls>'] }, ['responseHeaders']);
