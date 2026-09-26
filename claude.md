@@ -98,6 +98,25 @@ de rastreador por host (dentro do site), Cookie Store API e Cache API.
 Não monitorado (divergências a explicar no relatório): WebSQL (inexistente no
 Firefox), window.name, history, cache HTTP, service worker e cookieStore
 dentro de service worker.
+Fases 2 e 3 validadas no Firefox em 26/09 (perfil "sentinela", ETP Padrão):
+query-parameters (utm_*, fbclid, fb_source detectados; q, id, u ignorados),
+bounce-tracking (1ª visita: UID via isNew; 2ª: via bounceUIDlocalStorage/
+bounceUIDcookie), página própria tests/pages/hook.html (BeEF, WebSocket, polling,
+nativas, injeção, teclado) e request-blocking (22/22 bloqueados com "bloquear
+rastreadores", inclusive serviceworker-fetch).
+Divergências já observadas, para o relatório:
+- O Firefox não marca location.href via setTimeout como client_redirect
+  (transitionQualifiers vazio): o bounce do DDG é pego pela regra de
+  permanência < 5 s.
+- "Go to good.third-party.site": bad. e good. são o mesmo site, então a
+  Sentinela (definição por site, igual Firefox/Chrome) não aponta bounce; o
+  DDG considera, porque o ID muda de origem.
+- query-parameters: o esperado do DDG é o navegador remover os parâmetros; o
+  Firefox com ETP Padrão não remove e a Sentinela detecta, não remove.
+- request-blocking sem bloqueio: o teste de websocket falha mesmo assim
+  (servidor WS do DDG aparentemente fora do ar).
+- js-leaks: antes da correção de toString, 17 funções apareciam como
+  "changed"; depois, resultado idêntico com e sem a extensão.
 Firefox do Alex está em inglês ("Load Temporary Add-on…"). Pendente: os 3 sites sorteados (o Alex está procurando a lista).
 
 MV3, Firefox >= 128. Estrutura:
@@ -134,7 +153,8 @@ Já implementado:
   cruzar com o HAR.
 
 Decisões que devem ser preservadas: hooks via `Proxy` sobre as nativas
-(preserva name/length/toString), nenhuma global nova no mundo principal,
+(preserva name/length; o toString é mascarado em cada script do mundo principal
+porque no Firefox o toString de um Proxy perde o nome: ver `proxyOf`/`mask`), nenhuma global nova no mundo principal,
 referências nativas capturadas no início do main-world.js. Motivo: a página
 js-leaks do DDG compara as globais da página com um perfil de referência, e o
 plugin não pode aparecer ali como "hook".

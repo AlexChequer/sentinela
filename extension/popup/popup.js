@@ -6,21 +6,6 @@
 let tabId = null;
 let current = 'domains';
 
-function el(tag, attrs = {}, ...children) {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) {
-    if (v === null || v === undefined || v === false) continue;
-    if (k === 'class') n.className = v; else n.setAttribute(k, v);
-  }
-  for (const c of children.flat()) {
-    if (c === null || c === undefined || c === false) continue;
-    n.append(c instanceof Node ? c : document.createTextNode(String(c)));
-  }
-  return n;
-}
-const tag = (text, cls = '') => el('span', { class: `tag ${cls}` }, text);
-const partyTag = (p) => tag(p === 'first' ? '1ª parte' : '3ª parte', p);
-
 function renderTally(s) {
   const t = document.getElementById('tally');
   t.replaceChildren(
@@ -49,7 +34,10 @@ function renderDomains(r) {
         d.categories.length ? el('span', { class: 'sub' }, d.categories.join(', ')) : null,
         d.firefoxFlags.length ? el('span', { class: 'sub' }, `Firefox: ${d.firefoxFlags.join(', ')}`) : null),
       el('td', { class: 'num' }, d.requests),
-      el('td', { class: 'num' }, d.cookiesSet || '')))));
+      el('td', { class: 'num' }, d.cookiesSet || '',
+        blockState.domains.includes(d.site)
+          ? el('button', { type: 'button', class: 'mini on', 'data-unblock': d.site, title: 'Remover da lista de bloqueio' }, 'desbloquear')
+          : el('button', { type: 'button', class: 'mini', 'data-block': d.site, title: 'Bloquear este domínio e subdomínios' }, 'bloquear'))))));
 }
 
 function renderCookies(r, s) {
@@ -97,25 +85,6 @@ function renderStorage(r) {
       el('td', {}, names(s, 'cacheStorage', s.cacheStorage.caches))))));
 }
 
-function renderFingerprint(r, s) {
-  const list = r.fingerprint.canvas;
-  if (!list.length) return el('p', { class: 'empty' }, 'Nenhuma leitura de canvas nesta página.');
-  const f = s.fingerprint;
-  const note = el('p', { class: 'note' },
-    `${f.canvasFingerprints} provável(is) fingerprint(s) por ${f.fingerprintScripts} script(s), `,
-    `${f.canvasReads} leitura(s) de canvas no total. Critério: Englehardt & Narayanan (2016).`);
-  const rows = list.map((c) => el('tr', {},
-    el('td', { class: 'host' }, c.script || '(script desconhecido)',
-      el('span', { class: 'sub' }, c.scriptParty ? partyTag(c.scriptParty) : null, c.textSample ? ` texto: "${c.textSample}"` : '')),
-    el('td', {}, `${c.api}`, el('span', { class: 'sub' }, `${c.width}x${c.height}`)),
-    el('td', {},
-      c.verdict === 'fingerprint' ? tag('fingerprint', 'trk') : tag('extração'),
-      el('span', { class: 'sub' }, c.reasons.join('; ')))));
-  return [note, el('table', {},
-    el('thead', {}, el('tr', {}, el('th', {}, 'Script'), el('th', {}, 'API'), el('th', {}, 'Classificação'))),
-    el('tbody', {}, rows))];
-}
-
 async function refresh() {
   const data = await browser.runtime.sendMessage({ type: 'get-report', tabId }).catch(() => null);
   if (!data) {
@@ -132,8 +101,12 @@ async function refresh() {
     cookies: () => renderCookies(r, s),
     storage: () => renderStorage(r),
     fingerprint: () => renderFingerprint(r, s),
+    navigation: () => renderNavigation(r, s),
+    threats: () => renderThreats(r, s),
+    blocking: () => renderBlocking(r, s),
   };
-  const panel = document.getElementById(`tab-${current}`);
+  // Na aba Bloqueio só a parte dinâmica é redesenhada (o formulário fica).
+  const panel = document.getElementById(current === 'blocking' ? 'blocking-dynamic' : `tab-${current}`);
   const y = document.querySelector('main').scrollTop;
   panel.replaceChildren(...[panels[current]()].flat());
   document.querySelector('main').scrollTop = y;
@@ -171,6 +144,7 @@ for (const b of document.querySelectorAll('[role="tab"]')) {
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   tabId = tab.id;
   checkPermission();
+  setupBlockingControls();
   refresh();
   setInterval(refresh, 1000);
 })();

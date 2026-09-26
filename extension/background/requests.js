@@ -1,11 +1,11 @@
 'use strict';
 // Observa todas as requisições de rede das abas e agrega por domínio.
 
-function topUrlOf(d) {
+PL.topUrlOf = function topUrlOf(d) {
   if (d.type === 'main_frame') return d.url;
   if (d.frameAncestors && d.frameAncestors.length) return d.frameAncestors[d.frameAncestors.length - 1].url;
   return d.documentUrl || d.originUrl;
-}
+};
 
 PL.recordRequest = (r, d) => {
   const host = PL.hostOf(d.url);
@@ -33,11 +33,14 @@ PL.recordRequest = (r, d) => {
   for (const s of cls.sources) if (!dom.sources.includes(s)) dom.sources.push(s);
   for (const f of cls.firefoxFlags) if (!dom.firefoxFlags.includes(f)) dom.firefoxFlags.push(f);
 
+  PL.inspectParams(r, d, host, site, party);
+  PL.inspectThreatRequest(r, d, host, site, party);
+
   if (r.requests.log.length < PL.LIMITS.requestLog) {
     r.requests.log.push({
       t: Date.now(), requestId: d.requestId, method: d.method, type: d.type,
       url: PL.trunc(d.url), host, site, party, tracker: cls.isTracker,
-      frameId: d.frameId, thirdPartyFx: d.thirdParty,
+      frameId: d.frameId, thirdPartyFx: d.thirdParty, blocked: Boolean(PL.blockReason(d)),
     });
   }
   PL.updateBadge(r);
@@ -49,16 +52,14 @@ browser.webRequest.onBeforeRequest.addListener(async (d) => {
   await PL.ready;
 
   if (d.type === 'main_frame') {
+    // Mesmo requestId = redirecionamento de servidor da navegação principal.
+    // O site intermediário vira um salto próprio: os cookies que ele definiu
+    // não podem contar como 1ª parte do destino.
     const cur = PL.tabs.get(d.tabId);
-    if (!cur || cur.navRequestId !== d.requestId) {
-      PL.tabs.set(d.tabId, PL.newReport(d.tabId, d.url, d.requestId));
-    } else {
-      // Mesmo requestId = salto de redirecionamento da navegação principal.
-      cur.url = d.url;
-      cur.site = PL.siteOf(d.url);
-    }
+    const redirect = cur && cur.navRequestId === d.requestId;
+    PL.startPage(d.tabId, d.url, d.requestId, redirect ? 'server_redirect' : 'navigation');
   }
-  const r = PL.ensureReport(d.tabId, topUrlOf(d));
+  const r = PL.ensureReport(d.tabId, PL.topUrlOf(d));
   if (r) PL.recordRequest(r, d);
 }, { urls: ['<all_urls>'] });
 
@@ -69,14 +70,13 @@ browser.webNavigation.onCommitted.addListener(async (d) => {
   await PL.ready;
   const r = PL.tabs.get(d.tabId);
   if (!r || r.committed) {
-    const nr = PL.newReport(d.tabId, d.url);
-    nr.committed = true;
-    PL.tabs.set(d.tabId, nr);
+    PL.startPage(d.tabId, d.url, null, 'navigation').committed = true;
   } else {
     r.committed = true;
     r.url = d.url;
     r.site = PL.siteOf(d.url);
   }
+  PL.markArrival(d.tabId, d);
   PL.updateBadge(PL.tabs.get(d.tabId));
   PL.persist();
 });

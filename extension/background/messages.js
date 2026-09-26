@@ -38,6 +38,17 @@ PL.summarize = (r) => {
       fingerprintScripts: fpScripts.size,
       thirdPartyFingerprints: canvas.filter((c) => c.verdict === 'fingerprint' && c.scriptParty === 'third').length,
     },
+    tracking: {
+      knownParams: r.tracking.params.filter((p) => p.kind === 'known').length,
+      idParams: r.tracking.params.filter((p) => p.kind === 'id').length,
+      syncs: PL.findSyncs(r),
+    },
+    navigation: PL.analyzeNav(r),
+    threats: PL.summarizeThreats(r),
+    blocked: {
+      requests: Object.values(r.blocked).reduce((a, b) => a + b.count, 0),
+      hosts: Object.keys(r.blocked).length,
+    },
     storage: {
       frames: frames.length,
       localStorageKeys: sum('localStorage', 'count'),
@@ -59,13 +70,26 @@ async function handleContentEvents(msg, sender) {
   const frameUrl = msg.url || sender.url;
   const frame = { url: frameUrl, origin: msg.origin && msg.origin !== 'null' ? msg.origin : frameUrl, isTop: msg.isTop };
   const frameHost = PL.hostOf(frameUrl);
+  const frameSite = PL.siteOf(frame.origin) || PL.siteOf(frameUrl);
+  // Eventos do topo alimentam o salto de navegação daquele site. Se o topo já
+  // é outro site, são eventos atrasados da página anterior (ex.: a página de
+  // bounce, que redireciona logo) e não entram no relatório atual.
+  const hop = msg.isTop ? PL.hopOf(tabId, frameSite) : null;
+  const stale = msg.isTop && frameSite !== r.site;
   for (const ev of msg.events || []) {
     if (ev.type === 'cookie-set') {
       const c = PL.parseCookieString(ev.cookie, frameHost, ev.t);
+      PL.feedHop(hop, ev, c);
+      if (stale) continue;
       PL.recordCookie(r, c, { source: 'js', api: ev.api || 'document.cookie', url: frameUrl, setBy: ev.script, accepted: ev.accepted });
+    } else if (stale) {
+      PL.feedHop(hop, ev);
+    } else if (ev.type === 'hook-check' || ev.type === 'script-inject' || ev.type === 'key-listener') {
+      PL.recordThreatEvent(r, frame, ev);
     } else if (ev.type === 'canvas-read') {
       PL.recordCanvasRead(r, frame, ev);
     } else {
+      PL.feedHop(hop, ev);
       PL.recordStorageEvent(r, frame, ev);
     }
   }

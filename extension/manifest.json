@@ -16,6 +16,7 @@
   },
   "permissions": [
     "webRequest",
+    "webRequestBlocking",
     "webNavigation",
     "tabs",
     "storage",
@@ -35,6 +36,10 @@
       "background/cookies.js",
       "background/storage.js",
       "background/fingerprint.js",
+      "background/params.js",
+      "background/navigation.js",
+      "background/hooks.js",
+      "background/blocking.js",
       "background/messages.js"
     ]
   },
@@ -56,7 +61,8 @@
       ],
       "js": [
         "content/main-world.js",
-        "content/fp-world.js"
+        "content/fp-world.js",
+        "content/hook-world.js"
       ],
       "run_at": "document_start",
       "all_frames": true,

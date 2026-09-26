@@ -4,12 +4,16 @@
 // storage.session e o restauramos ao acordar.
 
 PL.tabs = new Map();
-PL.LIMITS = { requestLog: 1500, cookies: 2000, storageWrites: 300, canvas: 200 };
+// Saltos de navegação por aba. Fica fora do relatório porque o relatório é
+// trocado a cada página, e o bounce tracking só aparece olhando a sequência.
+PL.nav = new Map();
+PL.LIMITS = { requestLog: 1500, cookies: 2000, storageWrites: 300, canvas: 200, params: 500, hops: 12, hashes: 200 };
 
 PL.ready = (async () => {
   try {
-    const { tabs } = await browser.storage.session.get('tabs');
+    const { tabs, nav } = await browser.storage.session.get(['tabs', 'nav']);
     if (tabs) for (const [k, v] of Object.entries(tabs)) PL.tabs.set(Number(k), v);
+    if (nav) for (const [k, v] of Object.entries(nav)) PL.nav.set(Number(k), v);
   } catch (e) {
     console.warn('[sentinela] falha ao restaurar estado', e);
   }
@@ -20,9 +24,9 @@ PL.persist = () => {
   if (saveTimer) return;
   saveTimer = setTimeout(async () => {
     saveTimer = null;
-    const obj = {};
-    for (const [k, v] of PL.tabs) obj[k] = v;
-    try { await browser.storage.session.set({ tabs: obj }); }
+    const tabs = Object.fromEntries(PL.tabs);
+    const nav = Object.fromEntries(PL.nav);
+    try { await browser.storage.session.set({ tabs, nav }); }
     catch (e) { console.warn('[sentinela] falha ao persistir', e); }
   }, 800);
 };
@@ -39,6 +43,10 @@ PL.newReport = (tabId, url, navRequestId = null) => ({
   cookies: [],   // eventos de definição de cookie (HTTP e JS)
   storage: {},   // origem do frame -> uso de localStorage/sessionStorage/IndexedDB
   fingerprint: { canvas: [] }, // leituras de canvas classificadas
+  tracking: { params: [], paramHashes: {} }, // parâmetros de rastreamento e hashes de valores enviados
+  hopId: null,   // salto de navegação correspondente (PL.nav)
+  threats: PL.newThreats(), // indicadores de hijacking/hook
+  blocked: {},   // host -> requisições canceladas pela lista de bloqueio
 });
 
 // Garante que exista um relatório para a aba. Se a extensão foi carregada com a
@@ -84,5 +92,6 @@ PL.updateBadge = (r) => {
 browser.tabs.onRemoved.addListener(async (tabId) => {
   await PL.ready;
   PL.tabs.delete(tabId);
+  PL.nav.delete(tabId);
   PL.persist();
 });

@@ -17,18 +17,24 @@ Avaliação Intermediária de Cibersegurança, Insper.
 
 Alternativa com hot reload: `npm install` e depois `npm start` (usa `web-ext run`).
 
-## O que detecta (v0.1)
+## O que detecta
 
 | Item | Como |
 |---|---|
 | Conexões a terceiros | `webRequest.onBeforeRequest`; terceira parte = eTLD+1 da requisição diferente do eTLD+1 da aba (Public Suffix List via `tldts`) |
 | Rastreadores | Lista Disconnect empacotada (mesma base do ETP do Firefox) + `urlClassification` do Firefox + domínios de teste do DDG |
 | Cookies (HTTP) | Cabeçalhos `Set-Cookie` em `webRequest.onHeadersReceived` |
-| Cookies (JS) | Setter de `document.cookie` instrumentado no mundo principal da página |
+| Cookies (JS) | Setter de `document.cookie` e `cookieStore.set/delete` instrumentados no mundo principal da página |
 | 1ª × 3ª parte | Site do atributo `Domain` do cookie × site da aba |
 | Sessão × persistente | Presença de `Max-Age`/`Expires` (RFC 6265, Max-Age tem precedência) |
 | localStorage / sessionStorage | Instrumentação de `Storage.prototype` + leituras periódicas (DOMContentLoaded, load, +3 s, +10 s) |
-| IndexedDB | Instrumentação de `IDBFactory.open` + `indexedDB.databases()` |
+| IndexedDB / Cache API | Instrumentação de `IDBFactory.open` e `caches.open` + `indexedDB.databases()` e `caches.keys()` |
+| Canvas fingerprint | `fillText`/`fillStyle` e extrações (`toDataURL`, `toBlob`, `getImageData`) por canvas; critério de Englehardt & Narayanan (2016): ≥ 16×16, ≥ 10 caracteres distintos ou ≥ 2 cores, sem formato com perdas |
+| Parâmetros de rastreamento | Parâmetros conhecidos (`utm_*`, `gclid`, `fbclid`, `msclkid`…) em qualquer URL e valores com cara de identificador enviados a terceiros |
+| Bounce tracking | Cadeia de saltos por aba: site intermediário ≠ origem e destino, saída por redirecionamento ou permanência < 5 s, com cookie/storage; detecta o identificador repassado na URL comparando hashes |
+| Hijacking / hook | WebSocket para terceiro; polling persistente (≥ 5 chamadas ao mesmo endpoint de terceiro em ≥ 10 s, intervalos regulares); globais novas em `window` e funções nativas substituídas (`fetch`, XHR, `WebSocket`, `addEventListener`, `eval`…, comparadas por identidade); scripts de terceiros injetados por script; listeners de teclado de terceiros; assinaturas de BeEF (`hook.js`, porta 3000, cookie `BEEFHOOK`, global `beef`) |
+| Lista de bloqueio | Domínios definidos pelo usuário (e subdomínios) e, opcionalmente, todos os rastreadores conhecidos de terceiros, cancelados em `webRequest.onBeforeRequest` bloqueante |
+| Cookie sync | Hash do valor de um cookie/storage de um site aparecendo em parâmetro de requisição para outro site, ou o mesmo identificador enviado a ≥ 2 terceiros |
 
 ## Arquitetura
 
@@ -49,6 +55,7 @@ extension/
   popup/                 interface por página
   data/trackers.js       gerado por scripts/build-tracker-db.mjs
   lib/tldts.umd.min.js   Public Suffix List (MIT)
+tests/pages/             página local que simula um hook (BeEF) para validar a aba Ameaças
 evidencias/              HARs, prints e JSONs exportados
 docs/                    metodologia e relatório
 ```
@@ -60,9 +67,17 @@ Decisões de projeto:
   fingerprinting feito no primeiro script da página. `world: "MAIN"` executa em
   `document_start` e ignora a CSP.
 - **Instrumentação discreta.** As funções nativas são envolvidas em `Proxy`, que
-  preserva `name`, `length` e `toString()`, e nenhuma global nova é criada.
+  preserva `name` e `length`, e nenhuma global nova é criada. No Firefox, porém, o
+  `toString()` de um Proxy perde o nome da função (`function () { [native code] }`),
+  e a página js-leaks do DDG detectou 17 funções alteradas. Por isso
+  `Function.prototype.toString` também é interceptado e responde com o texto da
+  função original. Validado: a js-leaks dá o mesmo resultado com e sem a extensão
+  (889 adicionadas, 17 removidas, 2 alteradas, zero diferenças).
 - **Privacidade do próprio relatório.** Valores de cookies e de storage nunca são
-  guardados: só nome, tamanho e hash FNV-1a (necessário para detectar cookie sync).
+  guardados: só nome, tamanho e hash FNV-1a (calculado na própria página para
+  storage), que é o que permite reconhecer um identificador repassado. Os achados
+  de parâmetros de rastreamento também guardam só o hash; o log de requisições
+  mantém a URL (truncada em 300 caracteres) para ser cruzado com o HAR.
 - **Interface sem `innerHTML`.** Nomes de cookies e chaves vêm de terceiros; tudo é
   inserido com `textContent` para não abrir XSS na própria extensão.
 

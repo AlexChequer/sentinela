@@ -26,6 +26,9 @@
     <button role="tab" data-tab="cookies" aria-selected="false">Cookies</button>
     <button role="tab" data-tab="storage" aria-selected="false">Armazenamento</button>
     <button role="tab" data-tab="fingerprint" aria-selected="false">Fingerprint</button>
+    <button role="tab" data-tab="navigation" aria-selected="false">Navegação</button>
+    <button role="tab" data-tab="threats" aria-selected="false">Ameaças</button>
+    <button role="tab" data-tab="blocking" aria-selected="false">Bloqueio</button>
   </nav>
 
   <main>
@@ -33,8 +36,22 @@
     <section id="tab-cookies" class="panel" hidden></section>
     <section id="tab-storage" class="panel" hidden></section>
     <section id="tab-fingerprint" class="panel" hidden></section>
+    <section id="tab-navigation" class="panel" hidden></section>
+    <section id="tab-threats" class="panel" hidden></section>
+    <section id="tab-blocking" class="panel" hidden>
+      <form id="block-form" class="block-form">
+        <input id="block-input" type="text" placeholder="dominio.com" autocomplete="off" spellcheck="false">
+        <button type="submit">Bloquear</button>
+      </form>
+      <label class="check"><input id="block-trackers" type="checkbox"> Bloquear rastreadores conhecidos de terceiros</label>
+      <p id="block-msg" class="note" role="status"></p>
+      <div id="blocking-dynamic"></div>
+    </section>
   </main>
 
+  <script src="dom.js"></script>
+  <script src="panels-tracking.js"></script>
+  <script src="panels-security.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
