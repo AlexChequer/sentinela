@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Sentinela: relatório da página</title>
+  <link rel="stylesheet" href="../popup/popup.css">
+  <link rel="stylesheet" href="report.css">
+</head>
+<body>
+  <header class="rhead">
+    <div>
+      <p class="brand">Sentinela · relatório da página</p>
+      <h1 id="site">—</h1>
+      <p id="url" class="rurl"></p>
+      <p id="meta" class="rmeta"></p>
+    </div>
+    <div id="score" class="rscore"></div>
+  </header>
+  <section id="cards" class="cards"></section>
+  <main id="sections" class="rmain"></main>
+  <script src="../popup/dom.js"></script>
+  <script src="../popup/panels-basic.js"></script>
+  <script src="../popup/panels-tracking.js"></script>
+  <script src="../popup/panels-security.js"></script>
+  <script src="report.js"></script>
+</body>
+</html>

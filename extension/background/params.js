@@ -18,6 +18,9 @@ PL.TRACKING_PREFIXES = ['utm_', 'pk_', 'mtm_'];
 // Parâmetros comuns que carregam conteúdo, não identidade.
 const CONTENT_PARAMS = new Set(['q', 'query', 'search', 's', 'lang', 'hl', 'locale', 'page', 'v', 'ver', 'version', 'callback', 'format', 'url', 'ref', 'referrer', 'redirect', 'u']);
 const MIN_ID_LENGTH = 8;
+// IDs de configuração do site (conta do Google Analytics, contêiner do GTM,
+// conta de anúncios): iguais para todos os visitantes, não identificam a pessoa.
+const CONFIG_ID = /^(G|GT|GTM|UA|AW|DC|MC|YT)-[A-Z0-9-]{4,}$|^(ca-)?pub-\d{6,}$/i;
 const MIN_SYNC_LENGTH = 6; // abaixo disso a chance de coincidência entre valores é alta
 
 PL.isTrackingParam = (name) => {
@@ -39,6 +42,7 @@ PL.paramsOf = paramsOf;
 PL.inspectParams = (r, d, host, site, party) => {
   const seen = new Set(r.tracking.params.map((p) => `${p.host}|${p.name}|${p.valueHash}`));
   for (const [name, value] of paramsOf(d.url)) {
+    if (CONFIG_ID.test(value)) continue;
     const valueHash = PL.hash(value);
     if (party === 'third' && value.length >= MIN_SYNC_LENGTH) {
       const e = r.tracking.paramHashes[valueHash] || (r.tracking.paramHashes[valueHash] = { sites: [], names: [] });
@@ -58,11 +62,15 @@ PL.inspectParams = (r, d, host, site, party) => {
   }
 };
 
-// Cookie sync / compartilhamento de identificador, olhando os hashes:
-//  - "cookie → terceiro": o valor de um cookie ou item de storage de um site
-//    aparece em parâmetro de requisição para OUTRO site;
-//  - "mesmo ID a vários terceiros": um mesmo valor de parâmetro (com cara de
-//    identificador) enviado a 2 ou mais terceiros diferentes.
+// Cookie sync, olhando os hashes FNV-1a dos valores:
+//  - sync (conta no score): o valor de um cookie ou item de storage guardado
+//    por um site aparece em parâmetro de requisição para OUTRO site. Exigir
+//    que o valor esteja guardado separa identificadores persistentes de IDs
+//    de uma única exibição (ex.: o ID de leilão do header bidding, enviado a
+//    vários anunciantes na mesma página);
+//  - ID compartilhado (só informativo): um mesmo valor com cara de
+//    identificador enviado a 2 ou mais terceiros, sem estar guardado.
+// Agrupado por par (origem, destino) para não inflar a contagem.
 PL.findSyncs = (r) => {
   const origins = new Map(); // hash -> sites que guardam esse valor
   const add = (h, site) => {
@@ -70,20 +78,22 @@ PL.findSyncs = (r) => {
     const set = origins.get(h) || origins.set(h, new Set()).get(h);
     set.add(site);
   };
-  for (const c of r.cookies) if (c.lifetime !== 'deleted' && c.valueLength >= MIN_SYNC_LENGTH) add(c.valueHash, c.site);
-  for (const s of Object.values(r.storage)) for (const h of s.valueHashes || []) add(h, s.site);
+  for (const c of r.cookies) if (c.lifetime !== 'deleted' && !c.rejected && c.valueLength >= MIN_SYNC_LENGTH) add(c.valueHash, c.site);
+  for (const st of Object.values(r.storage)) for (const h of st.valueHashes || []) add(h, st.site);
 
-  const syncs = [];
+  const pairs = new Map();
+  const sharedIds = [];
   for (const [hash, sent] of Object.entries(r.tracking.paramHashes)) {
     const holders = [...(origins.get(hash) || [])];
     for (const from of holders) {
-      const to = sent.sites.filter((x) => x !== from);
-      if (to.length) syncs.push({ kind: 'cookie-to-third', from, to, params: sent.names, valueHash: hash });
+      for (const to of sent.sites.filter((x) => x !== from)) {
+        const key = `${from}>${to}`;
+        const e = pairs.get(key) || pairs.set(key, { from, to, params: [] }).get(key);
+        for (const n of sent.names) if (!e.params.includes(n)) e.params.push(n);
+      }
     }
     const idParam = r.tracking.params.some((p) => p.valueHash === hash && p.party === 'third');
-    if (!holders.length && idParam && sent.sites.length >= 2) {
-      syncs.push({ kind: 'shared-id', from: null, to: sent.sites, params: sent.names, valueHash: hash });
-    }
+    if (!holders.length && idParam && sent.sites.length >= 2) sharedIds.push({ to: sent.sites, params: sent.names });
   }
-  return syncs;
+  return { syncs: [...pairs.values()], sharedIds };
 };

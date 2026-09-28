@@ -8,7 +8,9 @@ PL.summarize = (r) => {
   // Cookies: um cookie é identificado por (domínio, caminho, nome). Contamos
   // cookies únicos definidos (ignorando remoções) e também o total de eventos.
   const unique = new Map();
+  let rejected = 0;
   for (const c of r.cookies) {
+    if (c.rejected) { rejected++; continue; }
     if (c.lifetime === 'deleted') continue;
     unique.set(`${c.domain}|${c.path}|${c.name}`, c);
   }
@@ -26,12 +28,12 @@ PL.summarize = (r) => {
   const canvas = r.fingerprint.canvas;
   const fpScripts = new Set(canvas.filter((c) => c.verdict === 'fingerprint').map((c) => c.script));
   const sum = (area, f) => frames.reduce((a, s) => a + (s[area] ? s[area][f] : 0), 0);
-  return {
+  const s = {
     url: r.url,
     site: r.site,
     requests: { total: r.requests.total, thirdParty: r.requests.thirdParty },
     domains: { total: domains.length, thirdParty: third.length, trackers: third.filter((d) => d.tracker).length },
-    cookies: { events: r.cookies.length, unique: unique.size, matrix: cookieMatrix, bySource },
+    cookies: { events: r.cookies.length, unique: unique.size, matrix: cookieMatrix, bySource, rejected },
     fingerprint: {
       canvasReads: canvas.length,
       canvasFingerprints: canvas.filter((c) => c.verdict === 'fingerprint').length,
@@ -41,7 +43,7 @@ PL.summarize = (r) => {
     tracking: {
       knownParams: r.tracking.params.filter((p) => p.kind === 'known').length,
       idParams: r.tracking.params.filter((p) => p.kind === 'id').length,
-      syncs: PL.findSyncs(r),
+      ...PL.findSyncs(r), // syncs (contam no score) e sharedIds (informativo)
     },
     navigation: PL.analyzeNav(r),
     threats: PL.summarizeThreats(r),
@@ -59,6 +61,8 @@ PL.summarize = (r) => {
       blockedFrames: frames.filter((s) => Object.keys(s.errors).length).length,
     },
   };
+  s.score = PL.computeScore(r, s);
+  return s;
 };
 
 async function handleContentEvents(msg, sender) {

@@ -16,7 +16,8 @@ PL.recordCookie = (r, c, meta) => {
   c.accepted = meta.accepted ?? null; // JS: o cookie apareceu em document.cookie depois?
   c.t = Date.now();
   if (r.cookies.length < PL.LIMITS.cookies) r.cookies.push(c);
-  if (c.lifetime !== 'deleted') PL.domainEntry(r, c.site).cookiesSet++;
+  // Cookies rejeitados ficam no log (transparência), mas não contam.
+  if (c.lifetime !== 'deleted' && !c.rejected) PL.domainEntry(r, c.site).cookiesSet++;
   PL.persist();
 };
 

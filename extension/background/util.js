@@ -16,6 +16,11 @@ PL.siteOfHost = (host) => {
 };
 PL.siteOf = (url) => PL.siteOfHost(PL.hostOf(url));
 
+PL.isPublicSuffix = (host) => {
+  const opts = { allowPrivateDomains: true };
+  return !tldts.parse(host).isIp && tldts.getDomain(host, opts) === null && tldts.getPublicSuffix(host, opts) === host;
+};
+
 PL.isWebUrl = (url) => /^(https?|wss?):/i.test(url || '');
 
 PL.trunc = (s, n = 300) => (s && s.length > n ? s.slice(0, n) + '…' : s);
@@ -66,5 +71,10 @@ PL.parseCookieString = (str, defaultHost, now = Date.now()) => {
   c.lifetimeDays = expiry && expiry > now ? Math.round(((expiry - now) / 864e5) * 10) / 10 : null;
   // O navegador rejeita Domain= que não case com o host que definiu o cookie.
   c.domainMatches = defaultHost === c.domain || (defaultHost || '').endsWith('.' + c.domain);
+  // Domain= igual a um sufixo público (.com.br, .br) é rejeitado pelo navegador,
+  // a não ser que seja o próprio host. Scripts fazem isso de propósito para
+  // descobrir o domínio registrável ("cookie domain probing").
+  c.publicSuffix = !c.hostOnly && c.domain !== defaultHost && PL.isPublicSuffix(c.domain);
+  c.rejected = c.publicSuffix || !c.domainMatches;
   return c;
 };

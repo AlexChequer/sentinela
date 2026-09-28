@@ -40,6 +40,7 @@
       "background/navigation.js",
       "background/hooks.js",
       "background/blocking.js",
+      "background/score.js",
       "background/messages.js"
     ]
   },

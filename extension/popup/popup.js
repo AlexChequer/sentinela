@@ -9,80 +9,12 @@ let current = 'domains';
 function renderTally(s) {
   const t = document.getElementById('tally');
   t.replaceChildren(
-    el('div', { class: `main ${s.domains.trackers ? '' : 'zero'}` }, el('b', {}, s.domains.trackers), el('span', {}, 'rastreadores de terceiros')),
+    el('div', { class: `main grade-${s.score.grade}` }, el('b', {}, s.score.score), el('span', {}, `score (${s.score.grade})`)),
+    el('div', { class: s.domains.trackers ? 'bad' : '' }, el('b', {}, s.domains.trackers), el('span', {}, 'rastreadores de terceiros')),
     el('div', {}, el('b', {}, s.domains.thirdParty), el('span', {}, 'domínios de terceiros')),
     el('div', {}, el('b', {}, s.cookies.unique), el('span', {}, 'cookies definidos')),
     el('div', {}, el('b', {}, s.storage.localStorageKeys + s.storage.sessionStorageKeys + s.storage.indexedDBs + s.storage.cacheStorages), el('span', {}, 'itens em storage')),
   );
-}
-
-function renderDomains(r) {
-  const list = Object.values(r.domains)
-    .filter((d) => d.party === 'third')
-    .sort((a, b) => (b.tracker - a.tracker) || (b.requests - a.requests));
-  if (!list.length) return el('p', { class: 'empty' }, 'Nenhuma conexão a domínios de terceiros até agora.');
-  // Cada host do site aparece com a própria classificação.
-  const hostLine = ([name, h]) => el('span', { class: 'sub' },
-    name, ' ', h.tracker ? tag('rastreador', 'trk') : tag('terceiro'),
-    h.tracker && h.company ? ` ${h.company}` : '');
-  return el('table', {},
-    el('thead', {}, el('tr', {}, el('th', {}, 'Domínio'), el('th', {}, 'Classificação'), el('th', { class: 'num' }, 'Req.'), el('th', { class: 'num' }, 'Cookies'))),
-    el('tbody', {}, list.map((d) => el('tr', {},
-      el('td', { class: 'host' }, d.site, Object.entries(d.hosts).map(hostLine)),
-      el('td', {},
-        d.tracker ? tag('rastreador', 'trk') : tag('terceiro'),
-        d.categories.length ? el('span', { class: 'sub' }, d.categories.join(', ')) : null,
-        d.firefoxFlags.length ? el('span', { class: 'sub' }, `Firefox: ${d.firefoxFlags.join(', ')}`) : null),
-      el('td', { class: 'num' }, d.requests),
-      el('td', { class: 'num' }, d.cookiesSet || '',
-        blockState.domains.includes(d.site)
-          ? el('button', { type: 'button', class: 'mini on', 'data-unblock': d.site, title: 'Remover da lista de bloqueio' }, 'desbloquear')
-          : el('button', { type: 'button', class: 'mini', 'data-block': d.site, title: 'Bloquear este domínio e subdomínios' }, 'bloquear'))))));
-}
-
-function renderCookies(r, s) {
-  const m = s.cookies.matrix;
-  const matrix = el('div', { class: 'matrix' },
-    el('div', { class: 'h' }, ''), el('div', { class: 'h' }, 'Sessão'), el('div', { class: 'h' }, 'Persistente'),
-    el('div', {}, '1ª parte'), el('div', { class: 'n' }, m.first.session), el('div', { class: 'n' }, m.first.persistent),
-    el('div', {}, '3ª parte'), el('div', { class: 'n' }, m.third.session), el('div', { class: 'n' }, m.third.persistent));
-  const note = el('p', { class: 'note' },
-    `${s.cookies.unique} cookies únicos em ${s.cookies.events} eventos de definição `,
-    `(${s.cookies.bySource.http} via cabeçalho HTTP, ${s.cookies.bySource.js} via JavaScript).`);
-  if (!r.cookies.length) return [matrix, el('p', { class: 'empty' }, 'Nenhum cookie definido nesta página.')];
-  const rows = [...r.cookies].reverse().slice(0, 300).map((c) => el('tr', {},
-    el('td', { class: 'host' }, c.name || '(sem nome)', el('span', { class: 'sub' }, c.domain)),
-    el('td', {},
-      partyTag(c.party),
-      c.lifetime === 'deleted' ? tag('remoção') : tag(c.lifetime === 'session' ? 'sessão' : `${c.lifetimeDays} d`),
-      tag(c.api === 'cookieStore' ? 'cookieStore' : c.source.toUpperCase()),
-      c.accepted === false ? tag('não aceito', 'warn') : null,
-      c.domainMatches === false ? tag('domínio inválido', 'warn') : null,
-      c.setBy ? el('span', { class: 'sub' }, `por ${c.setBy}`) : null)));
-  return [matrix, note, el('table', {},
-    el('thead', {}, el('tr', {}, el('th', {}, 'Cookie'), el('th', {}, 'Tipo'))),
-    el('tbody', {}, rows))];
-}
-
-function renderStorage(r) {
-  const frames = Object.values(r.storage);
-  if (!frames.length) return el('p', { class: 'empty' }, 'Sem dados de armazenamento ainda. Aguarde o carregamento terminar.');
-  const cell = (s, area) => {
-    if (s.errors[area]) return tag(`bloqueado: ${s.errors[area]}`, 'warn');
-    const a = s[area];
-    if (!a) return '—';
-    return [el('b', {}, a.count), ` chaves, ${Math.round(a.bytes / 1024 * 10) / 10} KB`,
-      a.keys.length ? el('span', { class: 'sub' }, a.keys.slice(0, 8).join(', ')) : null];
-  };
-  const names = (s, area, list) => (s.errors[area] ? tag(`bloqueado: ${s.errors[area]}`, 'warn') : (list.join(', ') || '—'));
-  return el('table', {},
-    el('thead', {}, el('tr', {}, el('th', {}, 'Origem'), el('th', {}, 'localStorage'), el('th', {}, 'sessionStorage'), el('th', {}, 'IndexedDB'), el('th', {}, 'Cache API'))),
-    el('tbody', {}, frames.map((s) => el('tr', {},
-      el('td', { class: 'host' }, s.origin, el('span', { class: 'sub' }, partyTag(s.party), s.isTop ? ' topo' : ' iframe')),
-      el('td', {}, cell(s, 'localStorage')),
-      el('td', {}, cell(s, 'sessionStorage')),
-      el('td', {}, names(s, 'indexedDB', s.indexedDB.databases)),
-      el('td', {}, names(s, 'cacheStorage', s.cacheStorage.caches))))));
 }
 
 async function refresh() {
@@ -100,6 +32,7 @@ async function refresh() {
     domains: () => renderDomains(r),
     cookies: () => renderCookies(r, s),
     storage: () => renderStorage(r),
+    score: () => renderScore(s),
     fingerprint: () => renderFingerprint(r, s),
     navigation: () => renderNavigation(r, s),
     threats: () => renderThreats(r, s),
@@ -120,6 +53,11 @@ async function checkPermission() {
 document.getElementById('grant').addEventListener('click', async () => {
   await browser.permissions.request({ origins: ['<all_urls>'] });
   checkPermission();
+});
+
+document.getElementById('open-report').addEventListener('click', () => {
+  browser.tabs.create({ url: browser.runtime.getURL(`report/report.html?tab=${tabId}`) });
+  window.close();
 });
 
 document.getElementById('export').addEventListener('click', async (e) => {

@@ -23,7 +23,7 @@ Alternativa com hot reload: `npm install` e depois `npm start` (usa `web-ext run
 |---|---|
 | Conexões a terceiros | `webRequest.onBeforeRequest`; terceira parte = eTLD+1 da requisição diferente do eTLD+1 da aba (Public Suffix List via `tldts`) |
 | Rastreadores | Lista Disconnect empacotada (mesma base do ETP do Firefox) + `urlClassification` do Firefox + domínios de teste do DDG |
-| Cookies (HTTP) | Cabeçalhos `Set-Cookie` em `webRequest.onHeadersReceived` |
+| Cookies (HTTP) | Cabeçalhos `Set-Cookie` em `webRequest.onHeadersReceived`; `Domain=` igual a sufixo público (ex.: `.com.br`) é marcado como rejeitado e não conta |
 | Cookies (JS) | Setter de `document.cookie` e `cookieStore.set/delete` instrumentados no mundo principal da página |
 | 1ª × 3ª parte | Site do atributo `Domain` do cookie × site da aba |
 | Sessão × persistente | Presença de `Max-Age`/`Expires` (RFC 6265, Max-Age tem precedência) |
@@ -34,7 +34,9 @@ Alternativa com hot reload: `npm install` e depois `npm start` (usa `web-ext run
 | Bounce tracking | Cadeia de saltos por aba: site intermediário ≠ origem e destino, saída por redirecionamento ou permanência < 5 s, com cookie/storage; detecta o identificador repassado na URL comparando hashes |
 | Hijacking / hook | WebSocket para terceiro; polling persistente (≥ 5 chamadas ao mesmo endpoint de terceiro em ≥ 10 s, intervalos regulares); globais novas em `window` e funções nativas substituídas (`fetch`, XHR, `WebSocket`, `addEventListener`, `eval`…, comparadas por identidade); scripts de terceiros injetados por script; listeners de teclado de terceiros; assinaturas de BeEF (`hook.js`, porta 3000, cookie `BEEFHOOK`, global `beef`) |
 | Lista de bloqueio | Domínios definidos pelo usuário (e subdomínios) e, opcionalmente, todos os rastreadores conhecidos de terceiros, cancelados em `webRequest.onBeforeRequest` bloqueante |
-| Cookie sync | Hash do valor de um cookie/storage de um site aparecendo em parâmetro de requisição para outro site, ou o mesmo identificador enviado a ≥ 2 terceiros |
+| Cookie sync | Valor de cookie/storage **guardado** por um site aparecendo em parâmetro de requisição para outro site (IDs só compartilhados entre terceiros, sem estar guardados, aparecem como informativo) |
+| Score de privacidade | 0–100 com 14 critérios (os 9 do Blacklight + 5 próprios), pesos e tetos em `docs/metodologia-score.md` |
+| Relatório por página | Botão **Relatório** no popup abre `report/report.html` com score, cartões e todas as seções |
 
 ## Arquitetura
 

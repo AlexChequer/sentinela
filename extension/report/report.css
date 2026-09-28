@@ -1,0 +1,18 @@
+/* Relatório em aba inteira: reaproveita popup.css e só muda o layout. */
+body { width: auto; max-height: none; max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; }
+.rhead { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding: 24px 0 16px; border-bottom: 2px solid var(--navy); }
+.brand { margin: 0; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+.rhead h1 { margin: 4px 0; font-size: 26px; color: var(--navy); }
+.rurl { margin: 0; color: var(--muted); word-break: break-all; }
+.rmeta { margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+.rscore { text-align: center; min-width: 120px; padding: 10px 16px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; }
+.rscore b { display: block; font-size: 44px; line-height: 1; }
+.rscore span { color: var(--muted); font-size: 12px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin: 16px 0; }
+.cards div { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; }
+.cards b { display: block; font-size: 22px; }
+.cards span { color: var(--muted); font-size: 12px; }
+.cards .bad b { color: var(--red); }
+.rmain { overflow: visible; max-height: none; padding: 0; }
+.rmain > section { margin: 22px 0; }
+.rmain h2 { font-size: 16px; color: var(--navy); border-bottom: 1px solid var(--rule); padding-bottom: 4px; margin: 0 0 8px; }

@@ -117,7 +117,12 @@ Divergências já observadas, para o relatório:
   (servidor WS do DDG aparentemente fora do ar).
 - js-leaks: antes da correção de toString, 17 funções apareciam como
   "changed"; depois, resultado idêntico com e sem a extensão.
-Firefox do Alex está em inglês ("Load Temporary Add-on…"). Pendente: os 3 sites sorteados (o Alex está procurando a lista).
+Firefox do Alex está em inglês ("Load Temporary Add-on…"). Sites reais escolhidos (26/09; segundo colegas, cada aluno escolhe os seus; o
+enunciado fala em sorteio, então o Alex deve confirmar com o professor):
+uol.com.br (portal com muita publicidade), mercadolivre.com.br (e-commerce) e
+pt.wikipedia.org (referência "limpa"). Coleta sem interagir com o banner de
+cookies (igual ao Blacklight), limpando os dados do site antes, e com a opção
+"bloquear rastreadores" DESLIGADA.
 
 MV3, Firefox >= 128. Estrutura:
 

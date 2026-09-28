@@ -20,28 +20,35 @@ button:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
 .head { display: flex; gap: 12px; align-items: center; justify-content: space-between;
   padding: 12px 14px; background: var(--navy); color: #fff; }
 .site { min-width: 0; display: flex; flex-direction: column; }
+.actions { display: flex; gap: 6px; flex: none; }
 .site strong { font-size: 15px; }
 .url { color: #b9c6dd; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#export { flex: none; border: 1px solid #8ea3c8; background: transparent; color: #fff; border-radius: 4px; padding: 5px 10px; }
-#export:hover { background: #2b4c86; }
+#export, #open-report { flex: none; border: 1px solid #8ea3c8; background: transparent; color: #fff; border-radius: 4px; padding: 5px 10px; }
+#export:hover, #open-report:hover { background: #2b4c86; }
 
 .perm { margin: 10px 14px; padding: 10px; background: #fff4e0; border-left: 4px solid var(--amber); }
 .perm p { margin: 0 0 8px; }
 
 /* Placar: o número de rastreadores é o elemento que manda na tela. */
-.tally { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; background: var(--sheet); border-bottom: 1px solid var(--rule); }
+.tally { display: grid; grid-template-columns: 1.1fr 1fr 1fr 1fr 1fr; background: var(--sheet); border-bottom: 1px solid var(--rule); }
 .tally div { padding: 10px 12px; border-right: 1px solid var(--rule); }
 .tally div:last-child { border-right: 0; }
-.tally b { display: block; font-size: 22px; line-height: 1.1; }
-.tally .main b { font-size: 34px; color: var(--red); }
-.tally .main.zero b { color: var(--green); }
+.tally div { padding: 10px 8px; }
+.tally b { display: block; font-size: 20px; line-height: 1.1; }
+.tally .bad b { color: var(--red); }
+.tally .main b { font-size: 30px; }
+.grade-A b, .grade-B b { color: var(--green); }
+.grade-C b { color: var(--amber); }
+.grade-D b, .grade-F b { color: var(--red); }
+tr.hit td { background: #fff7f7; }
 .tally span { color: var(--muted); font-size: 11px; }
 
 .tabs { display: flex; flex-wrap: wrap; gap: 2px; padding: 8px 14px 0; }
 .tabs button { border: 0; background: transparent; color: var(--muted); padding: 6px 10px; border-bottom: 2px solid transparent; }
 .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--navy); font-weight: 600; }
 
-main { padding: 8px 14px 14px; overflow-y: auto; max-height: 360px; }
+main { padding: 8px 14px 14px; overflow-y: auto; overflow-x: hidden; max-height: 360px; }
+.note, .finding, .sub, td { overflow-wrap: anywhere; }
 .empty { color: var(--muted); padding: 16px 0; }
 
 table { width: 100%; border-collapse: collapse; background: var(--sheet); }
@@ -58,7 +65,7 @@ td.num, th.num { text-align: right; }
 
 .matrix { display: grid; grid-template-columns: auto 1fr 1fr; background: var(--sheet); margin-bottom: 10px; border: 1px solid var(--rule); }
 .matrix > * { padding: 6px 8px; border-bottom: 1px solid var(--rule); }
-.matrix .h { color: var(--muted); font-size: 11px; font-weight: 600; }
+.matrix .h { color: var(--muted); font-size: 11px; font-weight: 600; text-align: right; }
 .matrix .n { font-size: 18px; text-align: right; }
 .note { color: var(--muted); font-size: 11px; margin: 6px 0 10px; }
 h3 { font-size: 12px; margin: 12px 0 6px; color: var(--navy); }
@@ -71,7 +78,7 @@ h3:first-child { margin-top: 4px; }
 .sub.warn { color: var(--amber); font-weight: 600; }
 .finding.soft { border-left-color: var(--amber); word-break: break-all; }
 .finding.row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.mini { display: block; margin-top: 3px; margin-left: auto; font-size: 10.5px; padding: 1px 6px; border: 1px solid var(--rule); border-radius: 3px; background: var(--sheet); color: var(--muted); }
+.mini { white-space: nowrap; display: block; margin-top: 3px; margin-left: auto; font-size: 10.5px; padding: 1px 6px; border: 1px solid var(--rule); border-radius: 3px; background: var(--sheet); color: var(--muted); }
 .mini:hover { border-color: var(--red); color: var(--red); }
 .mini.on { border-color: var(--red); color: var(--red); }
 .block-form { display: flex; gap: 6px; margin: 4px 0 8px; }

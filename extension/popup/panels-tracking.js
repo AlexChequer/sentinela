@@ -54,10 +54,14 @@ function renderNavigation(r, s) {
   out.push(el('h3', {}, `Cookie sync (${syncs.length})`));
   if (!syncs.length) out.push(el('p', { class: 'empty' }, 'Nenhum valor de cookie/storage enviado a outro site.'));
   for (const x of syncs) {
-    out.push(el('p', { class: 'finding' }, x.kind === 'cookie-to-third'
-      ? `Valor guardado por ${x.from} enviado a ${x.to.join(', ')}`
-      : `Mesmo identificador enviado a ${x.to.join(', ')}`,
-    el('span', { class: 'sub' }, `parâmetro(s): ${x.params.join(', ')}`)));
+    out.push(el('p', { class: 'finding' }, `Valor guardado por ${x.from} enviado a ${x.to}`,
+      el('span', { class: 'sub' }, `parâmetro(s): ${x.params.join(', ')}`)));
+  }
+  const shared = s.tracking.sharedIds || [];
+  if (shared.length) {
+    out.push(el('h3', {}, `IDs compartilhados entre terceiros (${shared.length}, informativo)`));
+    out.push(el('p', { class: 'note' }, 'Mesmo valor enviado a vários terceiros sem estar guardado em cookie/storage (ex.: ID de leilão de anúncios). Não conta no score.'));
+    for (const x of shared.slice(0, 30)) out.push(el('p', { class: 'finding soft' }, x.to.join(', '), el('span', { class: 'sub' }, `parâmetro(s): ${x.params.join(', ')}`)));
   }
   return out;
 }
