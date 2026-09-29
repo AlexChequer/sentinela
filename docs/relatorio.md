@@ -1,23 +1,13 @@
-<div class="cover" markdown="0">
-<div class="band">
-<p class="kicker">Insper · Avaliação Intermediária de Cibersegurança</p>
-<h1>Sentinela</h1>
-<p class="sub">Plugin para Firefox de detecção e bloqueio de rastreadores</p>
-</div>
-<table class="meta">
+<div class="title" markdown="0">
+<h1>Sentinela: detecção e bloqueio de rastreadores no Firefox</h1>
+<p class="sub">Avaliação Intermediária de Cibersegurança · Insper · Prof. João Eduardo Luisi</p>
+<table class="info">
 <tr><td>Aluno</td><td>Alex Chequer</td></tr>
-<tr><td>Professor</td><td>João Eduardo Luisi</td></tr>
-<tr><td>Repositório</td><td>github.com/AlexChequer/sentinela</td></tr>
+<tr><td>Repositório</td><td>https://github.com/AlexChequer/sentinela</td></tr>
 <tr><td>Entrega</td><td>29/09/2026</td></tr>
-<tr><td>Conteúdo</td><td>Entregável 2 (DuckDuckGo Privacy Test Pages), 3 (três sites reais) e 4 (score de privacidade)</td></tr>
+<tr><td>Conteúdo</td><td>Entregáveis 2 (DuckDuckGo Privacy Test Pages), 3 (três sites reais) e 4 (score de privacidade)</td></tr>
 </table>
-<p style="text-align:left">Todos os números deste relatório vêm das evidências em <code>evidencias/</code> no repositório: prints, JSONs exportados pela extensão, HARs do DevTools, prints do Blacklight e do uBlock Origin.</p>
-<div class="scores">
-<div class="score D"><b>30</b><span>uol.com.br · D</span></div>
-<div class="score D"><b>35</b><span>mercadolivre.com.br · D</span></div>
-<div class="score A"><b>85</b><span>pt.wikipedia.org · A</span></div>
-</div>
-<p class="note">Score de privacidade da Sentinela (0 a 100, maior é mais privado). Metodologia na seção 5.</p>
+<p>Todos os números deste relatório vêm das evidências em <code>evidencias/</code> no repositório: prints, JSONs exportados pela extensão, HARs do DevTools e prints do Blacklight e do uBlock Origin.</p>
 </div>
 
 <!--SUMARIO-->

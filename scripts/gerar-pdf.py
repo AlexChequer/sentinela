@@ -29,67 +29,51 @@ FIREFOX = "/Applications/Firefox.app/Contents/MacOS/firefox"
 FOOTER = "Sentinela · Relatório da Avaliação Intermediária de Cibersegurança"
 
 CSS = """
-@page { size: A4; margin: 16mm 15mm 18mm; }
-:root { --navy: #1d3a6e; --ink: #1b2330; --muted: #5d6b7e; --rule: #d5dbe3; --paper: #f3f5f8; --red: #b3262e; }
+@page { size: A4; margin: 20mm 20mm 20mm; }
 * { box-sizing: border-box; }
-body { font: 10pt/1.5 -apple-system, "Helvetica Neue", Arial, sans-serif; color: var(--ink); margin: 0; }
-p { margin: 0 0 7pt; text-align: justify; hyphens: auto; }
-a { color: var(--navy); text-decoration: none; }
-code { font: 8.6pt ui-monospace, Menlo, monospace; background: var(--paper); padding: 0 2.5pt; border-radius: 2pt; overflow-wrap: anywhere; }
-strong { color: #0f1d36; }
+body { font: 10.5pt/1.5 "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; margin: 0; }
+p { margin: 0 0 8pt; text-align: left; }
+a { color: inherit; text-decoration: none; }
+code { font: 9pt Menlo, monospace; overflow-wrap: anywhere; }
 
-/* Capa */
-.cover { height: 257mm; display: flex; flex-direction: column; break-after: page; }
-.cover .band { background: var(--navy); color: #fff; padding: 22mm 14mm 16mm; margin: 0 -15mm; }
-.cover .kicker { font-size: 9.5pt; letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin: 0 0 8pt; }
-.cover h1 { font-size: 30pt; line-height: 1.1; margin: 0 0 8pt; color: #fff; }
-.cover .sub { font-size: 13pt; opacity: .9; margin: 0; text-align: left; }
-.cover .meta { margin: 14mm 0 10mm; border-collapse: collapse; width: 100%; font-size: 10.5pt; }
-.cover .meta td { border: 0; border-bottom: .5pt solid var(--rule); padding: 5pt 0; background: none; }
-.cover .meta td:first-child { color: var(--muted); width: 32%; }
-.cover .scores { display: flex; gap: 6mm; margin-top: auto; }
-.cover .score { flex: 1; border: 1pt solid var(--rule); border-radius: 4pt; padding: 8pt 10pt; }
-.cover .score b { display: block; font-size: 26pt; line-height: 1.1; }
-.cover .score span { color: var(--muted); font-size: 9pt; }
-.cover .score.A b { color: #2f7d5b; } .cover .score.D b { color: var(--red); }
-.cover .note { color: var(--muted); font-size: 8.5pt; margin-top: 6pt; text-align: left; }
-
-/* Sumário */
+/* Primeira página: título + sumário */
+.title { margin-bottom: 14pt; }
+.title h1 { font-size: 20pt; line-height: 1.25; margin: 0 0 6pt; }
+.title .sub { font-size: 11pt; color: #444; margin: 0 0 12pt; }
+.title .info { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 0 0 10pt; }
+.title .info td { border: 0; border-top: .5pt solid #ccc; padding: 4pt 0; background: none; }
+.title .info tr:last-child td { border-bottom: .5pt solid #ccc; }
+.title .info td:first-child { width: 28mm; color: #555; }
 .toc { break-after: page; }
-.toc h2 { break-before: auto; }
+.toc h2 { margin-top: 10pt; }
 .toc ol { list-style: none; padding: 0; margin: 0; }
-.toc li { display: flex; align-items: baseline; gap: 4pt; padding: 2.5pt 0; }
-.toc li.l2 { font-weight: 600; margin-top: 6pt; }
-.toc li.l3 { padding-left: 14pt; color: #33415a; font-size: 9.5pt; }
-.toc li .dots { flex: 1; border-bottom: .8pt dotted #b6c0cd; transform: translateY(-3pt); }
-.toc li .pg { min-width: 14pt; text-align: right; }
+.toc li { display: flex; align-items: baseline; padding: 1.5pt 0; margin: 0; }
+.toc li.l2 { font-weight: bold; margin-top: 5pt; }
+.toc li.l3 { padding-left: 12pt; }
+.toc li .dots { flex: 1; border-bottom: .7pt dotted #999; margin: 0 4pt; transform: translateY(-3pt); }
+.toc li .pg { min-width: 12pt; text-align: right; }
 
 /* Títulos */
-h2 { font-size: 16pt; color: var(--navy); margin: 0 0 10pt; padding: 0 0 5pt; border-bottom: 2pt solid var(--navy); margin-top: 16pt; break-after: avoid; }
+h2 { font-size: 15pt; margin: 18pt 0 8pt; padding-bottom: 3pt; border-bottom: .8pt solid #333; break-after: avoid; }
 h2.newpage { break-before: page; margin-top: 0; }
-.toc + h2 { margin-top: 0; }
-h3 { font-size: 11.5pt; color: var(--navy); margin: 14pt 0 6pt; break-after: avoid; }
-h3::before { content: ""; display: inline-block; width: 3pt; height: 10pt; background: var(--navy); margin-right: 6pt; vertical-align: -1pt; }
+h3 { font-size: 12pt; margin: 14pt 0 6pt; break-after: avoid; }
 .keep { break-inside: avoid; }
 
 /* Tabelas */
-table { border-collapse: collapse; width: 100%; margin: 4pt 0 10pt; font-size: 8.4pt; line-height: 1.35; }
-th { background: var(--navy); color: #fff; font-weight: 600; text-align: left; padding: 4pt 5pt; }
-td { border-bottom: .5pt solid var(--rule); padding: 3.5pt 5pt; vertical-align: top; }
-tr:nth-child(even) td { background: #f6f8fb; }
+table { border-collapse: collapse; width: 100%; margin: 4pt 0 12pt; font-size: 9pt; line-height: 1.35; }
+th, td { border: .5pt solid #bbb; padding: 3pt 5pt; vertical-align: top; text-align: left; }
+th { background: #eee; font-weight: bold; }
 tr { break-inside: avoid; }
 thead { display: table-header-group; }
 
-/* Listas e destaques */
-ul, ol { margin: 0 0 8pt; padding-left: 15pt; }
+/* Listas */
+ul, ol { margin: 0 0 8pt; padding-left: 16pt; }
 li { margin: 0 0 3pt; }
-blockquote { margin: 6pt 0 10pt; padding: 6pt 10pt; border-left: 3pt solid #a86a12; background: #fff7e8; }
 
 /* Figuras */
-figure { margin: 6pt 0 12pt; break-inside: avoid; text-align: center; }
-figure img { max-width: 100%; max-height: 108mm; border: .6pt solid #c3ccd8; border-radius: 2pt; }
-figcaption { font-size: 8.4pt; color: var(--muted); margin-top: 3pt; }
-figcaption b { color: var(--navy); }
+figure { margin: 8pt 0 14pt; break-inside: avoid; text-align: center; }
+figure img { max-width: 100%; max-height: 100mm; border: .5pt solid #999; }
+figcaption { font-size: 9pt; color: #444; margin-top: 3pt; }
 """
 
 
@@ -107,7 +91,7 @@ def build_html(page_of=None):
         n[0] += 1
         alt = html.unescape(m.group(1))
         return (f'<figure><img src="{m.group(2)}" alt="{html.escape(alt)}">'
-                f'<figcaption><b>Figura {n[0]}.</b> {html.escape(alt)}</figcaption></figure>')
+                f'<figcaption>Figura {n[0]}: {html.escape(alt)}</figcaption></figure>')
 
     body = re.sub(r'<p><img alt="([^"]*)" src="([^"]+)"\s*/?></p>', fig, body)
 
@@ -138,7 +122,7 @@ def print_pdf(driver):
     driver.execute_script("return document.fonts.ready")
     po = PrintOptions()
     po.background = True
-    po.margin_top = po.margin_bottom = po.margin_left = po.margin_right = 0
+    po.margin_top = po.margin_bottom = po.margin_left = po.margin_right = 0  # margens vêm do @page
     return base64.b64decode(driver.print_page(po))
 
 
@@ -146,7 +130,7 @@ def pages_of_sections(pdf_bytes, items):
     """Descobre em que página cada título caiu, procurando o texto dele."""
     doc = pymupdf.open(stream=pdf_bytes, filetype="pdf")
     found = {}
-    start = 2  # pula capa e sumário
+    start = 1  # pula a página de título e sumário
     for lvl, ident, name in items:
         needle = html.unescape(name)[:40]
         for p in range(start, len(doc)):
@@ -161,14 +145,11 @@ def add_footer(pdf_bytes):
     doc = pymupdf.open(stream=pdf_bytes, filetype="pdf")
     total = len(doc)
     for i, page in enumerate(doc):
-        if i == 0:
-            continue  # capa sem rodapé
         w, h = page.rect.width, page.rect.height
-        y = h - 8 * 2.8346  # 8 mm do pé
-        page.draw_line((15 * 2.8346, y - 9), (w - 15 * 2.8346, y - 9), color=(0.84, 0.86, 0.89), width=0.5)
-        page.insert_text((15 * 2.8346, y), FOOTER, fontsize=7.5, color=(0.36, 0.42, 0.49))
+        y = h - 10 * 2.8346  # 10 mm do pé
+        page.insert_text((20 * 2.8346, y), FOOTER, fontsize=7.5, color=(0.36, 0.42, 0.49))
         label = f"{i + 1} / {total}"
-        page.insert_text((w - 15 * 2.8346 - pymupdf.get_text_length(label, fontsize=7.5), y), label,
+        page.insert_text((w - 20 * 2.8346 - pymupdf.get_text_length(label, fontsize=7.5), y), label,
                          fontsize=7.5, color=(0.36, 0.42, 0.49))
     doc.set_metadata({"title": "Sentinela: detecção e bloqueio de rastreadores no Firefox",
                       "author": "Alex Chequer", "subject": "Avaliação Intermediária de Cibersegurança, Insper"})
