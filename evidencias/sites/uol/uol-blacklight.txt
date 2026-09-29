@@ -1,0 +1,8 @@
+# Transcrito do print uol-blacklight.png (Blacklight, The Markup).
+# Parâmetros do scan: device=mobile, location=us-ca, force=false (resultado em cache).
+# URL: https://themarkup.org/blacklight?url=https%3A%2F%2Fwww.uol.com.br&device=mobile&location=us-ca&force=false
+# Visitado em Sep. 28, 2026, 15:22 ET
+categoria: Ad trackers = 21
+categoria: Third-party cookies = 14
+categoria: Facebook = 1
+categoria: Google Analytics = 1

@@ -1,0 +1,5 @@
+# Transcrito do print wikipedia-blacklight.png (Blacklight, The Markup).
+# Parâmetros do scan: device=mobile, location=us-ca, force=false (resultado em cache).
+# URL: https://themarkup.org/blacklight?url=https%3A%2F%2Fpt.wikipedia.org&device=mobile&location=us-ca&force=false
+# Visitado em Sep. 28, 2026, 16:53 ET
+categoria: Third-party cookies = 4

@@ -1,0 +1,10 @@
+# Transcrito de mercadolivre-ublock.png (uBlock Origin, perfil "ublock", listas padrão).
+# Resumo do painel: 44 requisições bloqueadas (9%); 10 de 15 domínios conectados.
+# Domínios com barra vermelha (bloqueados, total ou parcialmente):
+hotjar.com
+mercadoclics.com
+mercadolivre.com
+mercadopago.com
+mercadopago.com.br
+google.com        # parcial
+mercadolibre.com  # parcial

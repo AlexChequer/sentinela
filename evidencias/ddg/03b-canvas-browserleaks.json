@@ -1,0 +1,574 @@
+{
+  "tool": "Sentinela",
+  "version": "0.1.0",
+  "exportedAt": "2026-09-28T23:51:08.697Z",
+  "summary": {
+    "url": "https://browserleaks.com/canvas",
+    "site": "browserleaks.com",
+    "requests": {
+      "total": 11,
+      "thirdParty": 0
+    },
+    "domains": {
+      "total": 1,
+      "thirdParty": 0,
+      "trackers": 0
+    },
+    "cookies": {
+      "events": 0,
+      "unique": 0,
+      "matrix": {
+        "first": {
+          "session": 0,
+          "persistent": 0
+        },
+        "third": {
+          "session": 0,
+          "persistent": 0
+        }
+      },
+      "bySource": {
+        "http": 0,
+        "js": 0
+      },
+      "rejected": 0
+    },
+    "fingerprint": {
+      "canvasReads": 2,
+      "canvasFingerprints": 2,
+      "fingerprintScripts": 1,
+      "thirdPartyFingerprints": 0
+    },
+    "tracking": {
+      "knownParams": 0,
+      "idParams": 0,
+      "syncs": [],
+      "sharedIds": []
+    },
+    "navigation": {
+      "chain": [
+        {
+          "site": "browserleaks.com",
+          "page": "https://browserleaks.com/canvas",
+          "arrivedBy": "typed",
+          "dwellMs": null,
+          "tracker": false,
+          "bounce": false
+        }
+      ],
+      "bounces": []
+    },
+    "threats": {
+      "websockets": [],
+      "polling": [],
+      "replacedNatives": [],
+      "addedGlobals": 14,
+      "injectedThirdParty": 0,
+      "keyListenersThirdParty": 0,
+      "beef": []
+    },
+    "blocked": {
+      "requests": 0,
+      "hosts": 0
+    },
+    "storage": {
+      "frames": 1,
+      "localStorageKeys": 0,
+      "sessionStorageKeys": 0,
+      "indexedDBs": 0,
+      "cacheStorages": 0,
+      "thirdPartyFrames": 0,
+      "blockedFrames": 0
+    },
+    "score": {
+      "score": 85,
+      "grade": "A",
+      "items": [
+        {
+          "id": "ads",
+          "label": "Rastreadores de anúncio",
+          "blacklight": "Ad trackers",
+          "count": 0,
+          "per": 4,
+          "max": 20,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "cookies3p",
+          "label": "Cookies de terceiros",
+          "blacklight": "Third-party cookies",
+          "count": 0,
+          "per": 2,
+          "max": 15,
+          "detail": "0 cookie(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "fingerprint",
+          "label": "Canvas fingerprint",
+          "blacklight": "Tracking that evades cookie blockers",
+          "count": 1,
+          "per": 15,
+          "max": 15,
+          "detail": "2 leitura(s) classificada(s)",
+          "found": true,
+          "penalty": 15
+        },
+        {
+          "id": "session",
+          "label": "Gravação de sessão",
+          "blacklight": "Session-monitoring scripts",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "keys",
+          "label": "Captura de teclado por terceiro",
+          "blacklight": "Keystroke capturing",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "facebook",
+          "label": "Pixel do Facebook",
+          "blacklight": "Facebook",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "tiktok",
+          "label": "Pixel do TikTok",
+          "blacklight": "TikTok",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "twitter",
+          "label": "Pixel do Twitter/X",
+          "blacklight": "Twitter/X",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "ga",
+          "label": "Google Analytics com remarketing",
+          "blacklight": "Google Analytics",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "storage3p",
+          "label": "Storage em frames de terceiros",
+          "blacklight": null,
+          "count": 0,
+          "per": 1,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "navtracking",
+          "label": "Bounce tracking / cookie sync",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 15,
+          "detail": "0 bounce(s), 0 sync(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "beef",
+          "label": "Assinatura de BeEF",
+          "blacklight": null,
+          "count": 0,
+          "per": 40,
+          "max": 40,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "natives",
+          "label": "Funções nativas substituídas",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "channels",
+          "label": "WebSocket / polling para terceiro",
+          "blacklight": null,
+          "count": 0,
+          "per": 5,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        }
+      ]
+    }
+  },
+  "report": {
+    "tabId": 16,
+    "url": "https://browserleaks.com/canvas",
+    "site": "browserleaks.com",
+    "startedAt": 1790639446895,
+    "navRequestId": "18005",
+    "committed": true,
+    "requests": {
+      "total": 11,
+      "thirdParty": 0,
+      "log": [
+        {
+          "t": 1790639446895,
+          "requestId": "18005",
+          "method": "GET",
+          "type": "main_frame",
+          "url": "https://browserleaks.com/canvas",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639447839,
+          "requestId": "18007",
+          "method": "GET",
+          "type": "stylesheet",
+          "url": "https://browserleaks.com/css/style.css?v=86970852",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639447840,
+          "requestId": "18008",
+          "method": "GET",
+          "type": "script",
+          "url": "https://browserleaks.com/js/default.js?v=86970852",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639447840,
+          "requestId": "18009",
+          "method": "GET",
+          "type": "script",
+          "url": "https://browserleaks.com/js/canvas.js?v=86970852",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639447852,
+          "requestId": "18010",
+          "method": "GET",
+          "type": "imageset",
+          "url": "https://browserleaks.com/img/canvas/canvas-fingerprinting.png",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639448146,
+          "requestId": "18011",
+          "method": "GET",
+          "type": "image",
+          "url": "https://browserleaks.com/img/logo@2x.png?v=39295881",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639448147,
+          "requestId": "18012",
+          "method": "GET",
+          "type": "image",
+          "url": "https://browserleaks.com/img/sprite_nav@2x.png?v=39295881",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639448147,
+          "requestId": "18013",
+          "method": "GET",
+          "type": "image",
+          "url": "https://browserleaks.com/img/sprite_info@2x.png?v=39295881",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639448162,
+          "requestId": "18014",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://browserleaks.com/api/canvas/d78bb5b26adcf3461d1a385c23fb95dd",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639448303,
+          "requestId": "18015",
+          "method": "GET",
+          "type": "image",
+          "url": "https://browserleaks.com/img/favicons/icon-196x196.png?v=39295881",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639448303,
+          "requestId": "18016",
+          "method": "GET",
+          "type": "image",
+          "url": "https://browserleaks.com/favicon.ico",
+          "host": "browserleaks.com",
+          "site": "browserleaks.com",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        }
+      ]
+    },
+    "domains": {
+      "browserleaks.com": {
+        "site": "browserleaks.com",
+        "party": "first",
+        "hosts": {
+          "browserleaks.com": {
+            "requests": 11,
+            "tracker": false,
+            "company": null,
+            "categories": []
+          }
+        },
+        "requests": 11,
+        "types": {
+          "main_frame": 1,
+          "stylesheet": 1,
+          "script": 2,
+          "imageset": 1,
+          "image": 5,
+          "xmlhttprequest": 1
+        },
+        "tracker": false,
+        "categories": [],
+        "company": null,
+        "sources": [],
+        "firefoxFlags": [],
+        "cookiesSet": 0,
+        "firstSeen": 1790639446895
+      }
+    },
+    "cookies": [],
+    "storage": {
+      "https://browserleaks.com": {
+        "origin": "https://browserleaks.com",
+        "site": "browserleaks.com",
+        "party": "first",
+        "isTop": true,
+        "localStorage": {
+          "count": 0,
+          "bytes": 0,
+          "keys": [],
+          "at": 1790639458315
+        },
+        "sessionStorage": {
+          "count": 0,
+          "bytes": 0,
+          "keys": [],
+          "at": 1790639458315
+        },
+        "indexedDB": {
+          "databases": []
+        },
+        "cacheStorage": {
+          "caches": []
+        },
+        "writes": {
+          "localStorage": 0,
+          "sessionStorage": 0,
+          "indexedDB": 0,
+          "cacheStorage": 0
+        },
+        "writeLog": [],
+        "errors": {},
+        "valueHashes": []
+      }
+    },
+    "fingerprint": {
+      "canvas": [
+        {
+          "t": 1790639448160,
+          "api": "toDataURL",
+          "mimeType": "image/png",
+          "width": 220,
+          "height": 30,
+          "distinctChars": 20,
+          "colors": 3,
+          "textSample": "BrowserLeaks,com <canvas> 1.0BrowserLeak",
+          "script": "https://browserleaks.com/js/canvas.js?v=86970852",
+          "scriptParty": "first",
+          "frame": "about:blank",
+          "verdict": "fingerprint",
+          "reasons": [
+            "220x30",
+            "20 caracteres distintos",
+            "3 cor(es)",
+            "extraído via toDataURL"
+          ]
+        },
+        {
+          "t": 1790639448162,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 220,
+          "height": 30,
+          "distinctChars": 20,
+          "colors": 3,
+          "textSample": "BrowserLeaks,com <canvas> 1.0BrowserLeak",
+          "script": "https://browserleaks.com/js/canvas.js?v=86970852",
+          "scriptParty": "first",
+          "frame": "about:blank",
+          "verdict": "fingerprint",
+          "reasons": [
+            "220x30",
+            "20 caracteres distintos",
+            "3 cor(es)",
+            "extraído via getImageData"
+          ]
+        }
+      ]
+    },
+    "tracking": {
+      "params": [],
+      "paramHashes": {}
+    },
+    "hopId": "1790639446894-1",
+    "threats": {
+      "websockets": [],
+      "endpoints": {},
+      "beef": [],
+      "frames": {
+        "https://browserleaks.com": {
+          "origin": "https://browserleaks.com",
+          "isTop": false,
+          "addedGlobals": [
+            "0",
+            "Cookies",
+            "mapNamespace",
+            "_el",
+            "_els",
+            "_id",
+            "ico",
+            "countryNames",
+            "flagBox",
+            "sectionClick",
+            "md5",
+            "WHATWGFetch",
+            "fetchTM",
+            "PngToy"
+          ],
+          "replaced": []
+        }
+      },
+      "injected": [],
+      "keyListeners": [
+        {
+          "event": "change",
+          "target": "outro",
+          "script": "https://browserleaks.com/js/default.js?v=86970852",
+          "party": "first",
+          "frame": "https://browserleaks.com"
+        },
+        {
+          "event": "keypress",
+          "target": "INPUT",
+          "script": "https://browserleaks.com/js/default.js?v=86970852",
+          "party": "first",
+          "frame": "https://browserleaks.com"
+        }
+      ]
+    },
+    "blocked": {},
+    "_badge": 0
+  }
+}

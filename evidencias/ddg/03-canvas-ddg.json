@@ -1,0 +1,882 @@
+{
+  "tool": "Sentinela",
+  "version": "0.1.0",
+  "exportedAt": "2026-09-28T23:50:16.280Z",
+  "summary": {
+    "url": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+    "site": "privacy-test-pages.site",
+    "requests": {
+      "total": 8,
+      "thirdParty": 1
+    },
+    "domains": {
+      "total": 2,
+      "thirdParty": 1,
+      "trackers": 0
+    },
+    "cookies": {
+      "events": 0,
+      "unique": 0,
+      "matrix": {
+        "first": {
+          "session": 0,
+          "persistent": 0
+        },
+        "third": {
+          "session": 0,
+          "persistent": 0
+        }
+      },
+      "bySource": {
+        "http": 0,
+        "js": 0
+      },
+      "rejected": 0
+    },
+    "fingerprint": {
+      "canvasReads": 21,
+      "canvasFingerprints": 0,
+      "fingerprintScripts": 0,
+      "thirdPartyFingerprints": 0
+    },
+    "tracking": {
+      "knownParams": 0,
+      "idParams": 0,
+      "syncs": [],
+      "sharedIds": []
+    },
+    "navigation": {
+      "chain": [
+        {
+          "site": "privacy-test-pages.site",
+          "page": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "arrivedBy": "typed",
+          "dwellMs": null,
+          "tracker": false,
+          "bounce": false
+        }
+      ],
+      "bounces": []
+    },
+    "threats": {
+      "websockets": [],
+      "polling": [],
+      "replacedNatives": [],
+      "addedGlobals": 12,
+      "injectedThirdParty": 0,
+      "keyListenersThirdParty": 0,
+      "beef": []
+    },
+    "blocked": {
+      "requests": 0,
+      "hosts": 0
+    },
+    "storage": {
+      "frames": 1,
+      "localStorageKeys": 1,
+      "sessionStorageKeys": 0,
+      "indexedDBs": 1,
+      "cacheStorages": 1,
+      "thirdPartyFrames": 0,
+      "blockedFrames": 0
+    },
+    "score": {
+      "score": 100,
+      "grade": "A",
+      "items": [
+        {
+          "id": "ads",
+          "label": "Rastreadores de anúncio",
+          "blacklight": "Ad trackers",
+          "count": 0,
+          "per": 4,
+          "max": 20,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "cookies3p",
+          "label": "Cookies de terceiros",
+          "blacklight": "Third-party cookies",
+          "count": 0,
+          "per": 2,
+          "max": 15,
+          "detail": "0 cookie(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "fingerprint",
+          "label": "Canvas fingerprint",
+          "blacklight": "Tracking that evades cookie blockers",
+          "count": 0,
+          "per": 15,
+          "max": 15,
+          "detail": "0 leitura(s) classificada(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "session",
+          "label": "Gravação de sessão",
+          "blacklight": "Session-monitoring scripts",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "keys",
+          "label": "Captura de teclado por terceiro",
+          "blacklight": "Keystroke capturing",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "facebook",
+          "label": "Pixel do Facebook",
+          "blacklight": "Facebook",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "tiktok",
+          "label": "Pixel do TikTok",
+          "blacklight": "TikTok",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "twitter",
+          "label": "Pixel do Twitter/X",
+          "blacklight": "Twitter/X",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "ga",
+          "label": "Google Analytics com remarketing",
+          "blacklight": "Google Analytics",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "storage3p",
+          "label": "Storage em frames de terceiros",
+          "blacklight": null,
+          "count": 0,
+          "per": 1,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "navtracking",
+          "label": "Bounce tracking / cookie sync",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 15,
+          "detail": "0 bounce(s), 0 sync(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "beef",
+          "label": "Assinatura de BeEF",
+          "blacklight": null,
+          "count": 0,
+          "per": 40,
+          "max": 40,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "natives",
+          "label": "Funções nativas substituídas",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "channels",
+          "label": "WebSocket / polling para terceiro",
+          "blacklight": null,
+          "count": 0,
+          "per": 5,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        }
+      ]
+    }
+  },
+  "report": {
+    "tabId": 15,
+    "url": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+    "site": "privacy-test-pages.site",
+    "startedAt": 1790639380037,
+    "navRequestId": "17985",
+    "committed": true,
+    "requests": {
+      "total": 8,
+      "thirdParty": 1,
+      "log": [
+        {
+          "t": 1790639380038,
+          "requestId": "17985",
+          "method": "GET",
+          "type": "main_frame",
+          "url": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639380452,
+          "requestId": "17987",
+          "method": "GET",
+          "type": "stylesheet",
+          "url": "https://privacy-test-pages.site/privacy-protections/fingerprinting/style.css",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639380452,
+          "requestId": "17988",
+          "method": "GET",
+          "type": "script",
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js",
+          "host": "cdnjs.cloudflare.com",
+          "site": "cloudflare.com",
+          "party": "third",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639380452,
+          "requestId": "17989",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/privacy-protections/fingerprinting/helpers/canvas.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639380453,
+          "requestId": "17990",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639380453,
+          "requestId": "17991",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/helpers/runMenu.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639380844,
+          "requestId": "17992",
+          "method": "GET",
+          "type": "image",
+          "url": "https://privacy-test-pages.site/favicon.ico",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639384891,
+          "requestId": "17994",
+          "method": "GET",
+          "type": "image",
+          "url": "https://privacy-test-pages.site/privacy-protections/fingerprinting/pixel.gif",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        }
+      ]
+    },
+    "domains": {
+      "privacy-test-pages.site": {
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "hosts": {
+          "privacy-test-pages.site": {
+            "requests": 7,
+            "tracker": false,
+            "company": null,
+            "categories": []
+          }
+        },
+        "requests": 7,
+        "types": {
+          "main_frame": 1,
+          "stylesheet": 1,
+          "script": 3,
+          "image": 2
+        },
+        "tracker": false,
+        "categories": [],
+        "company": null,
+        "sources": [],
+        "firefoxFlags": [],
+        "cookiesSet": 0,
+        "firstSeen": 1790639380037
+      },
+      "cloudflare.com": {
+        "site": "cloudflare.com",
+        "party": "third",
+        "hosts": {
+          "cdnjs.cloudflare.com": {
+            "requests": 1,
+            "tracker": false,
+            "company": "Cloudflare",
+            "categories": [
+              "Content"
+            ]
+          }
+        },
+        "requests": 1,
+        "types": {
+          "script": 1
+        },
+        "tracker": false,
+        "categories": [
+          "Content"
+        ],
+        "company": "Cloudflare",
+        "sources": [
+          "disconnect",
+          "firefox"
+        ],
+        "firefoxFlags": [
+          "tracking_content",
+          "any_strict_tracking"
+        ],
+        "cookiesSet": 0,
+        "firstSeen": 1790639380452
+      }
+    },
+    "cookies": [],
+    "storage": {
+      "https://privacy-test-pages.site": {
+        "origin": "https://privacy-test-pages.site",
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "isTop": true,
+        "localStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790639390857
+        },
+        "sessionStorage": {
+          "count": 0,
+          "bytes": 0,
+          "keys": [],
+          "at": 1790639390857
+        },
+        "indexedDB": {
+          "databases": [
+            "data"
+          ]
+        },
+        "cacheStorage": {
+          "caches": [
+            "data"
+          ]
+        },
+        "writes": {
+          "localStorage": 0,
+          "sessionStorage": 0,
+          "indexedDB": 0,
+          "cacheStorage": 0
+        },
+        "writeLog": [],
+        "errors": {},
+        "valueHashes": [
+          "399af751"
+        ]
+      }
+    },
+    "fingerprint": {
+      "canvas": [
+        {
+          "t": 1790639381849,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382443,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 1,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 1 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382477,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 1,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 1 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382508,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 1,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 1 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382540,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 1,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 1 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382570,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 1,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 1 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382603,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 1,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 1 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382635,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 1,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 1 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382666,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 1,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 1 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382697,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 2000,
+          "distinctChars": 0,
+          "colors": 1,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 1 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639382838,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 3840,
+          "height": 2160,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639384383,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 200,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639384530,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 200,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639384751,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 2000,
+          "height": 200,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639385030,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 1,
+          "height": 1,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "canvas 1x1 < 16x16",
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639385030,
+          "api": "toDataURL",
+          "mimeType": null,
+          "width": 1,
+          "height": 1,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "canvas 1x1 < 16x16",
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639385134,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 16,
+          "height": 16,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639385135,
+          "api": "toDataURL",
+          "mimeType": null,
+          "width": 16,
+          "height": 16,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639385139,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 16,
+          "height": 16,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639385241,
+          "api": "getImageData",
+          "mimeType": null,
+          "width": 16,
+          "height": 16,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        },
+        {
+          "t": 1790639385241,
+          "api": "toDataURL",
+          "mimeType": null,
+          "width": 16,
+          "height": 16,
+          "distinctChars": 0,
+          "colors": 0,
+          "textSample": "",
+          "script": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.js",
+          "scriptParty": "first",
+          "frame": "https://privacy-test-pages.site/privacy-protections/fingerprinting/canvas.html",
+          "verdict": "extraction",
+          "reasons": [
+            "0 caracteres distintos e 0 cor(es)"
+          ]
+        }
+      ]
+    },
+    "tracking": {
+      "params": [],
+      "paramHashes": {}
+    },
+    "hopId": "1790639380037-0",
+    "threats": {
+      "websockets": [],
+      "endpoints": {
+        "https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js": {
+          "host": "cdnjs.cloudflare.com",
+          "site": "cloudflare.com",
+          "type": "script",
+          "times": [
+            1790639380452
+          ]
+        }
+      },
+      "beef": [],
+      "frames": {
+        "https://privacy-test-pages.site": {
+          "origin": "https://privacy-test-pages.site",
+          "isTop": true,
+          "addedGlobals": [
+            "applyFpExampleDataToCanvas",
+            "createCanvas",
+            "generateDataURLWithCode",
+            "calculateDifferencesOnRandomCanvas",
+            "init",
+            "fail",
+            "pass",
+            "insertResultRow",
+            "eq",
+            "ok",
+            "initMenu",
+            "codeCallback"
+          ],
+          "replaced": []
+        }
+      },
+      "injected": [],
+      "keyListeners": []
+    },
+    "blocked": {},
+    "_badge": 0
+  }
+}

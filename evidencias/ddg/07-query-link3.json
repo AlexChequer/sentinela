@@ -1,0 +1,427 @@
+{
+  "tool": "Sentinela",
+  "version": "0.1.0",
+  "exportedAt": "2026-09-29T00:08:59.165Z",
+  "summary": {
+    "url": "https://privacy-test-pages.site/privacy-protections/query-parameters/query.html?fbclid=12345&fb_source=someting&u=14",
+    "site": "privacy-test-pages.site",
+    "requests": {
+      "total": 3,
+      "thirdParty": 0
+    },
+    "domains": {
+      "total": 1,
+      "thirdParty": 0,
+      "trackers": 0
+    },
+    "cookies": {
+      "events": 0,
+      "unique": 0,
+      "matrix": {
+        "first": {
+          "session": 0,
+          "persistent": 0
+        },
+        "third": {
+          "session": 0,
+          "persistent": 0
+        }
+      },
+      "bySource": {
+        "http": 0,
+        "js": 0
+      },
+      "rejected": 0
+    },
+    "fingerprint": {
+      "canvasReads": 0,
+      "canvasFingerprints": 0,
+      "fingerprintScripts": 0,
+      "thirdPartyFingerprints": 0
+    },
+    "tracking": {
+      "knownParams": 2,
+      "idParams": 0,
+      "syncs": [],
+      "sharedIds": []
+    },
+    "navigation": {
+      "chain": [
+        {
+          "site": "privacy-test-pages.site",
+          "page": "https://privacy-test-pages.site/privacy-protections/query-parameters/",
+          "arrivedBy": "link",
+          "dwellMs": 8012,
+          "tracker": false,
+          "bounce": false
+        },
+        {
+          "site": "privacy-test-pages.site",
+          "page": "https://privacy-test-pages.site/privacy-protections/query-parameters/query.html",
+          "arrivedBy": "link",
+          "dwellMs": null,
+          "tracker": false,
+          "bounce": false
+        }
+      ],
+      "bounces": []
+    },
+    "threats": {
+      "websockets": [],
+      "polling": [],
+      "replacedNatives": [],
+      "addedGlobals": 0,
+      "injectedThirdParty": 0,
+      "keyListenersThirdParty": 0,
+      "beef": []
+    },
+    "blocked": {
+      "requests": 0,
+      "hosts": 0
+    },
+    "storage": {
+      "frames": 1,
+      "localStorageKeys": 1,
+      "sessionStorageKeys": 0,
+      "indexedDBs": 1,
+      "cacheStorages": 1,
+      "thirdPartyFrames": 0,
+      "blockedFrames": 0
+    },
+    "score": {
+      "score": 100,
+      "grade": "A",
+      "items": [
+        {
+          "id": "ads",
+          "label": "Rastreadores de anúncio",
+          "blacklight": "Ad trackers",
+          "count": 0,
+          "per": 4,
+          "max": 20,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "cookies3p",
+          "label": "Cookies de terceiros",
+          "blacklight": "Third-party cookies",
+          "count": 0,
+          "per": 2,
+          "max": 15,
+          "detail": "0 cookie(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "fingerprint",
+          "label": "Canvas fingerprint",
+          "blacklight": "Tracking that evades cookie blockers",
+          "count": 0,
+          "per": 15,
+          "max": 15,
+          "detail": "0 leitura(s) classificada(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "session",
+          "label": "Gravação de sessão",
+          "blacklight": "Session-monitoring scripts",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "keys",
+          "label": "Captura de teclado por terceiro",
+          "blacklight": "Keystroke capturing",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "facebook",
+          "label": "Pixel do Facebook",
+          "blacklight": "Facebook",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "tiktok",
+          "label": "Pixel do TikTok",
+          "blacklight": "TikTok",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "twitter",
+          "label": "Pixel do Twitter/X",
+          "blacklight": "Twitter/X",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "ga",
+          "label": "Google Analytics com remarketing",
+          "blacklight": "Google Analytics",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "storage3p",
+          "label": "Storage em frames de terceiros",
+          "blacklight": null,
+          "count": 0,
+          "per": 1,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "navtracking",
+          "label": "Bounce tracking / cookie sync",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 15,
+          "detail": "0 bounce(s), 0 sync(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "beef",
+          "label": "Assinatura de BeEF",
+          "blacklight": null,
+          "count": 0,
+          "per": 40,
+          "max": 40,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "natives",
+          "label": "Funções nativas substituídas",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "channels",
+          "label": "WebSocket / polling para terceiro",
+          "blacklight": null,
+          "count": 0,
+          "per": 5,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        }
+      ]
+    }
+  },
+  "report": {
+    "tabId": 21,
+    "url": "https://privacy-test-pages.site/privacy-protections/query-parameters/query.html?fbclid=12345&fb_source=someting&u=14",
+    "site": "privacy-test-pages.site",
+    "startedAt": 1790640521802,
+    "navRequestId": "18365",
+    "committed": true,
+    "requests": {
+      "total": 3,
+      "thirdParty": 0,
+      "log": [
+        {
+          "t": 1790640521802,
+          "requestId": "18365",
+          "method": "GET",
+          "type": "main_frame",
+          "url": "https://privacy-test-pages.site/privacy-protections/query-parameters/query.html?fbclid=12345&fb_source=someting&u=14",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790640521952,
+          "requestId": "18366",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/privacy-protections/query-parameters/main.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790640522082,
+          "requestId": "18367",
+          "method": "GET",
+          "type": "image",
+          "url": "https://privacy-test-pages.site/favicon.ico",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        }
+      ]
+    },
+    "domains": {
+      "privacy-test-pages.site": {
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "hosts": {
+          "privacy-test-pages.site": {
+            "requests": 3,
+            "tracker": false,
+            "company": null,
+            "categories": []
+          }
+        },
+        "requests": 3,
+        "types": {
+          "main_frame": 1,
+          "script": 1,
+          "image": 1
+        },
+        "tracker": false,
+        "categories": [],
+        "company": null,
+        "sources": [],
+        "firefoxFlags": [],
+        "cookiesSet": 0,
+        "firstSeen": 1790640521802
+      }
+    },
+    "cookies": [],
+    "storage": {
+      "https://privacy-test-pages.site": {
+        "origin": "https://privacy-test-pages.site",
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "isTop": true,
+        "localStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790640532092
+        },
+        "sessionStorage": {
+          "count": 0,
+          "bytes": 0,
+          "keys": [],
+          "at": 1790640532092
+        },
+        "indexedDB": {
+          "databases": [
+            "data"
+          ]
+        },
+        "cacheStorage": {
+          "caches": [
+            "data"
+          ]
+        },
+        "writes": {
+          "localStorage": 0,
+          "sessionStorage": 0,
+          "indexedDB": 0,
+          "cacheStorage": 0
+        },
+        "writeLog": [],
+        "errors": {},
+        "valueHashes": [
+          "399af751"
+        ]
+      }
+    },
+    "fingerprint": {
+      "canvas": []
+    },
+    "tracking": {
+      "params": [
+        {
+          "t": 1790640521802,
+          "name": "fbclid",
+          "kind": "known",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "type": "main_frame",
+          "valueLength": 5,
+          "valueHash": "43c2c0d8"
+        },
+        {
+          "t": 1790640521802,
+          "name": "fb_source",
+          "kind": "known",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "type": "main_frame",
+          "valueLength": 8,
+          "valueHash": "7948a559"
+        }
+      ],
+      "paramHashes": {}
+    },
+    "hopId": "1790640521802-3",
+    "threats": {
+      "websockets": [],
+      "endpoints": {},
+      "beef": [],
+      "frames": {
+        "https://privacy-test-pages.site": {
+          "origin": "https://privacy-test-pages.site",
+          "isTop": true,
+          "addedGlobals": [],
+          "replaced": []
+        }
+      },
+      "injected": [],
+      "keyListeners": []
+    },
+    "blocked": {},
+    "_badge": 0
+  }
+}

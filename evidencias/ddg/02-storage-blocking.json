@@ -1,0 +1,2156 @@
+{
+  "tool": "Sentinela",
+  "version": "0.1.0",
+  "exportedAt": "2026-09-28T23:47:19.945Z",
+  "summary": {
+    "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/",
+    "site": "privacy-test-pages.site",
+    "requests": {
+      "total": 36,
+      "thirdParty": 26
+    },
+    "domains": {
+      "total": 3,
+      "thirdParty": 2,
+      "trackers": 1
+    },
+    "cookies": {
+      "events": 27,
+      "unique": 27,
+      "matrix": {
+        "first": {
+          "session": 0,
+          "persistent": 7
+        },
+        "third": {
+          "session": 0,
+          "persistent": 20
+        }
+      },
+      "bySource": {
+        "http": 9,
+        "js": 18
+      },
+      "rejected": 0
+    },
+    "fingerprint": {
+      "canvasReads": 0,
+      "canvasFingerprints": 0,
+      "fingerprintScripts": 0,
+      "thirdPartyFingerprints": 0
+    },
+    "tracking": {
+      "knownParams": 0,
+      "idParams": 0,
+      "syncs": [],
+      "sharedIds": []
+    },
+    "navigation": {
+      "chain": [
+        {
+          "site": "privacy-test-pages.site",
+          "page": "https://privacy-test-pages.site/privacy-protections/storage-blocking/",
+          "arrivedBy": "typed",
+          "dwellMs": null,
+          "tracker": false,
+          "bounce": false
+        }
+      ],
+      "bounces": []
+    },
+    "threats": {
+      "websockets": [],
+      "polling": [],
+      "replacedNatives": [],
+      "addedGlobals": 15,
+      "injectedThirdParty": 0,
+      "keyListenersThirdParty": 0,
+      "beef": []
+    },
+    "blocked": {
+      "requests": 0,
+      "hosts": 0
+    },
+    "storage": {
+      "frames": 4,
+      "localStorageKeys": 4,
+      "sessionStorageKeys": 4,
+      "indexedDBs": 3,
+      "cacheStorages": 4,
+      "thirdPartyFrames": 3,
+      "blockedFrames": 0
+    },
+    "score": {
+      "score": 82,
+      "grade": "B",
+      "items": [
+        {
+          "id": "ads",
+          "label": "Rastreadores de anúncio",
+          "blacklight": "Ad trackers",
+          "count": 0,
+          "per": 4,
+          "max": 20,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "cookies3p",
+          "label": "Cookies de terceiros",
+          "blacklight": "Third-party cookies",
+          "count": 20,
+          "per": 2,
+          "max": 15,
+          "detail": "20 cookie(s)",
+          "found": true,
+          "penalty": 15
+        },
+        {
+          "id": "fingerprint",
+          "label": "Canvas fingerprint",
+          "blacklight": "Tracking that evades cookie blockers",
+          "count": 0,
+          "per": 15,
+          "max": 15,
+          "detail": "0 leitura(s) classificada(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "session",
+          "label": "Gravação de sessão",
+          "blacklight": "Session-monitoring scripts",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "keys",
+          "label": "Captura de teclado por terceiro",
+          "blacklight": "Keystroke capturing",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "facebook",
+          "label": "Pixel do Facebook",
+          "blacklight": "Facebook",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "tiktok",
+          "label": "Pixel do TikTok",
+          "blacklight": "TikTok",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "twitter",
+          "label": "Pixel do Twitter/X",
+          "blacklight": "Twitter/X",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "ga",
+          "label": "Google Analytics com remarketing",
+          "blacklight": "Google Analytics",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "storage3p",
+          "label": "Storage em frames de terceiros",
+          "blacklight": null,
+          "count": 3,
+          "per": 1,
+          "max": 5,
+          "detail": "https://good.third-party.site, https://broken.third-party.site, https://convert.ad-company.site",
+          "found": true,
+          "penalty": 3
+        },
+        {
+          "id": "navtracking",
+          "label": "Bounce tracking / cookie sync",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 15,
+          "detail": "0 bounce(s), 0 sync(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "beef",
+          "label": "Assinatura de BeEF",
+          "blacklight": null,
+          "count": 0,
+          "per": 40,
+          "max": 40,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "natives",
+          "label": "Funções nativas substituídas",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "channels",
+          "label": "WebSocket / polling para terceiro",
+          "blacklight": null,
+          "count": 0,
+          "per": 5,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        }
+      ]
+    }
+  },
+  "report": {
+    "tabId": 14,
+    "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/",
+    "site": "privacy-test-pages.site",
+    "startedAt": 1790639181225,
+    "navRequestId": "17934",
+    "committed": true,
+    "requests": {
+      "total": 36,
+      "thirdParty": 26,
+      "log": [
+        {
+          "t": 1790639181225,
+          "requestId": "17934",
+          "method": "GET",
+          "type": "main_frame",
+          "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639181631,
+          "requestId": "17936",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/helpers/idb-wrapper.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639181632,
+          "requestId": "17937",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/helpers/globals.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639181632,
+          "requestId": "17938",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639181633,
+          "requestId": "17939",
+          "method": "GET",
+          "type": "script",
+          "url": "https://broken.third-party.site/privacy-protections/storage-blocking/3rdparty.js",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639181633,
+          "requestId": "17940",
+          "method": "GET",
+          "type": "script",
+          "url": "https://good.third-party.site/privacy-protections/storage-blocking/3rdparty.js",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639181633,
+          "requestId": "17941",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/main.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639181633,
+          "requestId": "17942",
+          "method": "GET",
+          "type": "stylesheet",
+          "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/style.css",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639182150,
+          "requestId": "17943",
+          "method": "GET",
+          "type": "image",
+          "url": "https://privacy-test-pages.site/favicon.ico",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639187912,
+          "requestId": "17945",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://privacy-test-pages.site/cached-random-number",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639188047,
+          "requestId": "17946",
+          "method": "GET",
+          "type": "sub_frame",
+          "url": "https://good.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142785,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188061,
+          "requestId": "17947",
+          "method": "GET",
+          "type": "sub_frame",
+          "url": "https://broken.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 178241142786,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188061,
+          "requestId": "17948",
+          "method": "GET",
+          "type": "sub_frame",
+          "url": "https://convert.ad-company.site/privacy-protections/storage-blocking/iframe.html?data=518",
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142787,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188061,
+          "requestId": "17950",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://privacy-test-pages.site/set-cookie?value=518&name=top_firstparty_headerdata",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639188061,
+          "requestId": "17951",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://good.third-party.site/set-cookie?value=518&name=top_thirdparty_headerdata",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188062,
+          "requestId": "17952",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://broken.third-party.site/set-cookie?value=518&name=top_tracker_headerdata",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188195,
+          "requestId": "17953",
+          "method": "GET",
+          "type": "script",
+          "url": "https://good.third-party.site/helpers/idb-wrapper.js",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142785,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188195,
+          "requestId": "17954",
+          "method": "GET",
+          "type": "script",
+          "url": "https://good.third-party.site/privacy-protections/storage-blocking/helpers/globals.js",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142785,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188196,
+          "requestId": "17955",
+          "method": "GET",
+          "type": "script",
+          "url": "https://good.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142785,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188196,
+          "requestId": "17956",
+          "method": "GET",
+          "type": "script",
+          "url": "https://good.third-party.site/privacy-protections/storage-blocking/iframe.js",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142785,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188209,
+          "requestId": "17957",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/service-worker-set-cookie?name=swcookiestoredata&data=518",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790639188209,
+          "requestId": "17958",
+          "method": "GET",
+          "type": "script",
+          "url": "https://broken.third-party.site/helpers/idb-wrapper.js",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 178241142786,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188209,
+          "requestId": "17959",
+          "method": "GET",
+          "type": "script",
+          "url": "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/globals.js",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 178241142786,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188209,
+          "requestId": "17960",
+          "method": "GET",
+          "type": "script",
+          "url": "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 178241142786,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188209,
+          "requestId": "17961",
+          "method": "GET",
+          "type": "script",
+          "url": "https://broken.third-party.site/privacy-protections/storage-blocking/iframe.js",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 178241142786,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188580,
+          "requestId": "17962",
+          "method": "GET",
+          "type": "script",
+          "url": "https://convert.ad-company.site/helpers/idb-wrapper.js",
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142787,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188580,
+          "requestId": "17963",
+          "method": "GET",
+          "type": "script",
+          "url": "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/globals.js",
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142787,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188580,
+          "requestId": "17964",
+          "method": "GET",
+          "type": "script",
+          "url": "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142787,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188580,
+          "requestId": "17965",
+          "method": "GET",
+          "type": "script",
+          "url": "https://convert.ad-company.site/privacy-protections/storage-blocking/iframe.js",
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142787,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188660,
+          "requestId": "17966",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://good.third-party.site/set-cookie?value=518&name=thirdparty_firstparty_headerdata",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142785,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188660,
+          "requestId": "17967",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://broken.third-party.site/set-cookie?value=518&name=thirdparty_tracker_headerdata",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 178241142785,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188669,
+          "requestId": "17968",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://broken.third-party.site/set-cookie?value=518&name=thirdpartytracker_firstparty_headerdata",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 178241142786,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188669,
+          "requestId": "17969",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://good.third-party.site/set-cookie?value=518&name=thirdpartytracker_thirdparty_headerdata",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142786,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188957,
+          "requestId": "17970",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://convert.ad-company.site/set-cookie?value=518&name=thirdpartyAd_firstparty_headerdata",
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142787,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188957,
+          "requestId": "17971",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://good.third-party.site/set-cookie?value=518&name=thirdpartyAd_thirdparty_headerdata",
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": false,
+          "frameId": 178241142787,
+          "thirdPartyFx": true,
+          "blocked": false
+        },
+        {
+          "t": 1790639188957,
+          "requestId": "17972",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://broken.third-party.site/set-cookie?value=518&name=thirdpartyAd_tracker_headerdata",
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 178241142787,
+          "thirdPartyFx": true,
+          "blocked": false
+        }
+      ]
+    },
+    "domains": {
+      "privacy-test-pages.site": {
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "hosts": {
+          "privacy-test-pages.site": {
+            "requests": 10,
+            "tracker": false,
+            "company": null,
+            "categories": []
+          }
+        },
+        "requests": 10,
+        "types": {
+          "main_frame": 1,
+          "script": 4,
+          "stylesheet": 1,
+          "image": 1,
+          "xmlhttprequest": 3
+        },
+        "tracker": false,
+        "categories": [],
+        "company": null,
+        "sources": [],
+        "firefoxFlags": [],
+        "cookiesSet": 7,
+        "firstSeen": 1790639181225
+      },
+      "third-party.site": {
+        "site": "third-party.site",
+        "party": "third",
+        "hosts": {
+          "broken.third-party.site": {
+            "requests": 10,
+            "tracker": true,
+            "company": "DDG test tracker (não bloqueável)",
+            "categories": [
+              "DDG-test"
+            ]
+          },
+          "good.third-party.site": {
+            "requests": 10,
+            "tracker": false,
+            "company": null,
+            "categories": []
+          }
+        },
+        "requests": 20,
+        "types": {
+          "script": 10,
+          "sub_frame": 2,
+          "xmlhttprequest": 8
+        },
+        "tracker": true,
+        "categories": [
+          "DDG-test"
+        ],
+        "company": "DDG test tracker (não bloqueável)",
+        "sources": [
+          "ddg-test"
+        ],
+        "firefoxFlags": [],
+        "cookiesSet": 16,
+        "firstSeen": 1790639181633
+      },
+      "ad-company.site": {
+        "site": "ad-company.site",
+        "party": "third",
+        "hosts": {
+          "convert.ad-company.site": {
+            "requests": 6,
+            "tracker": false,
+            "company": null,
+            "categories": []
+          }
+        },
+        "requests": 6,
+        "types": {
+          "sub_frame": 1,
+          "script": 4,
+          "xmlhttprequest": 1
+        },
+        "tracker": false,
+        "categories": [],
+        "company": null,
+        "sources": [],
+        "firefoxFlags": [],
+        "cookiesSet": 4,
+        "firstSeen": 1790639188061
+      }
+    },
+    "cookies": [
+      {
+        "name": "top_firstparty_headerdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "privacy-test-pages.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1791503188000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1791503188000,
+        "lifetime": "persistent",
+        "lifetimeDays": 10,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "source": "http",
+        "api": null,
+        "url": "https://privacy-test-pages.site/set-cookie?value=518&name=top_firstparty_headerdata",
+        "requestType": "xmlhttprequest",
+        "setBy": null,
+        "accepted": null,
+        "t": 1790639188195
+      },
+      {
+        "name": "jsdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "privacy-test-pages.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "lax",
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/#518",
+        "requestType": null,
+        "setBy": "https://privacy-test-pages.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188257
+      },
+      {
+        "name": "__Host-jsdata_host",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "privacy-test-pages.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "lax",
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/#518",
+        "requestType": null,
+        "setBy": "https://privacy-test-pages.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188257
+      },
+      {
+        "name": "jsdata_no_samesite",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "privacy-test-pages.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/#518",
+        "requestType": null,
+        "setBy": "https://privacy-test-pages.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188257
+      },
+      {
+        "name": "tptdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "privacy-test-pages.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": false,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/#518",
+        "requestType": null,
+        "setBy": "https://broken.third-party.site/privacy-protections/storage-blocking/3rdparty.js",
+        "accepted": true,
+        "t": 1790639188257
+      },
+      {
+        "name": "tpsdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "privacy-test-pages.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": false,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/#518",
+        "requestType": null,
+        "setBy": "https://good.third-party.site/privacy-protections/storage-blocking/3rdparty.js",
+        "accepted": true,
+        "t": 1790639188257
+      },
+      {
+        "name": "cookiestoredata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "privacy-test-pages.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": false,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "source": "js",
+        "api": "cookieStore",
+        "url": "https://privacy-test-pages.site/privacy-protections/storage-blocking/#518",
+        "requestType": null,
+        "setBy": "https://privacy-test-pages.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188257
+      },
+      {
+        "name": "top_thirdparty_headerdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "good.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1791503188000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1791503188000,
+        "lifetime": "persistent",
+        "lifetimeDays": 10,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "http",
+        "api": null,
+        "url": "https://good.third-party.site/set-cookie?value=518&name=top_thirdparty_headerdata",
+        "requestType": "xmlhttprequest",
+        "setBy": null,
+        "accepted": null,
+        "t": 1790639188295
+      },
+      {
+        "name": "top_tracker_headerdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "broken.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1791503188000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1791503188000,
+        "lifetime": "persistent",
+        "lifetimeDays": 10,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "http",
+        "api": null,
+        "url": "https://broken.third-party.site/set-cookie?value=518&name=top_tracker_headerdata",
+        "requestType": "xmlhttprequest",
+        "setBy": null,
+        "accepted": null,
+        "t": 1790639188320
+      },
+      {
+        "name": "thirdparty_firstparty_headerdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "good.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1791503188000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1791503188000,
+        "lifetime": "persistent",
+        "lifetimeDays": 10,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "http",
+        "api": null,
+        "url": "https://good.third-party.site/set-cookie?value=518&name=thirdparty_firstparty_headerdata",
+        "requestType": "xmlhttprequest",
+        "setBy": null,
+        "accepted": null,
+        "t": 1790639188785
+      },
+      {
+        "name": "thirdparty_tracker_headerdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "broken.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1791503188000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1791503188000,
+        "lifetime": "persistent",
+        "lifetimeDays": 10,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "http",
+        "api": null,
+        "url": "https://broken.third-party.site/set-cookie?value=518&name=thirdparty_tracker_headerdata",
+        "requestType": "xmlhttprequest",
+        "setBy": null,
+        "accepted": null,
+        "t": 1790639188785
+      },
+      {
+        "name": "jsdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "good.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://good.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://good.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188792
+      },
+      {
+        "name": "__Host-jsdata_host",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "good.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://good.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://good.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188792
+      },
+      {
+        "name": "jsdata_no_samesite",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "good.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://good.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://good.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188792
+      },
+      {
+        "name": "cookiestoredata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "good.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": false,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "js",
+        "api": "cookieStore",
+        "url": "https://good.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://good.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188792
+      },
+      {
+        "name": "thirdpartytracker_firstparty_headerdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "broken.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1791503188000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1791503188000,
+        "lifetime": "persistent",
+        "lifetimeDays": 10,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "http",
+        "api": null,
+        "url": "https://broken.third-party.site/set-cookie?value=518&name=thirdpartytracker_firstparty_headerdata",
+        "requestType": "xmlhttprequest",
+        "setBy": null,
+        "accepted": null,
+        "t": 1790639188794
+      },
+      {
+        "name": "thirdpartytracker_thirdparty_headerdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "good.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1791503188000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1791503188000,
+        "lifetime": "persistent",
+        "lifetimeDays": 10,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "http",
+        "api": null,
+        "url": "https://good.third-party.site/set-cookie?value=518&name=thirdpartytracker_thirdparty_headerdata",
+        "requestType": "xmlhttprequest",
+        "setBy": null,
+        "accepted": null,
+        "t": 1790639188794
+      },
+      {
+        "name": "jsdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "broken.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://broken.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188796
+      },
+      {
+        "name": "__Host-jsdata_host",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "broken.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://broken.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188796
+      },
+      {
+        "name": "jsdata_no_samesite",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "broken.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://broken.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188796
+      },
+      {
+        "name": "cookiestoredata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "broken.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": false,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "js",
+        "api": "cookieStore",
+        "url": "https://broken.third-party.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639188796
+      },
+      {
+        "name": "thirdpartyAd_thirdparty_headerdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "good.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1791503188000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1791503188000,
+        "lifetime": "persistent",
+        "lifetimeDays": 10,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "http",
+        "api": null,
+        "url": "https://good.third-party.site/set-cookie?value=518&name=thirdpartyAd_thirdparty_headerdata",
+        "requestType": "xmlhttprequest",
+        "setBy": null,
+        "accepted": null,
+        "t": 1790639189094
+      },
+      {
+        "name": "thirdpartyAd_tracker_headerdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "broken.third-party.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1791503188000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1791503188000,
+        "lifetime": "persistent",
+        "lifetimeDays": 10,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "third-party.site",
+        "party": "third",
+        "source": "http",
+        "api": null,
+        "url": "https://broken.third-party.site/set-cookie?value=518&name=thirdpartyAd_tracker_headerdata",
+        "requestType": "xmlhttprequest",
+        "setBy": null,
+        "accepted": null,
+        "t": 1790639189094
+      },
+      {
+        "name": "jsdata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "convert.ad-company.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "ad-company.site",
+        "party": "third",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://convert.ad-company.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639189106
+      },
+      {
+        "name": "__Host-jsdata_host",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "convert.ad-company.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": "none",
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "ad-company.site",
+        "party": "third",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://convert.ad-company.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639189106
+      },
+      {
+        "name": "jsdata_no_samesite",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "convert.ad-company.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": true,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "ad-company.site",
+        "party": "third",
+        "source": "js",
+        "api": "document.cookie",
+        "url": "https://convert.ad-company.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639189106
+      },
+      {
+        "name": "cookiestoredata",
+        "valueLength": 3,
+        "valueHash": "399af751",
+        "domain": "convert.ad-company.site",
+        "hostOnly": true,
+        "path": "/",
+        "expires": 1913572800000,
+        "maxAge": null,
+        "secure": false,
+        "httpOnly": false,
+        "sameSite": null,
+        "partitioned": false,
+        "expiry": 1913572800000,
+        "lifetime": "persistent",
+        "lifetimeDays": 1422.8,
+        "domainMatches": true,
+        "publicSuffix": false,
+        "rejected": false,
+        "site": "ad-company.site",
+        "party": "third",
+        "source": "js",
+        "api": "cookieStore",
+        "url": "https://convert.ad-company.site/privacy-protections/storage-blocking/iframe.html?data=518",
+        "requestType": null,
+        "setBy": "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/commonTests.js",
+        "accepted": true,
+        "t": 1790639189106
+      }
+    ],
+    "storage": {
+      "https://privacy-test-pages.site": {
+        "origin": "https://privacy-test-pages.site",
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "isTop": true,
+        "localStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790639192349
+        },
+        "sessionStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790639192349
+        },
+        "indexedDB": {
+          "databases": [
+            "data"
+          ]
+        },
+        "cacheStorage": {
+          "caches": [
+            "data"
+          ]
+        },
+        "writes": {
+          "localStorage": 1,
+          "sessionStorage": 1,
+          "indexedDB": 1,
+          "cacheStorage": 1
+        },
+        "writeLog": [
+          {
+            "t": 1790639188051,
+            "area": "localStorage",
+            "op": "set",
+            "key": "data",
+            "valueLength": 3,
+            "setBy": "https://privacy-test-pages.site/privacy-protections/storage-blocking/helpers/commonTests.js"
+          },
+          {
+            "t": 1790639188052,
+            "area": "sessionStorage",
+            "op": "set",
+            "key": "data",
+            "valueLength": 3,
+            "setBy": "https://privacy-test-pages.site/privacy-protections/storage-blocking/helpers/commonTests.js"
+          }
+        ],
+        "errors": {},
+        "valueHashes": [
+          "399af751"
+        ]
+      },
+      "https://good.third-party.site": {
+        "origin": "https://good.third-party.site",
+        "site": "third-party.site",
+        "party": "third",
+        "isTop": false,
+        "localStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790639188674
+        },
+        "sessionStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790639188674
+        },
+        "indexedDB": {
+          "databases": [
+            "data"
+          ]
+        },
+        "cacheStorage": {
+          "caches": [
+            "data"
+          ]
+        },
+        "writes": {
+          "localStorage": 1,
+          "sessionStorage": 1,
+          "indexedDB": 1,
+          "cacheStorage": 1
+        },
+        "writeLog": [
+          {
+            "t": 1790639188659,
+            "area": "localStorage",
+            "op": "set",
+            "key": "data",
+            "valueLength": 3,
+            "setBy": "https://good.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js"
+          },
+          {
+            "t": 1790639188660,
+            "area": "sessionStorage",
+            "op": "set",
+            "key": "data",
+            "valueLength": 3,
+            "setBy": "https://good.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js"
+          }
+        ],
+        "errors": {},
+        "valueHashes": [
+          "399af751"
+        ]
+      },
+      "https://broken.third-party.site": {
+        "origin": "https://broken.third-party.site",
+        "site": "third-party.site",
+        "party": "third",
+        "isTop": false,
+        "localStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790639188675
+        },
+        "sessionStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790639188675
+        },
+        "indexedDB": {
+          "databases": [
+            "data"
+          ]
+        },
+        "cacheStorage": {
+          "caches": [
+            "data"
+          ]
+        },
+        "writes": {
+          "localStorage": 1,
+          "sessionStorage": 1,
+          "indexedDB": 1,
+          "cacheStorage": 1
+        },
+        "writeLog": [
+          {
+            "t": 1790639188666,
+            "area": "localStorage",
+            "op": "set",
+            "key": "data",
+            "valueLength": 3,
+            "setBy": "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js"
+          },
+          {
+            "t": 1790639188668,
+            "area": "sessionStorage",
+            "op": "set",
+            "key": "data",
+            "valueLength": 3,
+            "setBy": "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js"
+          }
+        ],
+        "errors": {},
+        "valueHashes": [
+          "399af751"
+        ]
+      },
+      "https://convert.ad-company.site": {
+        "origin": "https://convert.ad-company.site",
+        "site": "ad-company.site",
+        "party": "third",
+        "isTop": false,
+        "localStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790639188965
+        },
+        "sessionStorage": {
+          "count": 1,
+          "bytes": 14,
+          "keys": [
+            "data"
+          ],
+          "at": 1790639188965
+        },
+        "indexedDB": {
+          "databases": []
+        },
+        "cacheStorage": {
+          "caches": [
+            "data"
+          ]
+        },
+        "writes": {
+          "localStorage": 1,
+          "sessionStorage": 1,
+          "indexedDB": 0,
+          "cacheStorage": 1
+        },
+        "writeLog": [
+          {
+            "t": 1790639188956,
+            "area": "localStorage",
+            "op": "set",
+            "key": "data",
+            "valueLength": 3,
+            "setBy": "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/commonTests.js"
+          },
+          {
+            "t": 1790639188957,
+            "area": "sessionStorage",
+            "op": "set",
+            "key": "data",
+            "valueLength": 3,
+            "setBy": "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/commonTests.js"
+          }
+        ],
+        "errors": {},
+        "valueHashes": [
+          "399af751"
+        ]
+      }
+    },
+    "fingerprint": {
+      "canvas": []
+    },
+    "tracking": {
+      "params": [],
+      "paramHashes": {
+        "dd1f60aa": {
+          "sites": [
+            "third-party.site"
+          ],
+          "names": [
+            "name"
+          ]
+        },
+        "febb160d": {
+          "sites": [
+            "third-party.site"
+          ],
+          "names": [
+            "name"
+          ]
+        },
+        "2307ee5f": {
+          "sites": [
+            "third-party.site"
+          ],
+          "names": [
+            "name"
+          ]
+        },
+        "a75c14e3": {
+          "sites": [
+            "third-party.site"
+          ],
+          "names": [
+            "name"
+          ]
+        },
+        "9cb2cc37": {
+          "sites": [
+            "third-party.site"
+          ],
+          "names": [
+            "name"
+          ]
+        },
+        "dd0fbccc": {
+          "sites": [
+            "third-party.site"
+          ],
+          "names": [
+            "name"
+          ]
+        },
+        "3671ee66": {
+          "sites": [
+            "ad-company.site"
+          ],
+          "names": [
+            "name"
+          ]
+        },
+        "fde32769": {
+          "sites": [
+            "third-party.site"
+          ],
+          "names": [
+            "name"
+          ]
+        },
+        "5dc97944": {
+          "sites": [
+            "third-party.site"
+          ],
+          "names": [
+            "name"
+          ]
+        }
+      }
+    },
+    "hopId": "1790639181224-0",
+    "threats": {
+      "websockets": [],
+      "endpoints": {
+        "https://broken.third-party.site/privacy-protections/storage-blocking/3rdparty.js": {
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639181633
+          ]
+        },
+        "https://good.third-party.site/privacy-protections/storage-blocking/3rdparty.js": {
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639181633
+          ]
+        },
+        "https://good.third-party.site/set-cookie": {
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "type": "xmlhttprequest",
+          "times": [
+            1790639188061,
+            1790639188660,
+            1790639188669,
+            1790639188957
+          ]
+        },
+        "https://broken.third-party.site/set-cookie": {
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "type": "xmlhttprequest",
+          "times": [
+            1790639188062,
+            1790639188660,
+            1790639188669,
+            1790639188957
+          ]
+        },
+        "https://good.third-party.site/helpers/idb-wrapper.js": {
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639188195
+          ]
+        },
+        "https://good.third-party.site/privacy-protections/storage-blocking/helpers/globals.js": {
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639188195
+          ]
+        },
+        "https://good.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js": {
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639188196
+          ]
+        },
+        "https://good.third-party.site/privacy-protections/storage-blocking/iframe.js": {
+          "host": "good.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639188196
+          ]
+        },
+        "https://broken.third-party.site/helpers/idb-wrapper.js": {
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639188209
+          ]
+        },
+        "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/globals.js": {
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639188209
+          ]
+        },
+        "https://broken.third-party.site/privacy-protections/storage-blocking/helpers/commonTests.js": {
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639188209
+          ]
+        },
+        "https://broken.third-party.site/privacy-protections/storage-blocking/iframe.js": {
+          "host": "broken.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790639188209
+          ]
+        },
+        "https://convert.ad-company.site/helpers/idb-wrapper.js": {
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "type": "script",
+          "times": [
+            1790639188580
+          ]
+        },
+        "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/globals.js": {
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "type": "script",
+          "times": [
+            1790639188580
+          ]
+        },
+        "https://convert.ad-company.site/privacy-protections/storage-blocking/helpers/commonTests.js": {
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "type": "script",
+          "times": [
+            1790639188580
+          ]
+        },
+        "https://convert.ad-company.site/privacy-protections/storage-blocking/iframe.js": {
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "type": "script",
+          "times": [
+            1790639188580
+          ]
+        },
+        "https://convert.ad-company.site/set-cookie": {
+          "host": "convert.ad-company.site",
+          "site": "ad-company.site",
+          "type": "xmlhttprequest",
+          "times": [
+            1790639188957
+          ]
+        }
+      },
+      "beef": [],
+      "frames": {
+        "https://privacy-test-pages.site": {
+          "origin": "https://privacy-test-pages.site",
+          "isTop": true,
+          "addedGlobals": [
+            "generateCookieHeaderTest",
+            "create3pIframeTest",
+            "storeData",
+            "retrieveData",
+            "downloadTheResults",
+            "randomNumber"
+          ],
+          "replaced": []
+        },
+        "https://good.third-party.site": {
+          "origin": "https://good.third-party.site",
+          "isTop": false,
+          "addedGlobals": [
+            "generateCookieHeaderTest",
+            "storeData",
+            "retrieveData"
+          ],
+          "replaced": []
+        },
+        "https://broken.third-party.site": {
+          "origin": "https://broken.third-party.site",
+          "isTop": false,
+          "addedGlobals": [
+            "generateCookieHeaderTest",
+            "storeData",
+            "retrieveData"
+          ],
+          "replaced": []
+        },
+        "https://convert.ad-company.site": {
+          "origin": "https://convert.ad-company.site",
+          "isTop": false,
+          "addedGlobals": [
+            "generateCookieHeaderTest",
+            "storeData",
+            "retrieveData"
+          ],
+          "replaced": []
+        }
+      },
+      "injected": [],
+      "keyListeners": []
+    },
+    "blocked": {},
+    "_badge": 1
+  }
+}

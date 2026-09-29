@@ -1,0 +1,10 @@
+# Transcrito de uol-ublock.png e uol-ublock-2.png (uBlock Origin, perfil "ublock", listas padrão).
+# Resumo do painel: 21 requisições bloqueadas (12%); 14 de 21 domínios conectados.
+# Domínios com barra vermelha (bloqueados):
+chartbeat.com
+cxense.com
+doubleclick.net
+google-analytics.com
+mrf.io
+permutive.app
+scorecardresearch.com

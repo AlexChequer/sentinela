@@ -1,0 +1,9 @@
+# Transcrito do print mercadolivre-blacklight.png (Blacklight, The Markup).
+# Parâmetros do scan: device=mobile, location=us-ca, force=false (resultado em cache).
+# URL: https://themarkup.org/blacklight?url=https%3A%2F%2Fwww.mercadolivre.com.br&device=mobile&location=us-ca&force=false
+# Visitado em Sep. 28, 2026, 18:33 ET (URL final com ?skipInApp=true&matt_...: parâmetros de campanha/app)
+categoria: Ad trackers = 11
+categoria: Third-party cookies = 16
+categoria: Facebook = 1
+categoria: TikTok = 1
+categoria: Twitter/X = 1
