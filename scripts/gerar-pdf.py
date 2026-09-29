@@ -34,10 +34,10 @@ CSS = """
 body { font: 10.5pt/1.5 "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; margin: 0; }
 p { margin: 0 0 8pt; text-align: left; }
 a { color: inherit; text-decoration: none; }
-code { font: 9pt Menlo, monospace; overflow-wrap: anywhere; }
+code { font-family: Menlo, monospace; font-size: .86em; overflow-wrap: anywhere; }
 
 /* Primeira página: título + sumário */
-.title { margin-bottom: 14pt; }
+.title { margin-bottom: 8pt; }
 .title h1 { font-size: 20pt; line-height: 1.25; margin: 0 0 6pt; }
 .title .sub { font-size: 11pt; color: #444; margin: 0 0 12pt; }
 .title .info { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 0 0 10pt; }
@@ -45,10 +45,10 @@ code { font: 9pt Menlo, monospace; overflow-wrap: anywhere; }
 .title .info tr:last-child td { border-bottom: .5pt solid #ccc; }
 .title .info td:first-child { width: 28mm; color: #555; }
 .toc { break-after: page; }
-.toc h2 { margin-top: 10pt; }
+.toc h2 { margin-top: 6pt; }
 .toc ol { list-style: none; padding: 0; margin: 0; }
-.toc li { display: flex; align-items: baseline; padding: 1.5pt 0; margin: 0; }
-.toc li.l2 { font-weight: bold; margin-top: 5pt; }
+.toc li { display: flex; align-items: baseline; padding: 0; margin: 0; font-size: 9.5pt; line-height: 1.45; }
+.toc li.l2 { font-weight: bold; margin-top: 3pt; }
 .toc li.l3 { padding-left: 12pt; }
 .toc li .dots { flex: 1; border-bottom: .7pt dotted #999; margin: 0 4pt; transform: translateY(-3pt); }
 .toc li .pg { min-width: 12pt; text-align: right; }
@@ -72,7 +72,7 @@ li { margin: 0 0 3pt; }
 
 /* Figuras */
 figure { margin: 8pt 0 14pt; break-inside: avoid; text-align: center; }
-figure img { max-width: 100%; max-height: 100mm; border: .5pt solid #999; }
+figure img { max-width: 100%; max-height: 92mm; border: .5pt solid #999; }
 figcaption { font-size: 9pt; color: #444; margin-top: 3pt; }
 """
 

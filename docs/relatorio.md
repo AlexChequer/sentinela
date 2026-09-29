@@ -30,9 +30,33 @@ divergências deste relatório vem daí. O perfil dedicado com ETP Padrão deixa
 essas interferências conhecidas e reproduzíveis. A coleta sem clicar no banner
 de cookies reproduz o que o Blacklight faz (ele também não interage).
 
-## 2. A extensão
+## 2. A extensão: objetivo, instalação e arquitetura
 
-A Sentinela é uma extensão Manifest V3 para Firefox 128+. Ela observa a rede
+A Sentinela é uma extensão para Firefox que mostra, por aba, o que uma página faz
+com a privacidade de quem a visita: a quais terceiros ela se conecta e quais são
+rastreadores, que cookies e que armazenamento local ela grava, se tenta
+identificar o navegador (canvas fingerprint), se repassa identificadores entre
+sites (bounce tracking e cookie sync) e se há sinais de sequestro do navegador
+(hook). Com isso ela calcula um score de privacidade de 0 a 100, e também
+bloqueia domínios de uma lista pessoal.
+
+**Instalação.** Abrir `about:debugging#/runtime/this-firefox` → *Carregar
+extensão temporária…* → selecionar `extension/manifest.json`. Depois, abrir um
+site e clicar no ícone da Sentinela. Se o Firefox não conceder a permissão de
+acesso aos sites automaticamente, o popup mostra um botão para pedi-la.
+
+**Arquitetura.**
+
+| Componente | Arquivos | Papel |
+|---|---|---|
+| Background | `background/*.js` | Um relatório por aba, reiniciado a cada navegação. Observa requisições (`webRequest`), lê `Set-Cookie`, monta a cadeia de navegação, detecta sync, WebSocket e polling, cancela requisições da lista de bloqueio e calcula o score. Estado espelhado em `storage.session`. |
+| Scripts da página | `content/main-world.js`, `fp-world.js`, `hook-world.js` | Rodam no mundo principal da página, em `document_start`, antes dos scripts do site. Instrumentam cookies, storage, canvas, inserção de scripts, listeners de teclado e comparam globais e funções nativas depois do `load`. |
+| Ponte | `content/bridge.js` | Mundo isolado: recebe os eventos da página e os envia ao background. |
+| Interface | `popup/`, `report/` | Popup com abas e página de relatório por aba (usada nos prints). |
+| Dados | `data/trackers.js`, `lib/tldts.umd.min.js` | Lista Disconnect (gerada por `scripts/build-tracker-db.mjs`) e Public Suffix List. |
+| Testes e apoio | `tests/pages/`, `scripts/` | Página local de hook, reconciliação HAR × ferramentas e gerador deste PDF. |
+
+**Como detecta.** A extensão é Manifest V3 para Firefox 128+. Ela observa a rede
 (`webRequest`), a navegação (`webNavigation`) e, com scripts no mundo principal
 da página (`world: "MAIN"`, em `document_start`), as APIs que os scripts usam.
 O código, organizado por funcionalidade, está em `extension/`, e o histórico de
@@ -260,7 +284,11 @@ sessão. Score 20 (F).
 ## 4. Entregável 3: sites reais {: .newpage }
 
 Sites: **uol.com.br** (portal com publicidade), **mercadolivre.com.br**
-(e-commerce) e **pt.wikipedia.org** (referência sem publicidade). Para cada
+(e-commerce) e **pt.wikipedia.org** (referência sem publicidade). Os sites foram
+escolhidos pelo aluno, seguindo a orientação que circulou na turma de que cada
+aluno escolheria os seus, com três perfis diferentes de propósito: um site
+financiado por anúncios, um de comércio eletrônico e um sem publicidade, que
+serve de controle. Para cada
 site: HAR (`<site>.har`), JSON da Sentinela, prints da página de relatório,
 Blacklight e uBlock Origin, em `evidencias/sites/<site>/`. A reconciliação
 domínio a domínio foi gerada por `scripts/reconcile.mjs`
@@ -290,7 +318,24 @@ domínio a domínio foi gerada por `scripts/reconcile.mjs`
   documento principal aparece às 21:24:19 e às 21:24:35). A Sentinela reinicia o
   relatório a cada navegação e mostra só a segunda.
 
+**O que o Firefox bloqueou (status 0 no HAR).** Requisições com status 0 no HAR
+foram canceladas antes de receber resposta. Nos três HARs há só **2**, ambas no
+UOL: um segmento do vídeo ao vivo (`video28.mais.uol.com.br`) e
+`s.seedtag.com`. No Mercado Livre e na Wikipedia, **0**. O motivo é o modo de
+coleta: em janela normal, o ETP Padrão bloqueia rastreadores de redes sociais,
+criptomineradores e fingerprinters conhecidos e particiona cookies de terceiros,
+mas só bloqueia *tracking content* (scripts de anúncio e analytics) em **janela
+privada**. Nesta coleta os scripts de anúncio carregaram e rodaram, e por isso a
+Sentinela viu o comportamento real deles: cookies gravados, leilões de anúncio,
+syncs. Em janela privada, a maior parte desses rastreadores apareceria com
+status 0 no HAR, e a Sentinela registraria só a tentativa de requisição.
+
 ### 4.2 uol.com.br
+
+Coleta em 28/09/2026: HAR de 21:17:38 a 21:18:57 (401 entradas). URL final
+`https://www.uol.com.br/`, sem redirecionamento. Banner de cookies: aviso
+"Utilizamos cookies essenciais…" com botão "OK", não clicado. Blacklight:
+28/09, 15:22 ET.
 
 ![UOL: relatório da Sentinela, score 30 (D)](img/uol-relatorio-1.jpg)
 
@@ -339,6 +384,12 @@ domínio a domínio foi gerada por `scripts/reconcile.mjs`
   terceiros, e a Sentinela os mostra como "terceiro", não como rastreador.
 
 ### 4.3 mercadolivre.com.br
+
+Coleta em 28/09/2026: HAR de 21:24:19 a 21:24:50 (437 entradas, duas cargas da
+página). URL final `https://www.mercadolivre.com.br/`, sem redirecionamento.
+Banner de cookies: "Usamos cookies para melhorar sua experiência…" com "Aceitar
+cookies" e "Configurar cookies", não clicado. Blacklight: 28/09, 18:33 ET, com
+URL final `?skipInApp=true&matt_…`.
 
 ![Mercado Livre: relatório, score 35 (D)](img/mercadolivre-relatorio-1.jpg)
 
@@ -389,6 +440,11 @@ domínio a domínio foi gerada por `scripts/reconcile.mjs`
 
 ### 4.4 pt.wikipedia.org
 
+Coleta em 28/09/2026: HAR de 21:23:57 a 21:25:27 (39 entradas).
+`https://pt.wikipedia.org/` redireciona (301) para
+`/wiki/Wikipédia:Página_principal`. Sem banner de cookies. Blacklight: 28/09,
+16:53 ET.
+
 ![Wikipedia: relatório, score 85 (A)](img/wikipedia-relatorio-1.jpg)
 
 ![Wikipedia: Blacklight](img/wikipedia-blacklight.jpg)
@@ -408,6 +464,20 @@ dele (o Chromium dele usa outras regras de cookie de terceiros). A Sentinela
 conta toda definição que viu. Esses 10 cookies custam 15 pontos no score (teto
 do critério), e isso mostra uma limitação do critério: ele não distingue
 cookie de login de cookie de rastreamento.
+
+### 4.5 Causas típicas de divergência
+
+| Causa | Exemplo nesta coleta | Efeito |
+|---|---|---|
+| Ambiente do Blacklight (Chromium sem proteção, celular, Califórnia) | pixels de Facebook, TikTok e X no Mercado Livre sem nenhuma requisição no HAR | o Blacklight vê pixels e anúncios servidos para outra região e dispositivo |
+| Janela normal × privada no Firefox | só 2 requisições com status 0 nos três HARs | a Sentinela vê os rastreadores rodando, não só tentando |
+| Bloqueio em cadeia do uBlock | UOL: 14 de 21 domínios conectados com uBlock, contra 35 sites de terceiros sem ele | o uBlock bloqueia o script que chamaria os outros, e eles nem aparecem |
+| Listas diferentes (Disconnect × EasyList/EasyPrivacy × Tracker Radar) | `mlstatic.com` rastreador para a Disconnect e liberado pelo uBlock; `mercadoclics.com` o contrário | mesma requisição, classificação diferente |
+| Terceiro por eTLD+1 × por empresa | `jsuol.com.br`, `mlstatic.com`, `mercadopago.com` | CDNs e domínios da própria empresa contam como terceiros e geram syncs internos |
+| Método de medição | captura de teclado: listener (Sentinela) × texto enviado (Blacklight) | a Sentinela aponta mais sites que o Blacklight |
+| Momento da captura | UOL 426 × 401; Mercado Livre 219 × 437 | HAR e JSON cobrem intervalos diferentes |
+| Cookies definidos × cookies presentes | Wikipedia 10 × 4 | a Sentinela conta cada definição, o Blacklight conta o que ficou no fim |
+| Carregamento por amostragem | Hotjar no Mercado Livre visto só pela Sentinela | uma visita pode carregar o script e outra não |
 
 ## 5. Entregável 4: score de privacidade {: .newpage }
 
@@ -557,9 +627,34 @@ do UOL e do Mercado Livre.
 - **Classificação de rastreador**: depende da lista Disconnect; domínios que só
   estão nas listas do uBlock aparecem como "terceiro".
 
-## 7. Uso de IA
+## 7. Conclusão
 
-O uso de IA é permitido pela disciplina. Este trabalho foi feito em conjunto com
+A Sentinela cobre o que a avaliação pede: detecta conexões a terceiros e
+rastreadores, classifica cookies (1ª/3ª parte, sessão/persistente, HTTP/JS),
+mede o armazenamento HTML5 por frame, identifica canvas fingerprint, bounce
+tracking, cookie sync, parâmetros de rastreamento e indicadores de hook,
+calcula um score com metodologia explícita e bloqueia domínios de uma lista
+pessoal.
+
+Nas páginas do DuckDuckGo, as detecções bateram com o esperado. As divergências
+vêm de a extensão observar sem proteger (não embaralha o canvas, não remove
+parâmetros, não particiona storage, papel que é do Firefox) e de diferenças de
+definição, como bounce por site e não por origem. Três problemas encontrados
+durante os testes foram corrigidos: a extensão aparecia na js-leaks, o
+`serviceworker-fetch` escapava do bloqueio e cookies de sufixo público inflavam
+as contagens.
+
+Nos sites reais, a Sentinela e o Blacklight chegaram à mesma ordem (Wikipedia
+muito melhor que UOL e Mercado Livre) e a notas próximas nos critérios que os
+dois medem. As diferenças têm causa identificável no tráfego: o ambiente de
+coleta, o método de cada ferramenta e a definição de terceiro. O que só a
+Sentinela vê, principalmente os cookie syncs do UOL para comScore, Google,
+Chartbeat, Cxense e Criteo, é o que mais pesa na nota final e o que um usuário
+comum não teria como perceber.
+
+## 8. Uso de IA
+
+Declaro o uso de IA como ferramenta de apoio neste trabalho. Ele foi feito em conjunto com
 o Claude (Anthropic), usado no Claude Code como assistente de programação. O
 aluno definiu o que seria feito e como: as decisões de desenvolvimento, a ordem
 das fases, os sites analisados, os critérios do score (alinhados ao Blacklight)
