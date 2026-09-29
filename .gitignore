@@ -13,3 +13,5 @@ web-ext-artifacts/
 # Claude Code local
 .claude/settings.local.json
 CLAUDE.local.md
+.venv/
+docs/relatorio.html
