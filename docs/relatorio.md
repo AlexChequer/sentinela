@@ -1,12 +1,26 @@
-# Sentinela: detecção e bloqueio de rastreadores no Firefox
+<div class="cover" markdown="0">
+<div class="band">
+<p class="kicker">Insper · Avaliação Intermediária de Cibersegurança</p>
+<h1>Sentinela</h1>
+<p class="sub">Plugin para Firefox de detecção e bloqueio de rastreadores</p>
+</div>
+<table class="meta">
+<tr><td>Aluno</td><td>Alex Chequer</td></tr>
+<tr><td>Professor</td><td>João Eduardo Luisi</td></tr>
+<tr><td>Repositório</td><td>github.com/AlexChequer/sentinela</td></tr>
+<tr><td>Entrega</td><td>29/09/2026</td></tr>
+<tr><td>Conteúdo</td><td>Entregável 2 (DuckDuckGo Privacy Test Pages), 3 (três sites reais) e 4 (score de privacidade)</td></tr>
+</table>
+<p style="text-align:left">Todos os números deste relatório vêm das evidências em <code>evidencias/</code> no repositório: prints, JSONs exportados pela extensão, HARs do DevTools, prints do Blacklight e do uBlock Origin.</p>
+<div class="scores">
+<div class="score D"><b>30</b><span>uol.com.br · D</span></div>
+<div class="score D"><b>35</b><span>mercadolivre.com.br · D</span></div>
+<div class="score A"><b>85</b><span>pt.wikipedia.org · A</span></div>
+</div>
+<p class="note">Score de privacidade da Sentinela (0 a 100, maior é mais privado). Metodologia na seção 5.</p>
+</div>
 
-**Avaliação Intermediária de Cibersegurança · Insper · Prof. João Eduardo Luisi**
-Aluno: Alex Chequer · Repositório: <https://github.com/AlexChequer/sentinela> · Entrega: 29/09/2026
-
-Este relatório cobre os entregáveis 2 (DuckDuckGo Privacy Test Pages), 3
-(análise de três sites reais) e 4 (score de privacidade). Todos os números vêm
-das evidências em `evidencias/` no repositório: prints, JSONs exportados pela
-extensão, HARs do DevTools, prints do Blacklight e do uBlock Origin.
+<!--SUMARIO-->
 
 ## 1. Ambiente de teste
 
@@ -59,7 +73,7 @@ interceptado (seção 3.9). A extensão nunca guarda valores de cookies ou de
 storage: guarda só o nome, o tamanho e o hash FNV-1a, que basta para reconhecer
 um identificador repassado.
 
-## 3. Entregável 2: DuckDuckGo Privacy Test Pages
+## 3. Entregável 2: DuckDuckGo Privacy Test Pages {: .newpage }
 
 ### 3.1 Tabela resumo
 
@@ -253,7 +267,7 @@ Ela também apontou um **cookie sync**: o valor do cookie `BEEFHOOK` vai como
 parâmetro `session=` no polling, exatamente o que o hook do BeEF faz com a
 sessão. Score 20 (F).
 
-## 4. Entregável 3: sites reais
+## 4. Entregável 3: sites reais {: .newpage }
 
 Sites: **uol.com.br** (portal com publicidade), **mercadolivre.com.br**
 (e-commerce) e **pt.wikipedia.org** (referência sem publicidade). Para cada
@@ -405,7 +419,7 @@ conta toda definição que viu. Esses 10 cookies custam 15 pontos no score (teto
 do critério), e isso mostra uma limitação do critério: ele não distingue
 cookie de login de cookie de rastreamento.
 
-## 5. Entregável 4: score de privacidade
+## 5. Entregável 4: score de privacidade {: .newpage }
 
 ### 5.1 Metodologia
 
@@ -537,7 +551,7 @@ definição de terceiro (eTLD+1 × entidade). A Sentinela acrescenta sinais que 
 Blacklight não tem (sync, bounce, hooks, storage), e eles mudam bastante a nota
 do UOL e do Mercado Livre.
 
-## 6. Limitações
+## 6. Limitações {: .newpage }
 
 - **Terceiro por eTLD+1**: CDNs e domínios da mesma empresa contam como
   terceiros (seção 5.3). Um mapeamento de entidades resolveria.
