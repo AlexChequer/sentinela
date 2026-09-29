@@ -426,11 +426,31 @@ rastreador e como destino de sync (`cs_fpcu`).
 Microsoft, Criteo e Universo Online. No HAR não há nenhum `Set-Cookie` de
 `criteo.com` nem de `adnxs.com`: as 13 chamadas `ib.adnxs.com/openrtb2/prebidjs`
 voltaram **204** sem cookie, e `gum.criteo.com` respondeu sem `Set-Cookie`. A
-Sentinela também não viu cookie dessas empresas. Os 20 cookies de terceiros da
-Sentinela vêm de outros domínios (`newsroom.bi`, `jsuol.com.br` e outros). A
-diferença é de **ambiente**: o Chromium do Blacklight, sem Total Cookie
-Protection, recebe e guarda cookies desses parceiros; o Firefox da coleta não
-recebeu nenhum.
+Sentinela também não viu cookie dessas empresas. Como a resposta 204 sem
+`Set-Cookie` é decisão do servidor, e não do navegador (o Total Cookie
+Protection particiona cookies, não impede o servidor de enviá-los), a
+divergência vem de leilões e syncs diferentes entre as duas visitas.
+
+No sentido inverso, o HAR tem `Set-Cookie` de empresas que o Blacklight não lista
+como donas de cookie:
+
+| Host com `Set-Cookie` no HAR | Respostas | Empresa |
+|---|---|---|
+| `events.newsroom.bi`, `icu.newsroom.bi` | 16 | Marfeel (analytics editorial) |
+| `sb.scorecardresearch.com` | 9 | Comscore |
+| `s.seedtag.com` | 9 | Seedtag (anúncios contextuais) |
+| `prg.smartadserver.com` | 8 | Smartadserver |
+| `securepubads.g.doubleclick.net` | 2 | Google |
+| `fastlane.rubiconproject.com` | 1 | Magnite |
+| `comcluster.cxense.com` | 1 | Cxense (Piano) |
+| `cdn.tinypass.com`, `c2.piano.io` | 2 | Piano (paywall) |
+| `udr.uol.com.br` | 1 | próprio UOL (1ª parte) |
+
+A "Universo Online" do Blacklight corresponde ao cookie gravado pelo script de
+`jsuol.com.br` (CDN do UOL, outro eTLD+1), o mesmo que a Sentinela conta como
+terceiro. As outras empresas da tabela gravaram cookies na visita coletada e não
+na do Blacklight, o que reforça que os parceiros de anúncio mudam de uma visita
+para outra (hipótese de causa: região, dispositivo e resultado dos leilões).
 
 ### 4.3 mercadolivre.com.br
 
@@ -470,7 +490,7 @@ URL final `?skipInApp=true&matt_…`.
 
 - **HAR e Sentinela concordam** nos 10 sites de terceiros.
 - **Sentinela classifica `mlstatic.com` como rastreador e o uBlock o libera**:
-  `mlstatic.com` é o CDN de imagens e scripts do Mercado Livre (163 das 219
+  `mlstatic.com` é o CDN de imagens e scripts do Mercado Livre (161 das 219
   requisições). A Disconnect o classifica como Advertising (MercadoLibre); o
   uBlock o libera porque bloquear o CDN quebraria o site. É uma divergência de
   **lista**, não de tráfego.
@@ -480,12 +500,22 @@ URL final `?skipInApp=true&matt_…`.
   telemetria do próprio Mercado Livre) e parte de `google.com`. Esses domínios
   estão nas listas do uBlock (EasyPrivacy e filtros próprios), mas não na
   Disconnect nem na classificação do Firefox.
+- **`mercadopago.com`**: a Disconnect o classifica como *FingerprintingInvasive*
+  (MercadoLibre), e o uBlock também o bloqueia: as duas listas concordam. Na
+  visita houve só 1 requisição, sem leitura de canvas registrada.
+- **Hotjar**: a Sentinela (critério de gravação de sessão) e o uBlock
+  (`hotjar.com` bloqueado) concordam; só o Blacklight não o viu.
+- **Storage em frame de terceiro (−1)**: vem de um iframe `about:blank` com 1
+  item de sessionStorage que a Sentinela classificou como terceiro, porque a
+  origem do pai não era acessível no momento da leitura. É um falso positivo
+  da extensão.
 - **Blacklight viu Facebook, TikTok e X; a Sentinela não**: o HAR não tem
   **nenhuma** requisição a `facebook`, `tiktok`, `twitter` ou `t.co`. O Blacklight
   visitou a URL com `device=mobile` e `location=us-ca` (a URL final dele tem
-  `?skipInApp=true&matt_…`, parâmetros de campanha), e os pixels de rede social
-  são carregados para visitantes móveis dos EUA. No acesso desktop do Brasil,
-  eles não carregaram.
+  `?skipInApp=true&matt_…`, parâmetros de campanha). Hipótese não testada: os
+  pixels de rede social são carregados nessa versão da página (celular, EUA,
+  campanha) e não no acesso desktop do Brasil. O fato comprovado é só a ausência
+  de requisições no HAR.
 
 **Reconciliação com o Blacklight, empresa a empresa** (print completo em
 `mercadolivre-blacklight-completo.png`):
@@ -527,6 +557,9 @@ fingerprint ou sync. As três ferramentas concordam, e o uBlock bloqueou
 (`load.php`): o mapa WikiMiniAtlas e o banner do concurso Wiki Loves
 Monuments (`Special:BannerLoader?campaign=wlm_2026_br`). Eles contam como
 "terceiro" só porque `wikimedia.org` é outro eTLD+1, e não entram no score.
+O banner também chama `wikimedia.org` com `utm_source`, `utm_campaign` e
+`utm_content`: parâmetros de campanha do próprio concurso, que a Sentinela
+lista na aba Navegação, mas sem identificador de usuário.
 
 O único terceiro é `wikimedia.org` (11 requisições: `upload.`, `thumb.`,
 `meta.` e `auth.wikimedia.org`), que define 10 cookies de 3ª parte. São os
@@ -548,7 +581,7 @@ ferramentas concordam no único terceiro (`wikimedia.org`), e a diferença 10 ×
 
 | Causa | Exemplo nesta coleta | Efeito |
 |---|---|---|
-| Ambiente do Blacklight (Chromium sem proteção, celular, Califórnia) | pixels de Facebook, TikTok e X no Mercado Livre sem nenhuma requisição no HAR | o Blacklight vê pixels e anúncios servidos para outra região e dispositivo |
+| Ambiente do Blacklight (Chromium sem proteção, celular, Califórnia) | pixels de Facebook, TikTok e X no Mercado Livre sem nenhuma requisição no HAR | hipótese: o Blacklight recebe pixels e anúncios servidos para outra região e dispositivo |
 | Janela normal × privada no Firefox | só 2 requisições com status 0 nos três HARs | a Sentinela vê os rastreadores rodando, não só tentando |
 | Bloqueio em cadeia do uBlock | UOL: 14 de 21 domínios conectados com uBlock, contra 35 sites de terceiros sem ele | o uBlock bloqueia o script que chamaria os outros, e eles nem aparecem |
 | Listas diferentes (Disconnect × EasyList/EasyPrivacy × Tracker Radar) | `mlstatic.com` rastreador para a Disconnect e liberado pelo uBlock; `mercadoclics.com` o contrário | mesma requisição, classificação diferente |
@@ -641,10 +674,10 @@ Blacklight reportou (transcritas em `<site>-blacklight.txt`).
 
 1. **Ambiente (causa principal).** O Blacklight visitou os sites com Chromium
    automatizado em modo **mobile, a partir da Califórnia**, sem proteções. A
-   Sentinela mediu o Firefox desktop no Brasil com ETP Padrão. Isso explica os
-   pixels de Facebook, TikTok e X no Mercado Livre e o Facebook no UOL: o HAR dos
-   dois sites **não tem nenhuma requisição** a esses domínios. Anúncios e pixels
-   são servidos conforme região, dispositivo e campanha.
+   Sentinela mediu o Firefox desktop no Brasil com ETP Padrão. O fato comprovado:
+   o HAR dos dois sites **não tem nenhuma requisição** a Facebook, TikTok ou X.
+   A explicação mais provável, não testada, é que anúncios e pixels são servidos
+   conforme região, dispositivo e campanha.
 2. **Captura de teclado: métodos diferentes.** O Blacklight digita nos campos e
    verifica se o texto sai na rede antes do envio (vazamento real). A Sentinela
    detecta **listener de teclado registrado por script de terceiro** (capacidade).
