@@ -404,22 +404,33 @@ Coleta em 28/09/2026: HAR de 21:17:38 a 21:18:57 (401 entradas). URL final
 | Empresa (Blacklight) | Requisições no HAR | Sentinela | Explicação |
 |---|---|---|---|
 | Alphabet (Google) | 91 (doubleclick, googlesyndication, google-analytics…) | rastreador | concordam |
-| Comscore | 23 (`scorecardresearch.com`) | rastreador + sync `cs_fpcu` | concordam; a Sentinela ainda vê o ID do cookie de 1ª parte indo para o comScore |
 | Magnite | 10 (`fastlane.rubiconproject.com`) | rastreador | concordam |
 | Smartadserver | 8 (`prg.smartadserver.com`) | rastreador | concordam |
 | Chartbeat | 8 (`chartbeat.com`/`.net`) | rastreador + polling | concordam |
 | Amazon | 4 (`amazon-adsystem.com`) | rastreador | concordam |
 | ID5 | 2 (`id5-sync.com`) | rastreador | concordam |
 | Criteo | 2 (`gum.criteo.com`) | rastreador + sync | concordam |
-| Verizon Media, RTB House, PubMatic, DoubleVerify, Lotame | **0** | não viu | nenhuma requisição a `yahoo`, `aol`, `creativecdn`, `pubmatic`, `doubleverify` ou `crwdcntrl` no HAR. São participantes do leilão (header bidding) que entram ou não conforme o lance de cada visita e a região: o Blacklight visitou dos EUA às 15:22 ET, a coleta foi no Brasil às 21:17 |
-| Facebook | **0** | não viu | nenhuma requisição a `facebook`/`fbcdn` no HAR; o pixel é carregado pelo gerenciador de tags para outro público (Blacklight: celular, Califórnia) |
-| Microsoft | **0** | não viu | nenhuma requisição a `bing`, `clarity` ou `microsoft` no HAR; mesmo motivo, e os cookies que o Blacklight atribui à Microsoft vêm desse script |
-| Universo Online (cookies) | — | 1ª parte / CDN do UOL | o Blacklight conta como terceiro o cookie de `uol.com` (outro eTLD+1), como a Sentinela |
+| Microsoft | 14 (`ib.adnxs.com`, Xandr) | rastreador (Disconnect: Microsoft) | concordam |
+| Verizon Media, RTB House, PubMatic, DoubleVerify | **0** | não viu | nenhuma requisição a `yahoo`, `aol`, `creativecdn`, `pubmatic`, `doubleverify` ou `crwdcntrl` no HAR. Hipótese: são participantes do leilão (header bidding) que variam por visita e região; o Blacklight visitou dos EUA às 15:22 ET e a coleta foi no Brasil às 21:17 |
+| Facebook | **0** | não viu | nenhuma requisição a `facebook`/`fbcdn` no HAR (hipótese não testada: diferença de região e dispositivo) |
 
-Das 13 empresas de anúncio, **8 aparecem no HAR e a Sentinela classifica todas
-como rastreador**; as 5 restantes, mais Facebook e Microsoft, não têm nenhuma
-requisição na visita coletada, então a divergência é de **visita diferente**,
-não de detecção.
+Das 13 empresas que o Blacklight cita como ad trackers, **8 aparecem no HAR e a
+Sentinela classifica todas como rastreador**. As outras 5 (Verizon, RTB House,
+PubMatic, DoubleVerify e Facebook) têm **zero** requisições na visita coletada:
+a divergência é de visita diferente, não de detecção. Comscore e Lotame
+aparecem só na lista "Some of the ad-tech companies"; o comScore está no HAR
+(23 requisições a `scorecardresearch.com`) e a Sentinela o marca como
+rastreador e como destino de sync (`cs_fpcu`).
+
+**Cookies de terceiros por empresa.** O Blacklight atribui os 14 cookies a
+Microsoft, Criteo e Universo Online. No HAR não há nenhum `Set-Cookie` de
+`criteo.com` nem de `adnxs.com`: as 13 chamadas `ib.adnxs.com/openrtb2/prebidjs`
+voltaram **204** sem cookie, e `gum.criteo.com` respondeu sem `Set-Cookie`. A
+Sentinela também não viu cookie dessas empresas. Os 20 cookies de terceiros da
+Sentinela vêm de outros domínios (`newsroom.bi`, `jsuol.com.br` e outros). A
+diferença é de **ambiente**: o Chromium do Blacklight, sem Total Cookie
+Protection, recebe e guarda cookies desses parceiros; o Firefox da coleta não
+recebeu nenhum.
 
 ### 4.3 mercadolivre.com.br
 
@@ -489,11 +500,11 @@ URL final `?skipInApp=true&matt_…`.
 | Microsoft (cookie) | **0** | nenhuma requisição a `bing`, `clarity` ou `microsoft` no HAR |
 
 Todas as empresas de anúncio que o Blacklight cita, exceto o Google, têm
-**zero** requisições no HAR da visita brasileira em desktop. A lista "Some of the
-ad-tech companies" do Blacklight para o Mercado Livre tem só Alphabet, o que
-mostra que os pixels de rede social foram carregados pelos scripts do próprio
-Mercado Livre (a URL dele termina em `?skipInApp=true&matt_…`, parâmetros de
-campanha), sem passar por uma rede de anúncios. Por isso a Sentinela vê só 1
+**zero** requisições no HAR da visita brasileira em desktop. A URL que o
+Blacklight visitou termina em `?skipInApp=true&matt_…` (parâmetros de campanha),
+diferente da URL da coleta; hipótese não testada: essa versão da página, em
+celular e nos EUA, carrega os pixels de rede social que a versão desktop do
+Brasil não carregou. Por isso a Sentinela vê só 1
 rastreador de anúncio pela Disconnect (`mlstatic.com`) e o Blacklight vê 11.
 
 ### 4.4 pt.wikipedia.org
@@ -521,8 +532,8 @@ O único terceiro é `wikimedia.org` (11 requisições: `upload.`, `thumb.`,
 `meta.` e `auth.wikimedia.org`), que define 10 cookies de 3ª parte. São os
 cookies do **login central** da Wikimedia (CentralAuth), usados para manter a
 sessão entre Wikipedia, Commons e outros projetos, e não para publicidade. O
-Blacklight contou 4, provavelmente só os que ficaram gravados no fim da visita
-dele (o Chromium dele usa outras regras de cookie de terceiros). A Sentinela
+Blacklight contou 4 (hipótese: ele conta os cookies presentes no fim da
+visita, e a Sentinela conta cada definição). A Sentinela
 conta toda definição que viu. Esses 10 cookies custam 15 pontos no score (teto
 do critério), e isso mostra uma limitação do critério: ele não distingue
 cookie de login de cookie de rastreamento.
@@ -648,9 +659,9 @@ Blacklight reportou (transcritas em `<site>-blacklight.txt`).
    a Sentinela mostra **quem poderia** capturar teclas, e o Blacklight mostra
    **quem enviou** o texto digitado.
 3. **Gravação de sessão.** A Sentinela viu o Hotjar carregar no Mercado Livre
-   (5 requisições no HAR), e o Blacklight não. O Hotjar costuma ser carregado
-   por amostragem (só para uma fração das visitas) e conforme o dispositivo. A
-   visita mobile do Blacklight pode não ter sido sorteada.
+   (5 requisições no HAR), e o Blacklight não. Hipótese não testada: o Hotjar
+   costuma ser carregado por amostragem e conforme o dispositivo, e a visita
+   mobile do Blacklight pode não ter recebido o script.
 4. **"Terceiro" técnico × terceiro de verdade.** A Sentinela segue a definição
    do navegador (eTLD+1), e isso faz CDNs da própria empresa (`mlstatic.com`,
    `jsuol.com.br`) e domínios irmãos (`mercadopago.com` ×
