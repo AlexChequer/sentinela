@@ -96,7 +96,7 @@ um identificador repassado.
 | 1 | Tracker Reporting (`1major-via-script`) | 1 rastreador grande carregado via script | `doubleclick.net`: terceiro e rastreador (Disconnect: Google/Advertising; Firefox: `tracking_ad`); score 96 | nenhuma | 3.2 |
 | 2 | Storage blocking | página grava em 23 mecanismos, 1 falha (WebSQL) | 27 cookies (7 de 1ª e 20 de 3ª parte; 9 HTTP e 18 JS) e localStorage, sessionStorage, IndexedDB e Cache API nos 4 contextos | mecanismos fora do escopo (3.3) | 3.3 |
 | 3 | Fingerprinting / canvas | testes de *resistance* falham (o Firefox com ETP Padrão não aleatoriza o canvas) | 21 leituras de canvas, 0 fingerprints; browserleaks: 2 fingerprints | a página mede aleatorização, não fingerprinting (3.4) | 3.4 |
-| 4 | Tracker Blocking (`request-blocking`) | sem bloqueio tudo carrega (exceto websocket); com bloqueio, recursos de `bad.third-party.site` falham | "bloquear rastreadores": 22 requisições canceladas, todos os itens falham, inclusive `serviceworker-fetch` | websocket falha mesmo sem bloqueio (3.5) | 3.5 |
+| 4 | Tracker Blocking (`request-blocking`) | sem bloqueio tudo carrega (exceto websocket); com bloqueio, recursos de `bad.third-party.site` falham | duas rodadas com bloqueio: modo "bloquear rastreadores" e **lista personalizada** com `bad.third-party.site` (o que a página pede); nas duas, 22 requisições canceladas e todos os itens falham, inclusive `serviceworker-fetch` | websocket falha mesmo sem bloqueio (3.5) | 3.5 |
 | 5 | Storage partitioning | todos os mecanismos "pass" (particionados) | vê 2 cookies e o storage da página principal; os iframes de teste rodam em outra aba | o particionamento é do navegador (3.6) | 3.6 |
 | 6 | Bounce tracking | ID de `bad.third-party.site` repassado ao destino pela URL | bounce detectado (0,2–0,4 s) e ID repassado via `bounceUIDlocalStorage`/`bounceUIDcookie`; `good.third-party.site`: sem bounce | definição por site × por origem (3.7) | 3.7 |
 | 7 | Query parameters | o navegador deveria remover `utm_*`, `fbclid`, `fb_source` | detecta os 4 parâmetros e ignora `q`, `id`, `u`; não remove | detecção ≠ remoção (3.8) | 3.8 |
@@ -186,6 +186,17 @@ service worker chegam com `tabId = -1`, e o bloqueio ignorava o que não tinha
 aba. A correção decide a parte (1ª/3ª) pelo `originUrl` (o próprio worker).
 A requisição passou a ser bloqueada, mas não entra na contagem de nenhuma aba,
 por isso o contador continua em 22.
+
+**Lista de bloqueio personalizada.** A página pede literalmente para adicionar
+`bad.third-party.site` à blocklist. Na segunda rodada, com a opção "bloquear
+rastreadores" **desmarcada**, o domínio foi adicionado em "Minha lista" pelo
+popup. O resultado foi o mesmo: 22 requisições canceladas, todas com a regra
+`lista: bad.third-party.site` (no JSON exportado, `rule: "lista"`), e todos os
+itens da página marcados como não carregados ou falhos. Um domínio da lista
+bloqueia também os subdomínios, e a lista fica em `storage.local`, então vale
+para todas as abas até ser removida.
+
+![Lista personalizada com bad.third-party.site: 22 requisições canceladas pela regra "lista"](img/04b-tracker-blocking-lista.jpg)
 
 ### 3.6 Storage partitioning
 

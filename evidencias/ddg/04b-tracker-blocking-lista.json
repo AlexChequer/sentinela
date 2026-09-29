@@ -1,0 +1,945 @@
+{
+  "tool": "Sentinela",
+  "version": "0.1.0",
+  "exportedAt": "2026-09-29T03:22:11.928Z",
+  "summary": {
+    "url": "https://privacy-test-pages.site/privacy-protections/request-blocking/",
+    "site": "privacy-test-pages.site",
+    "requests": {
+      "total": 31,
+      "thirdParty": 22
+    },
+    "domains": {
+      "total": 2,
+      "thirdParty": 1,
+      "trackers": 1
+    },
+    "cookies": {
+      "events": 0,
+      "unique": 0,
+      "matrix": {
+        "first": {
+          "session": 0,
+          "persistent": 0
+        },
+        "third": {
+          "session": 0,
+          "persistent": 0
+        }
+      },
+      "bySource": {
+        "http": 0,
+        "js": 0
+      },
+      "rejected": 0
+    },
+    "fingerprint": {
+      "canvasReads": 0,
+      "canvasFingerprints": 0,
+      "fingerprintScripts": 0,
+      "thirdPartyFingerprints": 0
+    },
+    "tracking": {
+      "knownParams": 0,
+      "idParams": 0,
+      "syncs": [],
+      "sharedIds": []
+    },
+    "navigation": {
+      "chain": [
+        {
+          "site": "privacy-test-pages.site",
+          "page": "https://privacy-test-pages.site/privacy-protections/request-blocking/",
+          "arrivedBy": "typed",
+          "dwellMs": null,
+          "tracker": false,
+          "bounce": false
+        }
+      ],
+      "bounces": []
+    },
+    "threats": {
+      "websockets": [
+        {
+          "t": 1790652106807,
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "url": "wss://bad.third-party.site/block-me/web-socket"
+        }
+      ],
+      "polling": [],
+      "replacedNatives": [],
+      "addedGlobals": 6,
+      "injectedThirdParty": 1,
+      "keyListenersThirdParty": 0,
+      "beef": []
+    },
+    "blocked": {
+      "requests": 22,
+      "hosts": 1
+    },
+    "storage": {
+      "frames": 1,
+      "localStorageKeys": 0,
+      "sessionStorageKeys": 0,
+      "indexedDBs": 0,
+      "cacheStorages": 0,
+      "thirdPartyFrames": 0,
+      "blockedFrames": 0
+    },
+    "score": {
+      "score": 95,
+      "grade": "A",
+      "items": [
+        {
+          "id": "ads",
+          "label": "Rastreadores de anúncio",
+          "blacklight": "Ad trackers",
+          "count": 0,
+          "per": 4,
+          "max": 20,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "cookies3p",
+          "label": "Cookies de terceiros",
+          "blacklight": "Third-party cookies",
+          "count": 0,
+          "per": 2,
+          "max": 15,
+          "detail": "0 cookie(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "fingerprint",
+          "label": "Canvas fingerprint",
+          "blacklight": "Tracking that evades cookie blockers",
+          "count": 0,
+          "per": 15,
+          "max": 15,
+          "detail": "0 leitura(s) classificada(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "session",
+          "label": "Gravação de sessão",
+          "blacklight": "Session-monitoring scripts",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "keys",
+          "label": "Captura de teclado por terceiro",
+          "blacklight": "Keystroke capturing",
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "facebook",
+          "label": "Pixel do Facebook",
+          "blacklight": "Facebook",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "tiktok",
+          "label": "Pixel do TikTok",
+          "blacklight": "TikTok",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "twitter",
+          "label": "Pixel do Twitter/X",
+          "blacklight": "Twitter/X",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "ga",
+          "label": "Google Analytics com remarketing",
+          "blacklight": "Google Analytics",
+          "count": 0,
+          "per": 5,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "storage3p",
+          "label": "Storage em frames de terceiros",
+          "blacklight": null,
+          "count": 0,
+          "per": 1,
+          "max": 5,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "navtracking",
+          "label": "Bounce tracking / cookie sync",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 15,
+          "detail": "0 bounce(s), 0 sync(s)",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "beef",
+          "label": "Assinatura de BeEF",
+          "blacklight": null,
+          "count": 0,
+          "per": 40,
+          "max": 40,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "natives",
+          "label": "Funções nativas substituídas",
+          "blacklight": null,
+          "count": 0,
+          "per": 10,
+          "max": 10,
+          "detail": "",
+          "found": false,
+          "penalty": 0
+        },
+        {
+          "id": "channels",
+          "label": "WebSocket / polling para terceiro",
+          "blacklight": null,
+          "count": 1,
+          "per": 5,
+          "max": 10,
+          "detail": "bad.third-party.site",
+          "found": true,
+          "penalty": 5
+        }
+      ]
+    }
+  },
+  "report": {
+    "tabId": 3,
+    "url": "https://privacy-test-pages.site/privacy-protections/request-blocking/",
+    "site": "privacy-test-pages.site",
+    "startedAt": 1790652103264,
+    "navRequestId": "275",
+    "committed": true,
+    "requests": {
+      "total": 31,
+      "thirdParty": 22,
+      "log": [
+        {
+          "t": 1790652103265,
+          "requestId": "275",
+          "method": "GET",
+          "type": "main_frame",
+          "url": "https://privacy-test-pages.site/privacy-protections/request-blocking/",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790652103683,
+          "requestId": "277",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/privacy-protections/request-blocking/main.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790652103696,
+          "requestId": "278",
+          "method": "GET",
+          "type": "stylesheet",
+          "url": "https://privacy-test-pages.site/privacy-protections/request-blocking/style.css",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790652103985,
+          "requestId": "279",
+          "method": "GET",
+          "type": "image",
+          "url": "https://privacy-test-pages.site/favicon.ico",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790652106783,
+          "requestId": "280",
+          "method": "GET",
+          "type": "script",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/script.js?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106783,
+          "requestId": "281",
+          "method": "GET",
+          "type": "stylesheet",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/style.css?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106784,
+          "requestId": "282",
+          "method": "GET",
+          "type": "object",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/object.png?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106804,
+          "requestId": "283",
+          "method": "GET",
+          "type": "sub_frame",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/frame.html?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 19327352833,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106804,
+          "requestId": "284",
+          "method": "GET",
+          "type": "stylesheet",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/cssImport.css?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106807,
+          "requestId": "285",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://bad.third-party.site/block-me/server-sent-events",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106807,
+          "requestId": "286",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/fetch.json?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106807,
+          "requestId": "287",
+          "method": "GET",
+          "type": "websocket",
+          "url": "wss://bad.third-party.site/block-me/web-socket",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106810,
+          "requestId": "288",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/ajax.json?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106810,
+          "requestId": "289",
+          "method": "POST",
+          "type": "beacon",
+          "url": "https://bad.third-party.site/block-me/beacon?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106810,
+          "requestId": "290",
+          "method": "GET",
+          "type": "sub_frame",
+          "url": "https://privacy-test-pages.site/privacy-protections/request-blocking/frame.html?0.6370354971695922",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 19327352834,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790652106810,
+          "requestId": "291",
+          "method": "GET",
+          "type": "sub_frame",
+          "url": "https://privacy-test-pages.site/privacy-protections/request-blocking/middleframe.html?0.6370354971695922",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 19327352835,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790652106811,
+          "requestId": "292",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://privacy-test-pages.site/redirect?destination=https%3A%2F%2Fbad.third-party.site%2Fprivacy-protections%2Frequest-blocking%2Fblock-me%2Ffetch.json%3Fredirected-0.6370354971695922",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790652106811,
+          "requestId": "293",
+          "method": "GET",
+          "type": "image",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/img.jpg?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106812,
+          "requestId": "295",
+          "method": "GET",
+          "type": "imageset",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/picture.jpg?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106813,
+          "requestId": "296",
+          "method": "GET",
+          "type": "image",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/cssbg.jpg?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106814,
+          "requestId": "297",
+          "method": "GET",
+          "type": "font",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/cssfont.woff?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106824,
+          "requestId": "298",
+          "method": "GET",
+          "type": "script",
+          "url": "https://privacy-test-pages.site/privacy-protections/request-blocking/worker.js",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 0,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790652106824,
+          "requestId": "299",
+          "method": "POST",
+          "type": "csp_report",
+          "url": "https://bad.third-party.site/block-me/csp",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106824,
+          "requestId": "300",
+          "method": "GET",
+          "type": "media",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/audio.wav?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652106824,
+          "requestId": "301",
+          "method": "GET",
+          "type": "media",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/video.mp4?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652107030,
+          "requestId": "302",
+          "method": "GET",
+          "type": "sub_frame",
+          "url": "https://privacy-test-pages.site/privacy-protections/request-blocking/frame.html?0.6660560522696909",
+          "host": "privacy-test-pages.site",
+          "site": "privacy-test-pages.site",
+          "party": "first",
+          "tracker": false,
+          "frameId": 19327352836,
+          "thirdPartyFx": false,
+          "blocked": false
+        },
+        {
+          "t": 1790652107030,
+          "requestId": "303",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/fetch.json?iframe-0.7634654337236387",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 19327352834,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652107129,
+          "requestId": "304",
+          "method": "GET",
+          "type": "image",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/favicon.ico?0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652107140,
+          "requestId": "292",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/fetch.json?redirected-0.6370354971695922",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652107253,
+          "requestId": "307",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/fetch.json?webworker-0.3420517199893822",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 0,
+          "thirdPartyFx": true,
+          "blocked": true
+        },
+        {
+          "t": 1790652107259,
+          "requestId": "308",
+          "method": "GET",
+          "type": "xmlhttprequest",
+          "url": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/fetch.json?iframe-depth-2-0.10361139682992215",
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "party": "third",
+          "tracker": true,
+          "frameId": 19327352836,
+          "thirdPartyFx": true,
+          "blocked": true
+        }
+      ]
+    },
+    "domains": {
+      "privacy-test-pages.site": {
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "hosts": {
+          "privacy-test-pages.site": {
+            "requests": 9,
+            "tracker": false,
+            "company": null,
+            "categories": []
+          }
+        },
+        "requests": 9,
+        "types": {
+          "main_frame": 1,
+          "script": 2,
+          "stylesheet": 1,
+          "image": 1,
+          "sub_frame": 3,
+          "xmlhttprequest": 1
+        },
+        "tracker": false,
+        "categories": [],
+        "company": null,
+        "sources": [],
+        "firefoxFlags": [],
+        "cookiesSet": 0,
+        "firstSeen": 1790652103264
+      },
+      "third-party.site": {
+        "site": "third-party.site",
+        "party": "third",
+        "hosts": {
+          "bad.third-party.site": {
+            "requests": 22,
+            "tracker": true,
+            "company": "DDG test tracker",
+            "categories": [
+              "DDG-test"
+            ]
+          }
+        },
+        "requests": 22,
+        "types": {
+          "script": 1,
+          "stylesheet": 2,
+          "object": 1,
+          "sub_frame": 1,
+          "xmlhttprequest": 7,
+          "websocket": 1,
+          "beacon": 1,
+          "image": 3,
+          "imageset": 1,
+          "font": 1,
+          "csp_report": 1,
+          "media": 2
+        },
+        "tracker": true,
+        "categories": [
+          "DDG-test"
+        ],
+        "company": "DDG test tracker",
+        "sources": [
+          "ddg-test"
+        ],
+        "firefoxFlags": [],
+        "cookiesSet": 0,
+        "firstSeen": 1790652106782
+      }
+    },
+    "cookies": [],
+    "storage": {
+      "https://privacy-test-pages.site": {
+        "origin": "https://privacy-test-pages.site",
+        "site": "privacy-test-pages.site",
+        "party": "first",
+        "isTop": true,
+        "localStorage": {
+          "count": 0,
+          "bytes": 0,
+          "keys": [],
+          "at": 1790652117262
+        },
+        "sessionStorage": {
+          "count": 0,
+          "bytes": 0,
+          "keys": [],
+          "at": 1790652117262
+        },
+        "indexedDB": {
+          "databases": []
+        },
+        "cacheStorage": {
+          "caches": []
+        },
+        "writes": {
+          "localStorage": 0,
+          "sessionStorage": 0,
+          "indexedDB": 0,
+          "cacheStorage": 0
+        },
+        "writeLog": [],
+        "errors": {},
+        "valueHashes": []
+      }
+    },
+    "fingerprint": {
+      "canvas": []
+    },
+    "tracking": {
+      "params": [],
+      "paramHashes": {}
+    },
+    "hopId": "1790652103264-0",
+    "threats": {
+      "websockets": [
+        {
+          "t": 1790652106807,
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "url": "wss://bad.third-party.site/block-me/web-socket"
+        }
+      ],
+      "endpoints": {
+        "https://bad.third-party.site/privacy-protections/request-blocking/block-me/script.js": {
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "type": "script",
+          "times": [
+            1790652106783
+          ]
+        },
+        "https://bad.third-party.site/block-me/server-sent-events": {
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "type": "xmlhttprequest",
+          "times": [
+            1790652106807
+          ]
+        },
+        "https://bad.third-party.site/privacy-protections/request-blocking/block-me/fetch.json": {
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "type": "xmlhttprequest",
+          "times": [
+            1790652106807,
+            1790652107030,
+            1790652107140,
+            1790652107253,
+            1790652107259
+          ]
+        },
+        "https://bad.third-party.site/privacy-protections/request-blocking/block-me/ajax.json": {
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "type": "xmlhttprequest",
+          "times": [
+            1790652106810
+          ]
+        },
+        "https://bad.third-party.site/block-me/beacon": {
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "type": "beacon",
+          "times": [
+            1790652106810
+          ]
+        },
+        "https://bad.third-party.site/privacy-protections/request-blocking/block-me/img.jpg": {
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "type": "image",
+          "times": [
+            1790652106811
+          ]
+        },
+        "https://bad.third-party.site/privacy-protections/request-blocking/block-me/cssbg.jpg": {
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "type": "image",
+          "times": [
+            1790652106813
+          ]
+        },
+        "https://bad.third-party.site/privacy-protections/request-blocking/block-me/favicon.ico": {
+          "host": "bad.third-party.site",
+          "site": "third-party.site",
+          "type": "image",
+          "times": [
+            1790652107129
+          ]
+        }
+      },
+      "beef": [],
+      "frames": {
+        "https://privacy-test-pages.site": {
+          "origin": "https://privacy-test-pages.site",
+          "isTop": true,
+          "addedGlobals": [
+            "runTests",
+            "downloadTheResults",
+            "0",
+            "1",
+            "2",
+            "scriptLoadedCallback"
+          ],
+          "replaced": []
+        }
+      },
+      "injected": [
+        {
+          "t": 1790652106776,
+          "src": "https://bad.third-party.site/privacy-protections/request-blocking/block-me/script.js?0.6370354971695922",
+          "site": "third-party.site",
+          "party": "third",
+          "injector": "https://privacy-test-pages.site/privacy-protections/request-blocking/main.js",
+          "injectorParty": "first",
+          "frame": "https://privacy-test-pages.site"
+        }
+      ],
+      "keyListeners": []
+    },
+    "blocked": {
+      "bad.third-party.site": {
+        "host": "bad.third-party.site",
+        "site": "third-party.site",
+        "count": 22,
+        "rule": "lista",
+        "match": "bad.third-party.site",
+        "types": {
+          "script": 1,
+          "stylesheet": 2,
+          "object": 1,
+          "sub_frame": 1,
+          "xmlhttprequest": 7,
+          "websocket": 1,
+          "beacon": 1,
+          "image": 3,
+          "imageset": 1,
+          "font": 1,
+          "csp_report": 1,
+          "media": 2
+        }
+      }
+    },
+    "_badge": 1
+  }
+}
