@@ -272,7 +272,8 @@ nenhum efeito real. A Sentinela detectou tudo:
 - as três assinaturas de BeEF (script `hook.js`, global `beef`, cookie
   `BEEFHOOK`);
 - WebSocket para `ws://127.0.0.1:8000/ws`;
-- polling de `poll.json` (17 chamadas a cada ~2 s);
+- polling de `poll.json` a cada ~2 s (17 chamadas no momento do print e 30
+  no JSON exportado depois, porque o polling continua enquanto a página fica aberta);
 - `fetch` e `XMLHttpRequest.prototype.open` substituídos;
 - dois scripts de terceiro injetados por script;
 - listener de `keydown`.
@@ -301,6 +302,7 @@ domínio a domínio foi gerada por `scripts/reconcile.mjs`
 | Requisições (Sentinela / HAR) | 426 / 401 | 219 / 437 | 35 / 39 |
 | Sites de terceiros (Sentinela / HAR) | 35 / 35 | 10 / 10 | 1 / 1 |
 | Rastreadores de terceiros (Sentinela) | 24 | 3 | 0 |
+| Rastreadores de anúncio (Sentinela, critério 1 do score) | 18 | 1 | 0 |
 | Ad trackers (Blacklight) | 21 | 11 | 0 |
 | uBlock: requisições bloqueadas / domínios bloqueados | 21 (12%) / 7 | 44 (9%) / 7 | 0 / 0 |
 | Cookies de 3ª parte (Sentinela / Blacklight) | 20 / 14 | 9 / 16 | 10 / 4 |
@@ -347,8 +349,8 @@ Coleta em 28/09/2026: HAR de 21:17:38 a 21:18:57 (401 entradas). URL final
 
 **Achados.**
 
-- **Rastreadores**: 24 sites rastreadores de terceiros, quase todos de anúncio
-  (googlesyndication, doubleclick, adnxs, rubiconproject, smartadserver, criteo,
+- **Rastreadores**: 24 sites rastreadores de terceiros, dos quais 18 são de
+  anúncio pela Disconnect (googlesyndication, doubleclick, adnxs, rubiconproject, smartadserver, criteo,
   amazon-adsystem, seedtag, permutive, id5-sync, im-apps…). Isso é típico de
   *header bidding*: vários leilões de anúncio na mesma página.
 - **Cookies de terceiros**: 20. O `newsroom.bi` (Marfeel) sozinho define 84
@@ -452,8 +454,12 @@ Coleta em 28/09/2026: HAR de 21:23:57 a 21:25:27 (39 entradas).
 ![Wikipedia: uBlock Origin](img/wikipedia-ublock.jpg)
 
 A Wikipedia serve de controle: **nenhum rastreador**, nenhum anúncio,
-fingerprint, sync ou hook. As três ferramentas concordam, e o uBlock bloqueou
-0 requisições.
+fingerprint ou sync. As três ferramentas concordam, e o uBlock bloqueou
+0 requisições. O único indicador da aba Ameaças são 2 scripts de
+`meta.wikimedia.org` injetados pelo carregador da própria Wikipedia
+(`load.php`): o mapa WikiMiniAtlas e o banner do concurso Wiki Loves
+Monuments (`Special:BannerLoader?campaign=wlm_2026_br`). Eles contam como
+"terceiro" só porque `wikimedia.org` é outro eTLD+1, e não entram no score.
 
 O único terceiro é `wikimedia.org` (11 requisições: `upload.`, `thumb.`,
 `meta.` e `auth.wikimedia.org`), que define 10 cookies de 3ª parte. São os
@@ -531,7 +537,7 @@ A versão completa está em `docs/metodologia-score.md`, e a implementação em
 
 | Critério (Blacklight) | UOL: Sentinela | UOL: Blacklight | ML: Sentinela | ML: Blacklight | Wiki: Sentinela | Wiki: Blacklight |
 |---|---|---|---|---|---|---|
-| Ad trackers | 24 dom. (−20) | 21 (−20) | 1 dom.: mlstatic (−4) | 11 (−20) | 0 | 0 |
+| Ad trackers | 18 dom. (−20) | 21 (−20) | 1 dom.: mlstatic (−4) | 11 (−20) | 0 | 0 |
 | Third-party cookies | 20 (−15) | 14 (−15) | 9 (−15) | 16 (−15) | 10 (−15) | 4 (−8) |
 | Evades cookie blockers | não | não | não | não | não | não |
 | Session monitoring | não | não | **Hotjar (−10)** | não | não | não |
@@ -553,7 +559,7 @@ Blacklight reportou (transcritas em `<site>-blacklight.txt`).
 
 - A **ordem** dos sites é a mesma nas duas ferramentas: a Wikipedia é muito mais
   privada que UOL e Mercado Livre.
-- No UOL, as duas acham volume parecido de rastreadores de anúncio (24 × 21) e
+- No UOL, as duas acham volume parecido de rastreadores de anúncio (18 × 21) e
   cookies de terceiros (20 × 14), acham o Google Analytics com remarketing
   (`stats.g.doubleclick.net`) e não acham fingerprint nem gravação de sessão.
 - Na Wikipedia, as duas não acham nada além de cookies de terceiros.
