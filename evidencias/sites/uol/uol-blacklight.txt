@@ -6,3 +6,16 @@ categoria: Ad trackers = 21
 categoria: Third-party cookies = 14
 categoria: Facebook = 1
 categoria: Google Analytics = 1
+# Empresas (de uol-blacklight-completo.png, seção Ad trackers): Verizon Media, RTB House,
+# Smartadserver, Chartbeat, Facebook, PubMatic, Microsoft, Amazon, ID5, Criteo,
+# DoubleVerify, Alphabet, Magnite. Cookies de 3ª parte: Microsoft, Criteo, Universo Online.
+# "Some of the ad-tech companies": Alphabet, Amazon, Comscore, Criteo, DoubleVerify,
+# Lotame, Microsoft, PubMatic, Magnite, Verizon.
+doubleclick.net
+amazon-adsystem.com
+smartadserver.com
+chartbeat.net
+id5-sync.com
+criteo.com
+rubiconproject.com
+scorecardresearch.com

@@ -7,3 +7,7 @@ categoria: Third-party cookies = 16
 categoria: Facebook = 1
 categoria: TikTok = 1
 categoria: Twitter/X = 1
+# Empresas (de mercadolivre-blacklight-completo.png): Ad trackers: Twitter, Facebook,
+# RTB House, Alphabet. Cookies de 3ª parte: RTB House, ByteDance, Alphabet, Twitter,
+# Microsoft. "Some of the ad-tech companies": Alphabet. TikTok com "advanced matching".
+google.com

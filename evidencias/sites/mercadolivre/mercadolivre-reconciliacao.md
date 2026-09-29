@@ -7,7 +7,7 @@ Gerado por `scripts/reconcile.mjs` a partir de `mercadolivre.har`, `mercadolivre
 | HAR (DevTools) | 437 | 429 | 10 |
 | Sentinela | 219 | 215 | 10 |
 | uBlock Origin (bloqueados) | — | — | 7 |
-| Blacklight (domínios citados) | — | — | 0 |
+| Blacklight (domínios citados) | — | — | 1 |
 
 Score da Sentinela: **35/100 (D)**.
 
@@ -21,7 +21,7 @@ Score da Sentinela: **35/100 (D)**.
 | mercadolibre.com | 39 | 18 | — | — | sim | — | uBlock bloqueia e a Sentinela não marca rastreador: o domínio está nas listas do uBlock (EasyList/EasyPrivacy/uBO) mas não na Disconnect nem na classificação do Firefox. |
 | mercadoclics.com | 26 | 13 | — | — | sim | — | uBlock bloqueia e a Sentinela não marca rastreador: o domínio está nas listas do uBlock (EasyList/EasyPrivacy/uBO) mas não na Disconnect nem na classificação do Firefox. |
 | meli.com | 16 | 11 | — | — | — | — |  |
-| google.com | 11 | 5 | — | Google (Content) | sim | — | uBlock bloqueia e a Sentinela não marca rastreador: o domínio está nas listas do uBlock (EasyList/EasyPrivacy/uBO) mas não na Disconnect nem na classificação do Firefox. |
+| google.com | 11 | 5 | — | Google (Content) | sim | sim | uBlock bloqueia e a Sentinela não marca rastreador: o domínio está nas listas do uBlock (EasyList/EasyPrivacy/uBO) mas não na Disconnect nem na classificação do Firefox. |
 | gstatic.com | 2 | 1 | — | Google (Content) | — | — |  |
 | mercadolivre.com | 1 | 1 | — | — | sim | — | uBlock bloqueia e a Sentinela não marca rastreador: o domínio está nas listas do uBlock (EasyList/EasyPrivacy/uBO) mas não na Disconnect nem na classificação do Firefox. |
 | mercadopago.com.br | 1 | 1 | — | — | sim | — | uBlock bloqueia e a Sentinela não marca rastreador: o domínio está nas listas do uBlock (EasyList/EasyPrivacy/uBO) mas não na Disconnect nem na classificação do Firefox. |

@@ -396,6 +396,31 @@ Coleta em 28/09/2026: HAR de 21:17:38 a 21:18:57 (401 entradas). URL final
   `uol.com`): CDNs da empresa com eTLD+1 diferente. Para o navegador são
   terceiros, e a Sentinela os mostra como "terceiro", não como rastreador.
 
+**Reconciliação com o Blacklight, empresa a empresa.** O Blacklight atribui os
+21 ad trackers a 13 empresas e os cookies de terceiros a 3 (print completo em
+`uol-blacklight-completo.png`). Cada empresa foi procurada nos domínios do
+`uol.har`:
+
+| Empresa (Blacklight) | Requisições no HAR | Sentinela | Explicação |
+|---|---|---|---|
+| Alphabet (Google) | 91 (doubleclick, googlesyndication, google-analytics…) | rastreador | concordam |
+| Comscore | 23 (`scorecardresearch.com`) | rastreador + sync `cs_fpcu` | concordam; a Sentinela ainda vê o ID do cookie de 1ª parte indo para o comScore |
+| Magnite | 10 (`fastlane.rubiconproject.com`) | rastreador | concordam |
+| Smartadserver | 8 (`prg.smartadserver.com`) | rastreador | concordam |
+| Chartbeat | 8 (`chartbeat.com`/`.net`) | rastreador + polling | concordam |
+| Amazon | 4 (`amazon-adsystem.com`) | rastreador | concordam |
+| ID5 | 2 (`id5-sync.com`) | rastreador | concordam |
+| Criteo | 2 (`gum.criteo.com`) | rastreador + sync | concordam |
+| Verizon Media, RTB House, PubMatic, DoubleVerify, Lotame | **0** | não viu | nenhuma requisição a `yahoo`, `aol`, `creativecdn`, `pubmatic`, `doubleverify` ou `crwdcntrl` no HAR. São participantes do leilão (header bidding) que entram ou não conforme o lance de cada visita e a região: o Blacklight visitou dos EUA às 15:22 ET, a coleta foi no Brasil às 21:17 |
+| Facebook | **0** | não viu | nenhuma requisição a `facebook`/`fbcdn` no HAR; o pixel é carregado pelo gerenciador de tags para outro público (Blacklight: celular, Califórnia) |
+| Microsoft | **0** | não viu | nenhuma requisição a `bing`, `clarity` ou `microsoft` no HAR; mesmo motivo, e os cookies que o Blacklight atribui à Microsoft vêm desse script |
+| Universo Online (cookies) | — | 1ª parte / CDN do UOL | o Blacklight conta como terceiro o cookie de `uol.com` (outro eTLD+1), como a Sentinela |
+
+Das 13 empresas de anúncio, **8 aparecem no HAR e a Sentinela classifica todas
+como rastreador**; as 5 restantes, mais Facebook e Microsoft, não têm nenhuma
+requisição na visita coletada, então a divergência é de **visita diferente**,
+não de detecção.
+
 ### 4.3 mercadolivre.com.br
 
 Coleta em 28/09/2026: HAR de 21:24:19 a 21:24:50 (437 entradas, duas cargas da
@@ -451,6 +476,26 @@ URL final `?skipInApp=true&matt_…`.
   são carregados para visitantes móveis dos EUA. No acesso desktop do Brasil,
   eles não carregaram.
 
+**Reconciliação com o Blacklight, empresa a empresa** (print completo em
+`mercadolivre-blacklight-completo.png`):
+
+| Empresa (Blacklight) | Requisições no HAR | Explicação |
+|---|---|---|
+| Alphabet (ad tracker) | 11 (`accounts.google.com` ×8, `play.google.com` ×3) | concordam no domínio, mas no HAR são o login do Google (One Tap) e a Play Store, não anúncios; a Sentinela os mostra como terceiro e o uBlock bloqueia parte de `google.com` |
+| Twitter/X (ad tracker, pixel e cookie) | **0** | nenhuma requisição a `twitter`, `ads-twitter` ou `t.co` no HAR |
+| Facebook (ad tracker e pixel) | **0** | nenhuma requisição a `facebook`/`fbcdn` no HAR |
+| RTB House (ad tracker e cookie) | **0** | nenhuma requisição a `creativecdn`/`rtbhouse` no HAR |
+| ByteDance/TikTok (pixel com *advanced matching* e cookie) | **0** | nenhuma requisição a `tiktok` no HAR |
+| Microsoft (cookie) | **0** | nenhuma requisição a `bing`, `clarity` ou `microsoft` no HAR |
+
+Todas as empresas de anúncio que o Blacklight cita, exceto o Google, têm
+**zero** requisições no HAR da visita brasileira em desktop. A lista "Some of the
+ad-tech companies" do Blacklight para o Mercado Livre tem só Alphabet, o que
+mostra que os pixels de rede social foram carregados pelos scripts do próprio
+Mercado Livre (a URL dele termina em `?skipInApp=true&matt_…`, parâmetros de
+campanha), sem passar por uma rede de anúncios. Por isso a Sentinela vê só 1
+rastreador de anúncio pela Disconnect (`mlstatic.com`) e o Blacklight vê 11.
+
 ### 4.4 pt.wikipedia.org
 
 Coleta em 28/09/2026: HAR de 21:23:57 a 21:25:27 (39 entradas).
@@ -481,6 +526,12 @@ dele (o Chromium dele usa outras regras de cookie de terceiros). A Sentinela
 conta toda definição que viu. Esses 10 cookies custam 15 pontos no score (teto
 do critério), e isso mostra uma limitação do critério: ele não distingue
 cookie de login de cookie de rastreamento.
+
+No print completo do Blacklight (`wikipedia-blacklight-completo.png`), os 4
+cookies de terceiros são todos da **Wikimedia Foundation**, e a seção de ad-tech
+diz "No ad-tech companies were found on this website". Ou seja, as três
+ferramentas concordam no único terceiro (`wikimedia.org`), e a diferença 10 × 4
+é só de contagem.
 
 ### 4.5 Causas típicas de divergência
 

@@ -6,7 +6,7 @@ Gerado por `scripts/reconcile.mjs` a partir de `wikipedia.har`, `wikipedia-senti
 |---|---|---|---|
 | HAR (DevTools) | 39 | 11 | 1 |
 | Sentinela | 35 | 11 | 1 |
-| Blacklight (domínios citados) | — | — | 0 |
+| Blacklight (domínios citados) | — | — | 1 |
 
 Score da Sentinela: **85/100 (A)**.
 
@@ -14,7 +14,7 @@ Score da Sentinela: **85/100 (A)**.
 
 | Site | HAR | Sentinela | Rastreador (Sentinela) | Disconnect | uBlock bloqueou | Blacklight | Explicação sugerida |
 |---|---|---|---|---|---|---|---|
-| wikimedia.org | 11 | 11 | — | — | ? | — |  |
+| wikimedia.org | 11 | 11 | — | — | ? | sim |  |
 
 ## Score: Sentinela × Blacklight
 

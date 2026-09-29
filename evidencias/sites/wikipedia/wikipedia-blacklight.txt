@@ -3,3 +3,6 @@
 # URL: https://themarkup.org/blacklight?url=https%3A%2F%2Fpt.wikipedia.org&device=mobile&location=us-ca&force=false
 # Visitado em Sep. 28, 2026, 16:53 ET
 categoria: Third-party cookies = 4
+# Empresas (de wikipedia-blacklight-completo.png): cookie de 3ª parte da Wikimedia
+# Foundation; "No ad-tech companies were found on this website".
+wikimedia.org

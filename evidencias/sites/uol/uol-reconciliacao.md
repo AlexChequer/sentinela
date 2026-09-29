@@ -7,7 +7,7 @@ Gerado por `scripts/reconcile.mjs` a partir de `uol.har`, `uol-sentinela.json`, 
 | HAR (DevTools) | 401 | 326 | 35 |
 | Sentinela | 426 | 334 | 35 |
 | uBlock Origin (bloqueados) | — | — | 7 |
-| Blacklight (domínios citados) | — | — | 0 |
+| Blacklight (domínios citados) | — | — | 8 |
 
 Score da Sentinela: **30/100 (D)**.
 
@@ -16,24 +16,24 @@ Score da Sentinela: **30/100 (D)**.
 | Site | HAR | Sentinela | Rastreador (Sentinela) | Disconnect | uBlock bloqueou | Blacklight | Explicação sugerida |
 |---|---|---|---|---|---|---|---|
 | googlesyndication.com | 34 | 41 | sim | Google (Advertising, FingerprintingGeneral) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
-| scorecardresearch.com | 23 | 28 | sim | comScore (Analytics) | sim | — |  |
+| scorecardresearch.com | 23 | 28 | sim | comScore (Analytics) | sim | sim |  |
 | google.com | 24 | 25 | sim | Google (Content) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
 | newsroom.bi | 20 | 26 | sim | Marfeel (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
-| doubleclick.net | 20 | 23 | sim | Google (Email, Advertising, FingerprintingGeneral) | sim | — |  |
+| doubleclick.net | 20 | 23 | sim | Google (Email, Advertising, FingerprintingGeneral) | sim | sim |  |
 | permutive.com | 17 | 19 | sim | Permutive (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
 | adnxs.com | 14 | 15 | sim | Microsoft (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
 | seedtag.com | 11 | 12 | sim | SeedTag (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
-| rubiconproject.com | 10 | 11 | sim | Magnite (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
-| smartadserver.com | 8 | 9 | sim | Equativ (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
-| chartbeat.net | 5 | 7 | sim | Chartbeat (Analytics) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
+| rubiconproject.com | 10 | 11 | sim | Magnite (Advertising) | — | sim | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
+| smartadserver.com | 8 | 9 | sim | Equativ (Advertising) | — | sim | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
+| chartbeat.net | 5 | 7 | sim | Chartbeat (Analytics) | — | sim | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
 | adtrafficquality.google | 5 | 5 | sim | Google (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
-| amazon-adsystem.com | 4 | 4 | sim | Amazon (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
+| amazon-adsystem.com | 4 | 4 | sim | Amazon (Advertising) | — | sim | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
 | mrf.io | 3 | 3 | sim | Marfeel (Advertising) | sim | — |  |
 | privacymanager.io | 3 | 3 | sim | LiveRamp (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
 | chartbeat.com | 3 | 3 | sim | Chartbeat (Analytics) | sim | — |  |
 | cxense.com | 3 | 3 | sim | Piano (Advertising) | sim | — |  |
-| criteo.com | 2 | 2 | sim | Criteo (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
-| id5-sync.com | 2 | 2 | sim | ID5 (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
+| criteo.com | 2 | 2 | sim | Criteo (Advertising) | — | sim | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
+| id5-sync.com | 2 | 2 | sim | ID5 (Advertising) | — | sim | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
 | im-apps.net | 2 | 2 | sim | IntimateMerger (Advertising) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
 | permutive.app | 1 | 1 | sim | Permutive (Advertising) | sim | — |  |
 | turner.com | 1 | 1 | sim | Warner Bros. Discovery (Analytics) | — | — | Sentinela marca rastreador e o uBlock não mostra bloqueio: ou o uBlock permite o domínio (exceção para não quebrar o site, ex.: CDN/Content), ou ele nem chegou a carregar porque o script que o chamaria foi bloqueado antes (bloqueio em cadeia). |
