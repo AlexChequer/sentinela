@@ -654,17 +654,16 @@ comum não teria como perceber.
 
 ## 8. Uso de IA
 
-Declaro o uso de IA como ferramenta de apoio neste trabalho. Ele foi feito em conjunto com
-o Claude (Anthropic), usado no Claude Code como assistente de programação. O
-aluno definiu o que seria feito e como: as decisões de desenvolvimento, a ordem
-das fases, os sites analisados, os critérios do score (alinhados ao Blacklight)
-e a validação de cada etapa. A IA escreveu a maior parte do código da extensão,
-dos scripts de apoio e do texto deste relatório, seguindo essas decisões. Todas
-as funcionalidades foram testadas pelo aluno no Firefox, e várias correções
-vieram desses testes (classificação por host, cookies de sufixo público,
-falso positivo de sync, bloqueio de service worker). Todas as evidências
-(prints, HARs, JSONs, Blacklight e uBlock) foram coletadas pelo aluno no próprio
-navegador, e os números do relatório saem delas.
+Declaro que usei IA como ferramenta de apoio neste trabalho: o Claude
+(Anthropic), no Claude Code, como assistente de programação. Eu defini o que
+seria feito e como: as decisões de desenvolvimento, a ordem das fases, os sites
+analisados, os critérios do score (alinhados ao Blacklight) e a validação de
+cada etapa. A IA escreveu a maior parte do código da extensão, dos scripts de
+apoio e do texto deste relatório, seguindo essas decisões. Testei todas as
+funcionalidades no Firefox, e várias correções vieram desses testes
+(classificação por host, cookies de sufixo público, falso positivo de sync,
+bloqueio de service worker). Coletei todas as evidências (prints, HARs, JSONs,
+Blacklight e uBlock) no meu navegador, e os números do relatório saem delas.
 
 ## Anexo: evidências
 
